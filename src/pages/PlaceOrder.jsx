@@ -28,42 +28,57 @@ const PlaceOrder = () => {
         setFormData(data => ({ ...data, [name]: value }))
     }
 
-    const initPay = (order) => {
-        const options = {
-            key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-            amount: order.amount,
-            currency: order.currency,
-            name:'Order Payment',
-            description:'Order Payment',
-            order_id: order.id,
-            receipt: order.receipt,
-            handler: async (response) => {
-                console.log(response)
-                try {
-                    
-                    const { data } = await axios.post(backendUrl + '/api/order/verifyRazorpay',response,{headers:{token}})
-                    if (data.success) {
-                        navigate('/orders')
-                        setCartItems({})
-                    }
-                } catch (error) {
-                    console.log(error)
-                    toast.error(error)
-                }
-            }
+    const handleTwintPayment = (paymentData) => {
+        // In a real implementation, this would redirect to Twint payment page or show QR code
+        // For demo purposes, we'll simulate the payment flow
+        const confirmPayment = window.confirm(
+            `Twint Payment Details:\n` +
+            `Amount: CHF ${(paymentData.amount / 100).toFixed(2)}\n` +
+            `Short Code: ${paymentData.shortCode}\n\n` +
+            `In a real implementation, you would:\n` +
+            `1. Scan the QR code with Twint app, or\n` +
+            `2. Enter the short code in your Twint app\n\n` +
+            `Click OK to simulate successful payment, Cancel to simulate failed payment.`
+        )
+        
+        if (confirmPayment) {
+            // Simulate successful payment verification
+            verifyTwintPayment(paymentData.orderId, 'success')
+        } else {
+            // Simulate failed payment
+            verifyTwintPayment(paymentData.orderId, 'failed')
         }
-        const rzp = new window.Razorpay(options)
-        rzp.open()
+    }
+
+    const verifyTwintPayment = async (orderId, paymentStatus) => {
+        try {
+            const { data } = await axios.post(backendUrl + '/api/order/verifyTwint', {
+                userId: token, // In real implementation, extract userId from token
+                orderId: orderId,
+                paymentStatus: paymentStatus
+            }, {headers: {token}})
+            
+            if (data.success) {
+                setCartItems({})
+                navigate('/orders')
+                toast.success('Twint payment successful!')
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error('Payment verification failed')
+        }
     }
 
     const onSubmitHandler = async (event) => {
         event.preventDefault()
         try {
-
+            
             let orderItems = []
 
-            for (const items in cartItems) {
-                for (const item in cartItems[items]) {
+            for(const items in cartItems){
+                for(const item in cartItems[items]){
                     if (cartItems[items][item] > 0) {
                         const itemInfo = structuredClone(products.find(product => product._id === items))
                         if (itemInfo) {
@@ -80,10 +95,9 @@ const PlaceOrder = () => {
                 items: orderItems,
                 amount: getCartAmount() + delivery_fee
             }
-            
 
             switch (method) {
-
+                
                 // API Calls for COD
                 case 'cod':
                     const response = await axios.post(backendUrl + '/api/order/place',orderData,{headers:{token}})
@@ -94,7 +108,7 @@ const PlaceOrder = () => {
                         toast.error(response.data.message)
                     }
                     break;
-
+                
                 case 'stripe':
                     const responseStripe = await axios.post(backendUrl + '/api/order/stripe',orderData,{headers:{token}})
                     if (responseStripe.data.success) {
@@ -105,13 +119,13 @@ const PlaceOrder = () => {
                     }
                     break;
 
-                case 'razorpay':
-
-                    const responseRazorpay = await axios.post(backendUrl + '/api/order/razorpay', orderData, {headers:{token}})
-                    if (responseRazorpay.data.success) {
-                        initPay(responseRazorpay.data.order)
+                case 'twint':
+                    const responseTwint = await axios.post(backendUrl + '/api/order/twint', orderData, {headers:{token}})
+                    if (responseTwint.data.success) {
+                        handleTwintPayment(responseTwint.data.payment)
+                    } else {
+                        toast.error(responseTwint.data.message)
                     }
-
                     break;
 
                 default:
@@ -166,9 +180,9 @@ const PlaceOrder = () => {
                             <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'stripe' ? 'bg-green-400' : ''}`}></p>
                             <img className='h-5 mx-4' src={assets.stripe_logo} alt="" />
                         </div>
-                        <div onClick={() => setMethod('razorpay')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
-                            <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'razorpay' ? 'bg-green-400' : ''}`}></p>
-                            <img className='h-5 mx-4' src={assets.razorpay_logo} alt="" />
+                        <div onClick={() => setMethod('twint')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
+                            <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'twint' ? 'bg-green-400' : ''}`}></p>
+                            <img className='h-5 mx-4' src={assets.twint_logo} alt="Twint" />
                         </div>
                         <div onClick={() => setMethod('cod')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
                             <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'cod' ? 'bg-green-400' : ''}`}></p>
@@ -179,7 +193,9 @@ const PlaceOrder = () => {
                     <div className='w-full text-end mt-8'>
                         <button type='submit' className='bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
                     </div>
+
                 </div>
+
             </div>
         </form>
     )
