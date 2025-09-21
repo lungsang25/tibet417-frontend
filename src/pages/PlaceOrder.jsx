@@ -29,33 +29,48 @@ const PlaceOrder = () => {
     }
 
     const handleTwintPayment = (paymentData) => {
-        // In a real implementation, this would redirect to Twint payment page or show QR code
-        // For demo purposes, we'll simulate the payment flow
-        const confirmPayment = window.confirm(
-            `Twint Payment Details:\n` +
-            `Amount: CHF ${(paymentData.amount / 100).toFixed(2)}\n` +
-            `Short Code: ${paymentData.shortCode}\n\n` +
-            `In a real implementation, you would:\n` +
-            `1. Scan the QR code with Twint app, or\n` +
-            `2. Enter the short code in your Twint app\n\n` +
-            `Click OK to simulate successful payment, Cancel to simulate failed payment.`
-        )
-        
-        if (confirmPayment) {
-            // Simulate successful payment verification
-            verifyTwintPayment(paymentData.orderId, 'success')
+        // Real Payrexx integration - redirect to payment URL
+        if (paymentData.paymentUrl) {
+            // Redirect to Payrexx payment page
+            window.location.href = paymentData.paymentUrl;
+        } else if (paymentData.qrCodeUrl) {
+            // Show QR code modal for mobile payments
+            showTwintQRModal(paymentData);
         } else {
-            // Simulate failed payment
-            verifyTwintPayment(paymentData.orderId, 'failed')
+            toast.error('Payment URL not available');
         }
+    }
+
+    const showTwintQRModal = (paymentData) => {
+        // Create a modal to display QR code
+        const modal = document.createElement('div');
+        modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+        modal.innerHTML = `
+            <div class="bg-white p-6 rounded-lg max-w-md mx-4">
+                <h3 class="text-lg font-bold mb-4 text-center">Pay with Twint</h3>
+                <div class="text-center mb-4">
+                    <img src="${paymentData.qrCodeUrl}" alt="Twint QR Code" class="w-48 h-48 mx-auto mb-4 border" />
+                    <p class="text-sm text-gray-600 mb-2">Scan with your Twint app</p>
+                    <p class="text-lg font-semibold">CHF ${(paymentData.amount).toFixed(2)}</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="window.location.href='${paymentData.paymentUrl}'" class="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                        Open Payment Page
+                    </button>
+                    <button onclick="this.closest('.fixed').remove()" class="flex-1 bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
     }
 
     const verifyTwintPayment = async (orderId, paymentStatus) => {
         try {
             const { data } = await axios.post(backendUrl + '/api/order/verifyTwint', {
-                userId: token, // In real implementation, extract userId from token
                 orderId: orderId,
-                paymentStatus: paymentStatus
+                success: paymentStatus
             }, {headers: {token}})
             
             if (data.success) {
@@ -63,7 +78,7 @@ const PlaceOrder = () => {
                 navigate('/orders')
                 toast.success('Twint payment successful!')
             } else {
-                toast.error(data.message)
+                toast.error(data.message || 'Payment verification failed')
             }
         } catch (error) {
             console.log(error)
