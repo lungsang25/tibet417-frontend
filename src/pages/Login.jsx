@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
 
@@ -44,6 +45,27 @@ const Login = () => {
       }
   }
 
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const response = await axios.post(backendUrl + '/api/user/google', {
+        credential: credentialResponse.credential
+      });
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem('token', response.data.token);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  const handleGoogleError = () => {
+    toast.error('Google Sign-In failed');
+  };
+
   useEffect(()=>{
     if (token) {
       navigate('/')
@@ -68,6 +90,24 @@ const Login = () => {
             }
         </div>
         <button className='bg-black text-white font-light px-8 py-2 mt-4'>{currentState === 'Login' ? 'Sign In' : 'Sign Up'}</button>
+        
+        <div className='flex items-center gap-4 w-full my-2'>
+            <hr className='flex-1 border-gray-300' />
+            <span className='text-gray-500 text-sm'>OR</span>
+            <hr className='flex-1 border-gray-300' />
+        </div>
+        
+        <div className='w-full flex justify-center'>
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={handleGoogleError}
+              theme="outline"
+              size="large"
+              text="continue_with"
+              shape="rectangular"
+              width="300"
+            />
+        </div>
     </form>
   )
 }
