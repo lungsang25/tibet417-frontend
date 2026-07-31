@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import { getMediumImage } from '../utils/imageUtils'
 
 export const ShopContext = createContext();
 
@@ -108,12 +109,27 @@ const ShopContextProvider = (props) => {
         return totalAmount;
     }
 
+    const preloadImages = (products) => {
+        const first10 = products.slice(0, 10);
+        first10.forEach((product) => {
+            if (product.image && product.image[0]) {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'image';
+                link.href = getMediumImage(product.image[0]);
+                document.head.appendChild(link);
+            }
+        });
+    };
+
     const getProductsData = async () => {
         try {
 
             const response = await axios.get(backendUrl + '/api/product/list')
             if (response.data.success) {
-                setProducts(response.data.products.reverse())
+                const reversedProducts = response.data.products.reverse();
+                setProducts(reversedProducts);
+                preloadImages(reversedProducts);
             } else {
                 toast.error(response.data.message)
             }
