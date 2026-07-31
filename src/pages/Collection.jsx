@@ -3,6 +3,7 @@ import { ShopContext } from '../context/ShopContext'
 import { assets } from '../assets/assets';
 import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
+import SEO from '../components/SEO';
 
 const Collection = () => {
 
@@ -84,6 +85,12 @@ const Collection = () => {
 
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
+      <SEO 
+        title="Shop All Products - Tibet417 | Tibet Shopping Collection"
+        description="Browse our complete collection of authentic Tibetan products at Tibet417. Shop fashion, electronics, home essentials and more. Find the best Tibet shopping deals online."
+        keywords="tibet shopping collection, tibet417 products, shop tibetan products, tibetan fashion collection, tibet online shopping, buy tibetan goods, tibet417 store"
+        canonical="https://www.tibet417.com/collection"
+      />
       
       {/* Filter Options */}
       <div className='min-w-60'>

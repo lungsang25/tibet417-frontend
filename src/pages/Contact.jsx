@@ -2,10 +2,17 @@ import React from 'react'
 import Title from '../components/Title'
 import { assets } from '../assets/assets'
 import NewsletterBox from '../components/NewsletterBox'
+import SEO from '../components/SEO'
 
 const Contact = () => {
   return (
     <div>
+      <SEO 
+        title="Contact Tibet417 - Get in Touch | Tibet Shopping Support"
+        description="Contact Tibet417 for any questions about our Tibetan products and shopping services. Reach our customer support team for assistance with orders, products, and more."
+        keywords="contact tibet417, tibet shopping support, tibet417 customer service, tibetan products inquiry, tibet417 contact"
+        canonical="https://www.tibet417.com/contact"
+      />
       
       <div className='text-center text-2xl pt-10 border-t'>
           <Title text1={'CONTACT'} text2={'US'} />

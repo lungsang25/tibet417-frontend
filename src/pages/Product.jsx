@@ -4,6 +4,7 @@ import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
 import { getLargeImage, getMediumImage } from '../utils/imageUtils';
+import SEO from '../components/SEO';
 
 const Product = () => {
 
@@ -31,6 +32,39 @@ const Product = () => {
 
   return productData ? (
     <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
+      <SEO 
+        title={`${productData.name} - Tibet417 | Tibet Shopping`}
+        description={`${productData.description.substring(0, 150)}... Shop ${productData.name} at Tibet417. Authentic Tibetan products with fast delivery.`}
+        keywords={`${productData.name}, tibet shopping, tibet417, ${productData.category}, ${productData.subCategory}, buy tibetan products`}
+        canonical={`https://www.tibet417.com/product/${productData._id}`}
+        ogType="product"
+        ogImage={productData.image[0]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": productData.name,
+          "image": productData.image,
+          "description": productData.description,
+          "sku": productData._id,
+          "brand": {
+            "@type": "Brand",
+            "name": "Tibet417"
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": `https://www.tibet417.com/product/${productData._id}`,
+            "priceCurrency": "USD",
+            "price": productData.price,
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4",
+            "reviewCount": "122"
+          }
+        }}
+      />
       {/*----------- Product Data-------------- */}
       <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
 

@@ -2,10 +2,17 @@ import React from 'react'
 import Title from '../components/Title'
 import { assets } from '../assets/assets'
 import NewsletterBox from '../components/NewsletterBox'
+import SEO from '../components/SEO'
 
 const About = () => {
   return (
     <div>
+      <SEO 
+        title="About Tibet417 - Your Trusted Tibet Shopping Destination"
+        description="Learn about Tibet417, your premier destination for authentic Tibetan shopping online. Discover our mission to provide quality products, exceptional service, and seamless shopping experience."
+        keywords="about tibet417, tibet shopping, tibetan online store, tibet417 mission, authentic tibetan products, tibet e-commerce"
+        canonical="https://www.tibet417.com/about"
+      />
 
       <div className='text-2xl text-center pt-8 border-t'>
           <Title text1={'ABOUT'} text2={'US'} />
