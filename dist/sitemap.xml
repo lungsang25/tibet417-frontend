@@ -34,14 +34,6 @@
     <priority>0.6</priority>
   </url>
   
-  <!-- Terms & Conditions Page -->
-  <url>
-    <loc>https://www.tibet417.com/terms</loc>
-    <lastmod>2026-08-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
   <!-- Login Page -->
   <url>
     <loc>https://www.tibet417.com/login</loc>

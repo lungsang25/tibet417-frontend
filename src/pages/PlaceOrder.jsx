@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
 import { assets } from '../assets/assets'
@@ -9,6 +10,7 @@ import { toast } from 'react-toastify'
 const PlaceOrder = () => {
 
     const [method, setMethod] = useState('cod');
+    const [acceptedTerms, setAcceptedTerms] = useState(false);
     const { navigate, backendUrl, token, cartItems, setCartItems, getCartAmount, delivery_fee, products } = useContext(ShopContext);
     const [formData, setFormData] = useState({
         firstName: '',
@@ -205,7 +207,12 @@ const PlaceOrder = () => {
                         </div>
                     </div>
 
-                    <div className='w-full text-end mt-8'>
+                    <label className='flex items-start gap-3 mt-8 text-sm text-gray-600 cursor-pointer'>
+                        <input required type='checkbox' className='mt-0.5' checked={acceptedTerms} onChange={(event) => setAcceptedTerms(event.target.checked)} />
+                        <span>I have read and accept the <Link to='/terms' target='_blank' className='underline text-gray-800'>Terms & Conditions</Link>.</span>
+                    </label>
+
+                    <div className='w-full text-end mt-6'>
                         <button type='submit' className='bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
                     </div>
 
