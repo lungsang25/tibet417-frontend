@@ -6,16 +6,37 @@ import { getMediumImage } from '../utils/imageUtils'
 
 export const ShopContext = createContext();
 
+/**
+ * scripts/prerender.mjs inlines the product list into each prerendered page as
+ * window.__TIBET417_PRODUCTS__.
+ *
+ * Without it the first client render has an empty catalogue while the
+ * prerendered HTML already shows six products, so hydration fails on every page
+ * that lists products and React throws the markup away and repaints. Seeding
+ * initial state from the inlined data makes the first render identical — and
+ * skips a round-trip to the API before anything can appear.
+ */
+const normalizeProducts = (list) => [...list].reverse();
+
+const preloadedProducts = () => {
+    if (typeof window === 'undefined' || !Array.isArray(window.__TIBET417_PRODUCTS__)) return null;
+    return normalizeProducts(window.__TIBET417_PRODUCTS__);
+};
+
 const ShopContextProvider = (props) => {
 
-    const currency = '$';
+    // The checkout has always billed CHF (orderController.js -> Payrexx,
+    // currency: 'CHF') and the GTC state prices are "strictly net and in Swiss
+    // francs". The storefront rendered a '$' against those same numbers, so a
+    // customer saw "$50" and was charged "CHF 50".
+    const currency = 'CHF';
     const delivery_fee = 10;
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [search, setSearch] = useState('');
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({});
-    const [products, setProducts] = useState([]);
-    const [productsLoaded, setProductsLoaded] = useState(false);
+    const [products, setProducts] = useState(() => preloadedProducts() ?? []);
+    const [productsLoaded, setProductsLoaded] = useState(() => preloadedProducts() !== null);
     const [token, setToken] = useState('')
     const navigate = useNavigate();
 
@@ -128,7 +149,9 @@ const ShopContextProvider = (props) => {
 
             const response = await axios.get(backendUrl + '/api/product/list')
             if (response.data.success) {
-                const reversedProducts = response.data.products.reverse();
+                // Same transform as the preload path, so a refresh after
+                // hydration cannot reorder what is already on screen.
+                const reversedProducts = normalizeProducts(response.data.products);
                 setProducts(reversedProducts);
                 preloadImages(reversedProducts);
             } else {

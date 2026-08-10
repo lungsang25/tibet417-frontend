@@ -14,14 +14,14 @@ const Terms = () => {
   return (
     <div>
       <SEO
-        title="Terms & Conditions - Tibet417"
+        title="Terms & Conditions | Tibet417"
         description="The General Terms and Conditions (GTC) that apply to all orders placed on tibet417.com. Delivery, payment, right of withdrawal, warranty and liability for customers in Switzerland."
-        keywords="tibet417 terms and conditions, tibet417 agb, general terms and conditions, right of withdrawal, warranty, swiss online shop terms"
-        canonical="https://www.tibet417.com/terms"
+        path='/terms'
+        breadcrumb={[{ name: 'Home', path: '/' }, { name: 'Terms & Conditions' }]}
       />
 
       <div className='text-2xl text-center pt-8 border-t'>
-        <Title text1={'TERMS &'} text2={'CONDITIONS'} />
+        <Title text1={'TERMS &'} text2={'CONDITIONS'} as='h1' />
       </div>
 
       <div className='my-10 flex flex-col gap-8 text-sm text-gray-600 max-w-4xl'>

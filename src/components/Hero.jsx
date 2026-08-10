@@ -204,9 +204,14 @@ const Hero = () => {
             <p className='text-[11px] uppercase tracking-label text-white/80'>
               {activeSlide.eyebrow}
             </p>
-            <h1 className='mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-white'>
+            {/* h2, not h1. This text changes every few seconds, so as an h1 it
+                made the homepage's main heading whatever slide happened to be
+                showing when the prerenderer took its snapshot — "Woven in the
+                Himalayas" on one build, "Made for the cold" on the next. The
+                stable h1 lives in Home.jsx. */}
+            <h2 className='mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-white'>
               {activeSlide.title}
-            </h1>
+            </h2>
             <Link
               to={activeSlide.href}
               onClick={() => scrollTo(0, 0)}

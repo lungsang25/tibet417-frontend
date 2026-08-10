@@ -1,20 +1,18 @@
 # robots.txt for Tibet417
-# Allow all search engines to crawl the site
 
 User-agent: *
 Allow: /
 
-# Disallow admin and private pages
-Disallow: /admin/
-Disallow: /profile/
-Disallow: /orders/
-Disallow: /cart/
-Disallow: /place-order/
-Disallow: /verify/
-Disallow: /verify-twint/
+# Account, cart and checkout routes are kept out of the index with
+# <meta name="robots" content="noindex, follow"> — see PRIVATE_ROUTES in
+# src/App.jsx — deliberately NOT with Disallow rules here.
+#
+# Disallow and noindex cancel each other out: a URL that crawlers may not fetch
+# is a URL whose noindex they can never read, so anything already indexed (this
+# site's sitemap used to list /login) would stay indexed indefinitely. Allowing
+# the crawl is what gets these pages dropped.
+#
+# The previous rules were inert anyway — they were written as /cart/, /profile/,
+# /orders/ with trailing slashes, while the routes are /cart, /profile, /orders.
 
-# Sitemap location
 Sitemap: https://www.tibet417.com/sitemap.xml
-
-# Crawl-delay for bots (optional, helps prevent server overload)
-Crawl-delay: 1
