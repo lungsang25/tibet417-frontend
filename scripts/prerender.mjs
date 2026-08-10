@@ -37,7 +37,8 @@ import { createServer } from 'node:http'
 import { readFile, writeFile, mkdir, access, copyFile } from 'node:fs/promises'
 import { join, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import puppeteer from 'puppeteer'
+import puppeteer from 'puppeteer-core'
+import chromium from '@sparticuz/chromium'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = join(__dirname, '..', 'dist')
@@ -157,9 +158,20 @@ const run = async () => {
   await copyFile(join(DIST, 'index.html'), join(DIST, 'app.html'))
 
   const server = await serveDist()
+
+  // Chromium comes from @sparticuz/chromium rather than puppeteer's own
+  // download. Vercel's build image has no Chromium system dependencies and no
+  // way to install them, so the stock binary dies immediately with
+  //   libnss3.so: cannot open shared object file
+  // @sparticuz/chromium is a build for exactly this environment with those
+  // libraries bundled alongside it.
+  //
+  // PUPPETEER_EXECUTABLE_PATH overrides it, for anyone who would rather point
+  // at a locally installed Chrome.
   const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || (await chromium.executablePath()),
+    headless: true,
   })
 
   const failures = []
