@@ -1,0 +1,27 @@
+# Dependencies — reproducible from package-lock.json
+node_modules/
+
+# Build output. Vercel runs `npm run build` and serves dist/ from that build
+# (Framework Preset: Vite, no Build Command / Output Directory overrides), so a
+# committed dist/ is never deployed. It was previously tracked but only updated
+# in 4 of 17 commits, meaning what was in git contradicted the source.
+dist/
+
+# Chromium for the prerenderer. Location is set by .puppeteerrc.cjs so Vercel
+# caches it between builds; ~150 MB, never belongs in git.
+.cache/
+
+# Local env overrides (Vite convention). See the note on .env below.
+.env*.local
+
+# NOTE on .env: it is still tracked on purpose. VITE_ variables are inlined at
+# build time, so untracking it would ship a build with VITE_BACKEND_URL
+# undefined and every API call going to "undefined/api/product/list".
+# To finish the move: add VITE_BACKEND_URL and VITE_GOOGLE_CLIENT_ID under
+# Vercel → Settings → Environment Variables, then `git rm --cached .env` and add
+# `.env` to this file.
+
+.vercel/
+.DS_Store
+*.local
+npm-debug.log*
