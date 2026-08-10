@@ -38,7 +38,39 @@ import { readFile, writeFile, mkdir, access, copyFile } from 'node:fs/promises'
 import { join, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import puppeteer from 'puppeteer-core'
-import chromium from '@sparticuz/chromium'
+
+/**
+ * @sparticuz/chromium ships the shared libraries Chromium needs (libnss3 and
+ * friends) inside bin/al2023.tar.br — but it only unpacks them, and only sets
+ * LD_LIBRARY_PATH, when it believes it is running on AWS Lambda. That check
+ * reads AWS_EXECUTION_ENV / AWS_LAMBDA_JS_RUNTIME, neither of which Vercel's
+ * build container sets, so the libraries stayed packed and Chromium died on
+ *   libnss3.so: cannot open shared object file
+ *
+ * Vercel's builder is Amazon Linux 2023, the same base those libraries target,
+ * so declaring the runtime is accurate rather than a trick — it just opts into
+ * the unpacking that would otherwise be skipped.
+ *
+ * The environment variable has to be set before the module is imported: the
+ * package calls setupLambdaEnvironment() at import time. Static imports are
+ * hoisted above all statements, hence the dynamic import below.
+ *
+ * This is opt-in per host, not unconditional. Those bundled libraries are built
+ * against Amazon Linux 2023 and need GLIBC 2.33+; forcing them on an older
+ * machine swaps one failure for another —
+ *   libc.so.6: version `GLIBC_2.33' not found (required by libnspr4.so)
+ * on Ubuntu 20.04 (GLIBC 2.31), for instance. Off Vercel, Chromium uses
+ * whatever the host provides, which is what a developer machine already has.
+ *
+ * Set CHROMIUM_BUNDLED_LIBS=1 to force it on other Amazon Linux 2023 CI hosts.
+ */
+if (process.env.VERCEL || process.env.CHROMIUM_BUNDLED_LIBS === '1') {
+  process.env.AWS_LAMBDA_JS_RUNTIME ??= 'nodejs20.x'
+}
+const { default: chromium } = await import('@sparticuz/chromium')
+
+// No WebGL needed for a DOM snapshot; skips extracting swiftshader (~3.5 MB).
+chromium.setGraphicsMode = false
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST = join(__dirname, '..', 'dist')
