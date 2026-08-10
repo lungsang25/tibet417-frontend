@@ -37,11 +37,8 @@ const slides = [
 ]
 
 const AUTOPLAY_MS = 5000
+const TRANSITION_MS = 700
 const SWIPE_THRESHOLD = 50
-
-const prefersReducedMotion = () =>
-  typeof window !== 'undefined' &&
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const Chevron = ({ direction }) => (
   <svg
@@ -65,60 +62,94 @@ const Hero = () => {
   const [pos, setPos] = useState(1)
   const [animate, setAnimate] = useState(true)
   const [paused, setPaused] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
   const touchStartX = useRef(null)
-  const reducedMotion = useRef(false)
+  // True from the moment a slide starts moving until the track has settled on
+  // a real slide again. Every navigation path checks it, so `pos` can never be
+  // pushed past a clone and off the end of the track — which used to strand
+  // the slider on the empty background with no way back.
+  const moving = useRef(false)
 
   useEffect(() => {
-    reducedMotion.current = prefersReducedMotion()
+    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const sync = () => setReducedMotion(query.matches)
+    sync()
+    query.addEventListener('change', sync)
+    return () => query.removeEventListener('change', sync)
   }, [])
 
+  const moveMs = reducedMotion ? 0 : TRANSITION_MS
   const activeIndex = (pos - 1 + slides.length) % slides.length
 
-  const next = useCallback(() => {
+  const slideBy = useCallback((delta) => {
+    if (moving.current) return
+    moving.current = true
     setAnimate(true)
-    setPos((p) => p + 1)
+    setPos((p) => p + delta)
   }, [])
 
-  const prev = useCallback(() => {
-    setAnimate(true)
-    setPos((p) => p - 1)
-  }, [])
+  const next = useCallback(() => slideBy(1), [slideBy])
+  const prev = useCallback(() => slideBy(-1), [slideBy])
 
-  const goTo = useCallback((index) => {
-    setAnimate(true)
-    setPos(index + 1)
-  }, [])
+  const goTo = useCallback(
+    (index) => {
+      // A no-op jump would leave the lock set with no state change to release
+      // it, so bail before locking.
+      if (moving.current || index + 1 === pos) return
+      moving.current = true
+      setAnimate(true)
+      setPos(index + 1)
+    },
+    [pos]
+  )
 
   // Auto-advance, suspended while hovered/focused or under reduced motion.
+  // Keyed on `pos` as well so a manual move restarts the countdown instead of
+  // being followed moments later by an automatic one.
   useEffect(() => {
-    if (paused || reducedMotion.current) return
+    if (paused || reducedMotion) return
     const timer = setInterval(next, AUTOPLAY_MS)
     return () => clearInterval(timer)
-  }, [paused, next])
+  }, [paused, reducedMotion, next, pos])
+
+  // Once a move has played out, hop off a clone onto its real twin with the
+  // transition switched off. This is driven by a timer rather than
+  // `transitionend`, because the browser skips that event whenever it drops
+  // the transition (a backgrounded tab, an interrupted animation) and a single
+  // missed event left the track parked on a clone for good.
+  useEffect(() => {
+    if (!animate || !moving.current) return
+    const timer = setTimeout(() => {
+      if (pos >= lastIndex) {
+        setAnimate(false)
+        setPos(1)
+      } else if (pos <= 0) {
+        setAnimate(false)
+        setPos(slides.length)
+      } else {
+        moving.current = false
+      }
+    }, moveMs)
+    return () => clearTimeout(timer)
+  }, [pos, animate, moveMs, lastIndex])
 
   // After the un-animated jump between clone and real slide has been committed,
-  // re-enable the transition. Double rAF guarantees the jump has painted first.
+  // re-enable the transition and accept input again. Double rAF guarantees the
+  // jump has painted first.
   useEffect(() => {
     if (animate) return
     let raf2
     const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => setAnimate(true))
+      raf2 = requestAnimationFrame(() => {
+        moving.current = false
+        setAnimate(true)
+      })
     })
     return () => {
       cancelAnimationFrame(raf1)
       if (raf2) cancelAnimationFrame(raf2)
     }
   }, [animate])
-
-  const handleTransitionEnd = () => {
-    if (pos === lastIndex) {
-      setAnimate(false)
-      setPos(1)
-    } else if (pos === 0) {
-      setAnimate(false)
-      setPos(slides.length)
-    }
-  }
 
   const handleKeyDown = (event) => {
     if (event.key === 'ArrowRight') {
@@ -161,13 +192,15 @@ const Hero = () => {
     >
       {/* Slide track */}
       <div
-        className={`flex h-full ${
-          animate
-            ? 'transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)]'
-            : 'transition-none'
-        }`}
-        style={{ transform: `translateX(-${pos * 100}%)` }}
-        onTransitionEnd={handleTransitionEnd}
+        className='flex h-full'
+        style={{
+          transform: `translateX(-${pos * 100}%)`,
+          transitionProperty: 'transform',
+          // Duration lives here rather than in a utility class so it cannot
+          // drift away from the settle timer above.
+          transitionDuration: `${animate ? moveMs : 0}ms`,
+          transitionTimingFunction: 'cubic-bezier(0.65, 0, 0.35, 1)',
+        }}
       >
         {track.map((slide, index) => (
           <div
