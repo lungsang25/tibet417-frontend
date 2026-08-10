@@ -21,7 +21,7 @@ import VerifyTwint from './pages/VerifyTwint'
 
 const App = () => {
   return (
-    <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
+    <div className='overflow-x-clip px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
       <ToastContainer />
       <Navbar />
       <SearchBar />

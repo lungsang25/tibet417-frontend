@@ -47,10 +47,10 @@ const Home = () => {
         structuredData={structuredData}
       />
       <Hero />
-      <LatestCollection/>
-      <BestSeller/>
-      <OurPolicy/>
-      <NewsletterBox/>
+      <LatestCollection />
+      <BestSeller />
+      <OurPolicy />
+      <NewsletterBox />
     </div>
   )
 }

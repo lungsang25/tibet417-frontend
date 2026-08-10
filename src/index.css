@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,11 +7,11 @@ a.active hr{
 }
 
 *{
-    font-family: Outfit;
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
 .prata-regular {
-    font-family: "Prata", serif;
+    font-family: "Prata", Georgia, serif;
     font-weight: 400;
     font-style: normal;
   }
@@ -21,10 +19,27 @@ a.active hr{
   ::-webkit-scrollbar{
     display: none;
   }
-  
+
   @media (max-width:640px) {
     a.active{
         background-color: black;
         color: white;
     }
   }
+
+@layer components {
+  /* Breaks a section out of App's horizontal gutter to span the full viewport.
+     Mirrors the gutter in App.jsx exactly — keep the two in sync. Negative
+     margins are used rather than 100vw so the result stays exact when a
+     scrollbar is present. */
+  .full-bleed {
+    @apply -mx-4 sm:-mx-[5vw] md:-mx-[7vw] lg:-mx-[9vw];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-ken-burns {
+    animation: none !important;
+  }
+}
