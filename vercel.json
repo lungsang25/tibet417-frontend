@@ -1,45 +1,29 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "//": "SPA fallback. Vercel resolves the filesystem BEFORE rewrites, so the prerendered dist/<route>/index.html files from scripts/prerender.mjs are served directly; this only catches routes that were not prerendered (/cart, /profile, an unknown product id). It targets app.html — the pristine empty shell — NOT index.html, which is now the prerendered homepage and would flash homepage markup on every fallback route.",
+      "source": "/((?!.*\\.[a-zA-Z0-9]+$).*)",
+      "destination": "/app.html"
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" }
       ]
     },
     {
       "source": "/sitemap.xml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/xml"
-        }
-      ]
+      "headers": [{ "key": "Content-Type", "value": "application/xml" }]
     },
     {
       "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
-        }
-      ]
+      "headers": [{ "key": "Content-Type", "value": "text/plain" }]
     }
   ]
 }

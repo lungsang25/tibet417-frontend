@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { ShopContext } from '../context/ShopContext';
-import { assets } from '../assets/assets';
 import RelatedProducts from '../components/RelatedProducts';
 import { getLargeImage, getMediumImage } from '../utils/imageUtils';
 import SEO from '../components/SEO';
+import { currencyCode, absoluteUrl, siteName } from '../config/site';
 
 const Product = () => {
 
@@ -32,38 +32,46 @@ const Product = () => {
 
   return productData ? (
     <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
-      <SEO 
-        title={`${productData.name} - Tibet417 | Tibet Shopping`}
-        description={`${productData.description.substring(0, 150)}... Shop ${productData.name} at Tibet417. Authentic Tibetan products with fast delivery.`}
-        keywords={`${productData.name}, tibet shopping, tibet417, ${productData.category}, ${productData.subCategory}, buy tibetan products`}
-        canonical={`https://www.tibet417.com/product/${productData._id}`}
+      <SEO
+        title={`${productData.name} | ${siteName}`}
+        description={`${productData.description.slice(0, 155)}${productData.description.length > 155 ? '…' : ''}`}
+        path={`/product/${productData._id}`}
         ogType="product"
         ogImage={productData.image[0]}
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "Product",
-          "name": productData.name,
-          "image": productData.image,
-          "description": productData.description,
-          "sku": productData._id,
-          "brand": {
-            "@type": "Brand",
-            "name": "Tibet417"
+        breadcrumb={[
+          { name: 'Home', path: '/' },
+          { name: 'Collection', path: '/collection' },
+          { name: productData.category, path: `/collection/${productData.category.toLowerCase()}` },
+          { name: productData.name },
+        ]}
+        extraSchemaNodes={[
+          {
+            '@type': 'Product',
+            '@id': `${absoluteUrl(`/product/${productData._id}`)}#product`,
+            name: productData.name,
+            image: productData.image,
+            description: productData.description,
+            sku: productData._id,
+            category: `${productData.category} / ${productData.subCategory}`,
+            brand: { '@type': 'Brand', name: siteName },
+            offers: {
+              '@type': 'Offer',
+              url: absoluteUrl(`/product/${productData._id}`),
+              // Matches what Payrexx actually charges (orderController.js) and
+              // what the GTC state. This said USD while the checkout billed CHF.
+              priceCurrency: currencyCode,
+              price: productData.price,
+              availability: 'https://schema.org/InStock',
+              itemCondition: 'https://schema.org/NewCondition',
+              eligibleRegion: { '@type': 'Country', name: 'CH' },
+            },
+            // No aggregateRating: there is no review system behind these
+            // products. The hardcoded 4 / 122 that used to sit here was
+            // identical on every product and violates Google's structured data
+            // policy on fabricated reviews. Re-add only when real, verifiable
+            // customer reviews exist.
           },
-          "offers": {
-            "@type": "Offer",
-            "url": `https://www.tibet417.com/product/${productData._id}`,
-            "priceCurrency": "USD",
-            "price": productData.price,
-            "availability": "https://schema.org/InStock",
-            "itemCondition": "https://schema.org/NewCondition"
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4",
-            "reviewCount": "122"
-          }
-        }}
+        ]}
       />
       {/*----------- Product Data-------------- */}
       <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
@@ -73,27 +81,19 @@ const Product = () => {
           <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
               {
                 productData.image.map((item,index)=>(
-                  <img onClick={()=>setImage(item)} src={getMediumImage(item)} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer' alt="" loading='lazy' />
+                  <img onClick={()=>setImage(item)} src={getMediumImage(item)} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer' alt={`${productData.name} — view ${index + 1}`} loading='lazy' />
                 ))
               }
           </div>
           <div className='w-full sm:w-[80%]'>
-              <img className='w-full h-auto' src={getLargeImage(image)} alt="" />
+              <img className='w-full h-auto' src={getLargeImage(image)} alt={productData.name} />
           </div>
         </div>
 
         {/* -------- Product Info ---------- */}
         <div className='flex-1'>
           <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
-          <div className=' flex items-center gap-1 mt-2'>
-              <img src={assets.star_icon} alt="" className="w-3 5" />
-              <img src={assets.star_icon} alt="" className="w-3 5" />
-              <img src={assets.star_icon} alt="" className="w-3 5" />
-              <img src={assets.star_icon} alt="" className="w-3 5" />
-              <img src={assets.star_dull_icon} alt="" className="w-3 5" />
-              <p className='pl-2'>(122)</p>
-          </div>
-          <p className='mt-5 text-3xl font-medium'>{currency}{productData.price}</p>
+          <p className='mt-5 text-3xl font-medium'>{currency} {productData.price}</p>
           <p className='mt-5 text-gray-500 md:w-4/5'>{productData.description}</p>
           <div className='flex flex-col gap-4 my-8'>
               <p>Select Size</p>
@@ -105,23 +105,30 @@ const Product = () => {
           </div>
           <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
           <hr className='mt-8 sm:w-4/5' />
+          {/* Claims here must match the GTC: 10 calendar days of withdrawal
+              (clause 8), delivery within Switzerland, prices net in CHF. The
+              previous copy promised cash on delivery, which is not an offered
+              payment method, and a 7-day return window the GTC do not grant. */}
           <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
-              <p>100% Original product.</p>
-              <p>Cash on delivery is available on this product.</p>
-              <p>Easy return and exchange policy within 7 days.</p>
+              <p>Shipped within Switzerland.</p>
+              <p>Prices in CHF. As a small business we are exempt from VAT.</p>
+              <p>10-day right of withdrawal — see our <Link to='/terms' className='underline'>Terms &amp; Conditions</Link>.</p>
           </div>
         </div>
       </div>
 
-      {/* ---------- Description & Review Section ------------- */}
+      {/* ---------- Description ------------- */}
+      {/* The "Reviews (122)" tab is gone along with the fake rating it counted.
+          The body here used to be generic filler explaining what an e-commerce
+          website is — duplicated verbatim across every product, which is exactly
+          the thin, templated content that keeps product pages out of the index. */}
       <div className='mt-20'>
         <div className='flex'>
           <b className='border px-5 py-3 text-sm'>Description</b>
-          <p className='border px-5 py-3 text-sm'>Reviews (122)</p>
         </div>
         <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
-          <p>An e-commerce website is an online platform that facilitates the buying and selling of products or services over the internet. It serves as a virtual marketplace where businesses and individuals can showcase their products, interact with customers, and conduct transactions without the need for a physical presence. E-commerce websites have gained immense popularity due to their convenience, accessibility, and the global reach they offer.</p>
-          <p>E-commerce websites typically display products or services along with detailed descriptions, images, prices, and any available variations (e.g., sizes, colors). Each product usually has its own dedicated page with relevant information.</p>
+          <p>{productData.description}</p>
+          <p>{productData.category} · {productData.subCategory}</p>
         </div>
       </div>
 
