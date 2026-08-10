@@ -46,9 +46,14 @@ const Contact = () => {
               Switzerland
             </address>
           ) : (
+            /* Points at email, which works, rather than at the Impressum
+               for an address that is not published yet — that pairing was a
+               dead end in both directions. Both pages fill themselves in from
+               src/config/site.js the moment the address is set. */
             <p className='text-gray-500'>
-              We ship to customers domiciled in Switzerland. Our full postal
-              address is listed in our <Link to='/impressum' className='underline'>Impressum</Link>.
+              We ship to customers domiciled in Switzerland. For returns, or
+              anything else needing a postal address, email us and we'll send
+              the correct one.
             </p>
           )}
 

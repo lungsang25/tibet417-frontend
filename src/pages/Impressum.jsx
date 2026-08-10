@@ -43,9 +43,14 @@ const Impressum = () => {
             </address>
           ) : (
             /* Rendered only until the address is filled into
-               src/config/site.js. Do not replace with sample data. */
-            <p className='text-gray-400'>
-              Postal address to be published.
+               src/config/site.js. Do not replace with sample data — invented
+               details here are what led Google to describe this business as
+               being in Washington, USA. */
+            <p className='text-gray-500'>
+              Registered in Switzerland. Our postal address is in the process of
+              changing; for returns or written notice, please email{' '}
+              <a href={`mailto:${email}`} className='underline'>{email}</a> and
+              we will confirm the current address.
             </p>
           )}
         </div>
