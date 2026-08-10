@@ -17,6 +17,7 @@ import Profile from './pages/Profile'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
+import Analytics from './components/Analytics'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Verify from './pages/Verify'
@@ -54,6 +55,7 @@ const App = () => {
           noindex
         />
       )}
+      <Analytics />
       <ToastContainer />
       <Navbar />
       <SearchBar />
