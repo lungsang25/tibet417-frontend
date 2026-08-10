@@ -18,6 +18,19 @@
  *
  * The output is a snapshot of exactly what a user sees — this is not serving
  * different content to crawlers.
+ *
+ * Coupling with vercel.json (which cannot carry comments — its schema rejects
+ * unknown keys, including the "//" convention):
+ *
+ *   - The SPA fallback targets /app.html, the pristine empty shell copied below,
+ *     NOT /index.html. index.html is the prerendered homepage after this script
+ *     runs, so using it would flash homepage markup on every route that is not
+ *     prerendered (/cart, /profile, an unknown product id).
+ *   - The rewrite source `/((?!.*\.[a-zA-Z0-9]+$).*)` deliberately excludes
+ *     paths with a file extension. A catch-all `/(.*)` swallowed requests for
+ *     missing files and answered them with HTML — which is why /og-image.jpg
+ *     used to return 200 with content-type text/html and every social preview
+ *     was broken. Missing assets must 404.
  */
 
 import { createServer } from 'node:http'
