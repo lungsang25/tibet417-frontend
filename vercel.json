@@ -16,6 +16,10 @@
       ]
     },
     {
+      "source": "/(cart|login|place-order|orders|profile|verify|verify-twint)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    },
+    {
       "source": "/sitemap.xml",
       "headers": [{ "key": "Content-Type", "value": "application/xml" }]
     },
