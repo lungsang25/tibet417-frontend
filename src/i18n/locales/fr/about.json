@@ -17,7 +17,7 @@
     },
     "swissDelivery": {
       "label": "Livraison depuis la Suisse :",
-      "text": "Les commandes sont expédiées depuis la Suisse par la poste ou par coursier, avec des prix nets en CHF et sans TVA ajoutée."
+      "text": "Les commandes sont expédiées depuis la Suisse par la poste ou par coursier, avec des prix en CHF incluant la TVA suisse."
     },
     "withdrawal": {
       "label": "Droit de rétractation de 10 jours :",

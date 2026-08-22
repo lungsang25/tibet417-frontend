@@ -2,7 +2,7 @@
   "selectSize": "Grösse wählen",
   "imgAltView": "{{name}} — Ansicht {{index}}",
   "shippingNote": "Versand innerhalb der Schweiz.",
-  "vatNote": "Preise in CHF. Als Kleinunternehmen sind wir von der Mehrwertsteuer befreit.",
+  "vatNote": "Preise in CHF, inklusive Schweizer Mehrwertsteuer.",
   "withdrawalNotePrefix": "10 Tage Widerrufsrecht — siehe unsere ",
   "withdrawalNoteSuffix": ".",
   "termsLink": "AGB",

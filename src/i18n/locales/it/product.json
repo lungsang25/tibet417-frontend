@@ -2,7 +2,7 @@
   "selectSize": "Seleziona taglia",
   "imgAltView": "{{name}} — vista {{index}}",
   "shippingNote": "Spedito in Svizzera.",
-  "vatNote": "Prezzi in CHF. Come piccola impresa siamo esenti IVA.",
+  "vatNote": "Prezzi in CHF, IVA svizzera inclusa.",
   "withdrawalNotePrefix": "Diritto di recesso di 10 giorni — vedi i nostri ",
   "withdrawalNoteSuffix": ".",
   "termsLink": "Termini e condizioni",

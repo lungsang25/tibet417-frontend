@@ -17,7 +17,7 @@
     },
     "swissDelivery": {
       "label": "Swiss delivery:",
-      "text": "Orders are dispatched within Switzerland by post or courier, with prices net in CHF and no VAT added."
+      "text": "Orders are dispatched within Switzerland by post or courier, with prices in CHF including Swiss VAT."
     },
     "withdrawal": {
       "label": "A 10-day right of withdrawal:",

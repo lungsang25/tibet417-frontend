@@ -4,20 +4,30 @@
     "description": "Impressum für Tibet417 Fashion — Angaben zum Betreiber, Kontaktadresse und Verantwortliche Stelle für tibet417.com."
   },
   "heading": { "text1": "RECHTLICHE", "text2": "HINWEISE" },
-  "aiDisclaimer": "Diese Seite wurde KI-gestützt aus dem Englischen übersetzt und wurde noch nicht von einer Juristin oder einem Juristen geprüft. Bei Fragen zu den rechtsverbindlichen Angaben kontaktieren Sie uns bitte direkt.",
+  "aiDisclaimer": "",
   "operator": {
     "label": "Betreiberin dieser Website",
     "noAddressText": "Eingetragen in der Schweiz. Unsere Postadresse ändert sich derzeit; für Rücksendungen oder schriftliche Mitteilungen schreiben Sie bitte eine E-Mail an {{email}} — wir bestätigen Ihnen die aktuelle Adresse.",
     "switzerland": "Schweiz"
   },
+  "representatives": {
+    "label": "Vertretungsberechtigte Personen",
+    "role": "Geschäftsführer"
+  },
+  "register": {
+    "label": "Handelsregister",
+    "uidLabel": "UID:",
+    "vatLabel": "MWST-Nummer:"
+  },
   "contact": {
     "label": "Kontakt",
     "emailPrefix": "E-Mail: ",
-    "telephonePrefix": "Telefon: "
+    "telephonePrefix": "Telefon: ",
+    "webPrefix": "Web: "
   },
   "vat": {
     "label": "Mehrwertsteuer",
-    "text": "Als Kleinunternehmen ist {{legalName}} von der Pflicht zur Erhebung der Schweizer Mehrwertsteuer befreit. Alle Preise verstehen sich netto und in Schweizer Franken (CHF)."
+    "text": "{{legalName}} ist im schweizerischen Register für die Mehrwertsteuer (MWST) eingetragen. Alle angegebenen Preise sind Endpreise in Schweizer Franken (CHF) inklusive der gesetzlichen Mehrwertsteuer."
   },
   "termsOfBusiness": {
     "label": "Geschäftsbedingungen",
@@ -29,8 +39,29 @@
     "label": "Gerichtsstand",
     "text": "9000 St. Gallen, oder der Wohnsitz des Konsumenten."
   },
-  "liability": {
-    "label": "Haftung für Inhalte und Links",
-    "text": "{{legalName}} übernimmt keine Haftung für die Aktualität, Vollständigkeit oder Richtigkeit der auf dieser Website veröffentlichten Inhalte. Haftungsansprüche wegen Schäden, die durch die Nutzung der bereitgestellten Informationen entstanden sind, einschliesslich unvollständiger oder unrichtiger Informationen, sind ausgeschlossen. Verweise und Links auf Websites Dritter liegen ausserhalb unseres Verantwortungsbereichs."
+  "disclaimer": {
+    "label": "Haftungsausschluss",
+    "items": [
+      {
+        "heading": "Inhalte",
+        "text": "Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Gewähr für die Aktualität, Vollständigkeit und Richtigkeit der bereitgestellten Informationen. Jegliche Haftungsansprüche gegen uns, die sich auf Schäden materieller oder ideeller Art beziehen – verursacht durch die Nutzung oder Nichtnutzung der dargebotenen Inhalte bzw. durch Nutzung fehlerhafter und unvollständiger Informationen – sind grundsätzlich ausgeschlossen."
+      },
+      {
+        "heading": "Externe Links",
+        "text": "Unsere Webseite enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb übernehmen wir für diese fremden Inhalte auch keine Gewähr. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
+      },
+      {
+        "heading": "Urheberrecht",
+        "text": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem schweizerischen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen unserer schriftlichen Zustimmung."
+      },
+      {
+        "heading": "Änderungen und Irrtümer",
+        "text": "Wir behalten uns ausdrücklich vor, Teile der Seiten oder das gesamte Angebot jederzeit zu ändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen. Sollten einzelne Formulierungen oder Darstellungen dieses Haftungsausschlusses unwirksam sein, bleiben die übrigen Bestimmungen davon unberührt."
+      }
+    ]
+  },
+  "generatedBy": {
+    "prefix": "Impressum erstellt durch: ",
+    "linkText": "Impressum Generator Schweiz"
   }
 }

@@ -4,20 +4,30 @@
     "description": "Mentions légales de Tibet417 Fashion — informations sur l'exploitant, adresse de contact et responsable pour tibet417.com."
   },
   "heading": { "text1": "MENTIONS", "text2": "LÉGALES" },
-  "aiDisclaimer": "Cette page a été traduite de l'anglais par IA et n'a pas encore été relue par un juriste. Pour toute question sur les informations juridiquement contraignantes, veuillez nous contacter directement.",
+  "aiDisclaimer": "Cette page a été traduite automatiquement à partir de l'original allemand, qui fait légalement foi, et n'a pas encore été relue par un juriste. En cas de divergence, la version allemande de l'Impressum prévaut. Pour toute information contraignante, veuillez nous contacter directement.",
   "operator": {
     "label": "Exploitant de ce site web",
     "noAddressText": "Enregistrés en Suisse. Notre adresse postale est en cours de modification ; pour un retour ou une notification écrite, merci d'écrire à {{email}} et nous vous confirmerons l'adresse actuelle.",
     "switzerland": "Suisse"
   },
+  "representatives": {
+    "label": "Personnes autorisées à représenter l'entreprise",
+    "role": "Gérant"
+  },
+  "register": {
+    "label": "Registre du commerce",
+    "uidLabel": "Numéro IDE :",
+    "vatLabel": "Numéro de TVA :"
+  },
   "contact": {
     "label": "Contact",
     "emailPrefix": "E-mail : ",
-    "telephonePrefix": "Téléphone : "
+    "telephonePrefix": "Téléphone : ",
+    "webPrefix": "Site web : "
   },
   "vat": {
     "label": "TVA",
-    "text": "En tant que petite entreprise, {{legalName}} est exonérée de l'obligation de facturer la TVA suisse. Tous les prix sont nets et indiqués en francs suisses (CHF)."
+    "text": "{{legalName}} est immatriculée à la TVA suisse. Tous les prix indiqués sont des prix finaux en francs suisses (CHF), TVA suisse légale incluse."
   },
   "termsOfBusiness": {
     "label": "Conditions commerciales",
@@ -29,8 +39,29 @@
     "label": "For juridique",
     "text": "9000 St-Gall, ou le domicile du consommateur."
   },
-  "liability": {
-    "label": "Responsabilité relative au contenu et aux liens",
-    "text": "{{legalName}} décline toute responsabilité quant à l'actualité, l'exhaustivité ou l'exactitude du contenu publié sur ce site. Toute prétention en responsabilité pour des dommages résultant de l'utilisation des informations fournies, y compris des informations incomplètes ou incorrectes, est exclue. Les références et liens vers des sites de tiers ne relèvent pas de notre domaine de responsabilité."
+  "disclaimer": {
+    "label": "Clause de non-responsabilité",
+    "items": [
+      {
+        "heading": "Contenu",
+        "text": "Malgré un contrôle attentif du contenu, nous n'assumons aucune garantie quant à l'actualité, l'exhaustivité ou l'exactitude des informations fournies. Toute prétention en responsabilité à notre encontre pour des dommages matériels ou immatériels résultant de l'utilisation ou de la non-utilisation des contenus proposés, ou de l'utilisation d'informations erronées ou incomplètes, est en principe exclue."
+      },
+      {
+        "heading": "Liens externes",
+        "text": "Notre site web contient des liens vers des sites web externes de tiers, sur le contenu desquels nous n'avons aucune influence. C'est pourquoi nous n'assumons aucune garantie pour ce contenu externe. Le fournisseur ou exploitant respectif des pages liées est toujours responsable de leur contenu."
+      },
+      {
+        "heading": "Droit d'auteur",
+        "text": "Les contenus et œuvres créés par les exploitants du site sur ce site web sont soumis au droit d'auteur suisse. Les contributions de tiers sont signalées comme telles. La reproduction, le traitement, la diffusion et toute forme d'exploitation en dehors des limites du droit d'auteur nécessitent notre accord écrit."
+      },
+      {
+        "heading": "Modifications et erreurs",
+        "text": "Nous nous réservons expressément le droit de modifier, compléter, supprimer des parties des pages ou l'ensemble de l'offre à tout moment, ou d'interrompre temporairement ou définitivement la publication. Si certaines formulations ou présentations de cette clause de non-responsabilité devaient être invalides, les autres dispositions n'en seraient pas affectées."
+      }
+    ]
+  },
+  "generatedBy": {
+    "prefix": "Mentions légales créées avec : ",
+    "linkText": "Impressum Generator Schweiz"
   }
 }

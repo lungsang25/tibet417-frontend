@@ -13,10 +13,15 @@ import { legalName, business } from '../config/site'
  * existed, so every one of those clauses pointed nowhere. A Swiss webshop is
  * expected to publish one, and it is also a strong trust signal for the brand
  * entity Google has not yet resolved.
+ *
+ * Unlike Terms.jsx, the German text here is the real, operator-supplied
+ * original (not a back-translation), so German is authoritative and carries
+ * no AI-disclaimer — English/French/Italian are the AI-translated copies and
+ * show one.
  */
 const Impressum = () => {
   const { t, i18n } = useTranslation('impressum')
-  const { streetAddress, postalCode, addressLocality, telephone, email } = business
+  const { streetAddress, postalCode, addressLocality, telephone, email, uid, representativeName } = business
   const hasAddress = streetAddress && postalCode && addressLocality
 
   return (
@@ -34,7 +39,7 @@ const Impressum = () => {
 
       <div className='my-10 flex flex-col gap-8 text-sm text-gray-600 max-w-4xl'>
 
-        {i18n.language !== 'en' && (
+        {i18n.language !== 'de' && (
           <div className='border-l-2 border-gray-300 pl-4'>
             <p>{t('aiDisclaimer')}</p>
           </div>
@@ -61,10 +66,26 @@ const Impressum = () => {
         </div>
 
         <div className='flex flex-col gap-3'>
+          <b className='text-gray-800'>{t('representatives.label')}</b>
+          <p>{representativeName ? `${representativeName}, ${t('representatives.role')}` : t('representatives.role')}</p>
+        </div>
+
+        {uid && (
+          <div className='flex flex-col gap-3'>
+            <b className='text-gray-800'>{t('register.label')}</b>
+            <p>
+              {t('register.uidLabel')} {uid}<br />
+              {t('register.vatLabel')} {uid} MWST
+            </p>
+          </div>
+        )}
+
+        <div className='flex flex-col gap-3'>
           <b className='text-gray-800'>{t('contact.label')}</b>
           <p>
-            {t('contact.emailPrefix')}<a href={`mailto:${email}`} className='underline'>{email}</a>
-            {telephone && <><br />{t('contact.telephonePrefix')}{telephone}</>}
+            {telephone && <>{t('contact.telephonePrefix')}{telephone}<br /></>}
+            {t('contact.emailPrefix')}<a href={`mailto:${email}`} className='underline'>{email}</a><br />
+            {t('contact.webPrefix')}<a href='https://www.tibet417.com' className='underline'>tibet417.com</a>
           </p>
         </div>
 
@@ -84,9 +105,23 @@ const Impressum = () => {
         </div>
 
         <div className='flex flex-col gap-3'>
-          <b className='text-gray-800'>{t('liability.label')}</b>
-          <p>{t('liability.text', { legalName })}</p>
+          <b className='text-gray-800'>{t('disclaimer.label')}</b>
+          <ol className='flex flex-col gap-3 list-decimal pl-5'>
+            {t('disclaimer.items', { returnObjects: true }).map((item, i) => (
+              <li key={i}>
+                <b className='text-gray-800'>{item.heading}</b><br />
+                {item.text}
+              </li>
+            ))}
+          </ol>
         </div>
+
+        <p className='text-gray-400'>
+          {t('generatedBy.prefix')}
+          <a href='https://impressum-generator-schweiz.ch/' className='underline' target='_blank' rel='noopener noreferrer'>
+            {t('generatedBy.linkText')}
+          </a>
+        </p>
 
       </div>
     </div>

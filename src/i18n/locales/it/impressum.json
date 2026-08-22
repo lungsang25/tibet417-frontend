@@ -4,20 +4,30 @@
     "description": "Note legali per Tibet417 Fashion — dati del gestore, indirizzo di contatto e responsabile per tibet417.com."
   },
   "heading": { "text1": "NOTE", "text2": "LEGALI" },
-  "aiDisclaimer": "Questa pagina è stata tradotta dall'inglese con l'IA e non è ancora stata verificata da un legale. Per domande sulle informazioni giuridicamente vincolanti, contattaci direttamente.",
+  "aiDisclaimer": "Questa pagina è stata tradotta automaticamente dall'originale tedesco, che è la versione legalmente vincolante, e non è ancora stata verificata da un legale. In caso di discrepanze, fa fede l'Impressum in tedesco. Per informazioni vincolanti, contattaci direttamente.",
   "operator": {
     "label": "Gestore di questo sito web",
     "noAddressText": "Registrati in Svizzera. Il nostro indirizzo postale è in fase di aggiornamento; per resi o comunicazioni scritte, scrivi a {{email}} e ti confermeremo l'indirizzo attuale.",
     "switzerland": "Svizzera"
   },
+  "representatives": {
+    "label": "Persone autorizzate a rappresentare l'azienda",
+    "role": "Amministratore"
+  },
+  "register": {
+    "label": "Registro di commercio",
+    "uidLabel": "N. IDI:",
+    "vatLabel": "N. IVA:"
+  },
   "contact": {
     "label": "Contatti",
     "emailPrefix": "Email: ",
-    "telephonePrefix": "Telefono: "
+    "telephonePrefix": "Telefono: ",
+    "webPrefix": "Web: "
   },
   "vat": {
     "label": "IVA",
-    "text": "Come piccola impresa, {{legalName}} è esonerata dall'obbligo di applicare l'IVA svizzera. Tutti i prezzi sono netti e indicati in franchi svizzeri (CHF)."
+    "text": "{{legalName}} è registrata ai fini IVA in Svizzera. Tutti i prezzi indicati sono prezzi finali in franchi svizzeri (CHF), IVA svizzera di legge inclusa."
   },
   "termsOfBusiness": {
     "label": "Condizioni commerciali",
@@ -29,8 +39,29 @@
     "label": "Foro competente",
     "text": "9000 San Gallo, o il domicilio del consumatore."
   },
-  "liability": {
-    "label": "Responsabilità per contenuti e link",
-    "text": "{{legalName}} non si assume alcuna responsabilità per l'attualità, la completezza o la correttezza dei contenuti pubblicati su questo sito web. Sono escluse pretese di responsabilità per danni derivanti dall'uso delle informazioni fornite, comprese informazioni incomplete o non corrette. Riferimenti e link a siti web di terzi esulano dal nostro ambito di responsabilità."
+  "disclaimer": {
+    "label": "Esclusione di responsabilità",
+    "items": [
+      {
+        "heading": "Contenuti",
+        "text": "Nonostante l'attento controllo dei contenuti, non ci assumiamo alcuna responsabilità per l'attualità, la completezza e la correttezza delle informazioni fornite. Qualsiasi pretesa di responsabilità nei nostri confronti per danni materiali o immateriali derivanti dall'uso o dal mancato uso dei contenuti proposti, oppure dall'uso di informazioni errate o incomplete, è fondamentalmente esclusa."
+      },
+      {
+        "heading": "Link esterni",
+        "text": "Il nostro sito web contiene link a siti web esterni di terzi, sui cui contenuti non abbiamo alcuna influenza. Pertanto non ci assumiamo alcuna responsabilità per questi contenuti esterni. Il rispettivo fornitore o gestore delle pagine collegate è sempre responsabile dei relativi contenuti."
+      },
+      {
+        "heading": "Diritto d'autore",
+        "text": "I contenuti e le opere create dai gestori del sito su questo sito web sono soggetti al diritto d'autore svizzero. I contributi di terzi sono contrassegnati come tali. La riproduzione, l'elaborazione, la diffusione e qualsiasi tipo di utilizzo al di fuori dei limiti del diritto d'autore richiedono il nostro consenso scritto."
+      },
+      {
+        "heading": "Modifiche ed errori",
+        "text": "Ci riserviamo espressamente il diritto di modificare, integrare, eliminare parti delle pagine o l'intera offerta in qualsiasi momento, o di sospendere la pubblicazione temporaneamente o definitivamente. Qualora singole formulazioni o rappresentazioni di questa esclusione di responsabilità risultassero invalide, le restanti disposizioni non ne sarebbero pregiudicate."
+      }
+    ]
+  },
+  "generatedBy": {
+    "prefix": "Note legali create con: ",
+    "linkText": "Impressum Generator Schweiz"
   }
 }

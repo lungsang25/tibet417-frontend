@@ -4,13 +4,12 @@
 // in ten places and had already drifted. Import from here instead of retyping.
 //
 // ─────────────────────────────────────────────────────────────────────────────
-// ACTION REQUIRED: the fields marked TODO below are empty on purpose.
-// Empty means "omit", not "make something up" — every consumer in this file
-// skips blank fields rather than emitting a placeholder. The site previously
-// shipped Faker.js values ("54709 Willms Station, Washington, USA",
-// "(415) 555-0132", "+1-XXX-XXX-XXXX") which Google ingested and now repeats
-// back in its AI Overview. Fill these in and the address appears everywhere at
-// once: Contact page, Impressum, and the Organization/Store structured data.
+// Filled in from the operator's real Impressum (the site previously shipped
+// Faker.js placeholder values here — "54709 Willms Station, Washington, USA",
+// "(415) 555-0132" — which Google ingested and repeated back in its AI
+// Overview; still empty fields below mean "omit", not "make something up").
+// This is the single source: Contact page, Impressum, and the Organization
+// structured data all read from here.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const siteUrl = 'https://www.tibet417.com'
@@ -52,12 +51,19 @@ export const hreflangAlternates = (unprefixedPath = '/') => [
 ]
 
 export const business = {
-  email: 'admin@tibet417.com', // TODO confirm: contact@ / admin@ / support@ are all in use across the site
-  telephone: '', // TODO
-  streetAddress: '', // TODO
-  postalCode: '', // TODO — the GTC name 9000 St. Gallen as the place of jurisdiction
-  addressLocality: '', // TODO
+  email: 'tibet417@gmail.com',
+  telephone: '+41 78 204 20 16',
+  streetAddress: 'Bahnhofplatz 5',
+  postalCode: '9000',
+  addressLocality: 'St. Gallen',
   addressCountry: 'CH',
+  // Swiss UID (Unternehmens-Identifikationsnummer). The same number suffixed
+  // "MWST" is also the VAT registration number — see Impressum.
+  uid: 'CHE-340.031.244',
+  // Managing director named in the Impressum's "Vertretungsberechtigte
+  // Personen" section. A person's name, so it is not translated — only the
+  // role label (impressum.json's representatives.role) is.
+  representativeName: 'Gyanaktsang',
 }
 
 // Only list profiles that actually resolve. The previous Organization schema

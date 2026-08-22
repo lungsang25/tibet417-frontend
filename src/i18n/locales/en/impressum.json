@@ -4,20 +4,30 @@
     "description": "Legal notice for Tibet417 Fashion — operator details, contact address and responsible party for tibet417.com."
   },
   "heading": { "text1": "LEGAL", "text2": "NOTICE" },
-  "aiDisclaimer": "",
+  "aiDisclaimer": "This page has been machine-translated from the German original, which is the legally authoritative version, and has not been reviewed by a lawyer. In the event of any discrepancy, the German Impressum governs. For binding information, please contact us directly.",
   "operator": {
     "label": "Operator of this website",
     "noAddressText": "Registered in Switzerland. Our postal address is in the process of changing; for returns or written notice, please email {{email}} and we will confirm the current address.",
     "switzerland": "Switzerland"
   },
+  "representatives": {
+    "label": "Authorized Representatives",
+    "role": "Managing Director"
+  },
+  "register": {
+    "label": "Commercial Register",
+    "uidLabel": "UID (business ID):",
+    "vatLabel": "VAT number:"
+  },
   "contact": {
     "label": "Contact",
     "emailPrefix": "Email: ",
-    "telephonePrefix": "Telephone: "
+    "telephonePrefix": "Telephone: ",
+    "webPrefix": "Web: "
   },
   "vat": {
     "label": "VAT",
-    "text": "As a small business, {{legalName}} is exempt from the obligation to charge Swiss VAT. All prices are net and stated in Swiss francs (CHF)."
+    "text": "{{legalName}} is registered for Swiss VAT (MWST). All prices shown are final prices in Swiss francs (CHF), inclusive of statutory Swiss VAT."
   },
   "termsOfBusiness": {
     "label": "Terms of business",
@@ -29,8 +39,29 @@
     "label": "Place of jurisdiction",
     "text": "9000 St. Gallen, or the domicile of the consumer."
   },
-  "liability": {
-    "label": "Liability for content and links",
-    "text": "{{legalName}} accepts no liability for the currency, completeness or correctness of the content published on this website. Liability claims regarding damage caused by the use of any information provided, including information which is incomplete or incorrect, are excluded. References and links to third-party websites lie outside our area of responsibility."
+  "disclaimer": {
+    "label": "Disclaimer",
+    "items": [
+      {
+        "heading": "Content",
+        "text": "Despite careful content control, we assume no liability for the currency, completeness or accuracy of the information provided. Any liability claims against us relating to material or immaterial damage caused by the use or non-use of the content provided, or by the use of incorrect or incomplete information, are excluded in principle."
+      },
+      {
+        "heading": "External links",
+        "text": "Our website contains links to external third-party websites over whose content we have no influence. We therefore accept no liability for this external content. The respective provider or operator of the linked pages is always responsible for their content."
+      },
+      {
+        "heading": "Copyright",
+        "text": "The content and works created by the site operators on this website are subject to Swiss copyright law. Third-party contributions are marked as such. Reproduction, editing, distribution and any kind of use outside the limits of copyright law require our written consent."
+      },
+      {
+        "heading": "Changes and errors",
+        "text": "We expressly reserve the right to change, add to, or delete parts of the pages or the entire offering at any time, or to discontinue publication temporarily or permanently. Should individual wording or statements in this disclaimer be invalid, the remaining provisions remain unaffected."
+      }
+    ]
+  },
+  "generatedBy": {
+    "prefix": "Legal notice created with: ",
+    "linkText": "Impressum Generator Schweiz"
   }
 }

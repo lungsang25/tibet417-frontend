@@ -17,7 +17,7 @@
     },
     "swissDelivery": {
       "label": "Spedizione dalla Svizzera:",
-      "text": "Gli ordini vengono spediti dalla Svizzera per posta o corriere, con prezzi netti in CHF e senza IVA aggiunta."
+      "text": "Gli ordini vengono spediti dalla Svizzera per posta o corriere, con prezzi in CHF che includono l'IVA svizzera."
     },
     "withdrawal": {
       "label": "Diritto di recesso di 10 giorni:",

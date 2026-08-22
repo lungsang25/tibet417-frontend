@@ -17,7 +17,7 @@
     },
     "swissDelivery": {
       "label": "Versand aus der Schweiz:",
-      "text": "Bestellungen werden innerhalb der Schweiz per Post oder Kurier versandt, mit Preisen netto in CHF und ohne Mehrwertsteuer."
+      "text": "Bestellungen werden innerhalb der Schweiz per Post oder Kurier versandt, mit Preisen in CHF inklusive Schweizer Mehrwertsteuer."
     },
     "withdrawal": {
       "label": "10 Tage Widerrufsrecht:",

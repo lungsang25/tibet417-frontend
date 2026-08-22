@@ -42,6 +42,7 @@ export const organizationNode = () => {
     image: { '@id': `${siteUrl}/#logo` },
     ...(socialProfiles.length ? { sameAs: socialProfiles } : {}),
     ...(address ? { address } : {}),
+    ...(business.uid ? { taxID: business.uid, vatID: `${business.uid} MWST` } : {}),
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
