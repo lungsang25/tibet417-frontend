@@ -1,0 +1,36 @@
+{
+  "seo": {
+    "title": "Note legali | Tibet417",
+    "description": "Note legali per Tibet417 Fashion — dati del gestore, indirizzo di contatto e responsabile per tibet417.com."
+  },
+  "heading": { "text1": "NOTE", "text2": "LEGALI" },
+  "aiDisclaimer": "Questa pagina è stata tradotta dall'inglese con l'IA e non è ancora stata verificata da un legale. Per domande sulle informazioni giuridicamente vincolanti, contattaci direttamente.",
+  "operator": {
+    "label": "Gestore di questo sito web",
+    "noAddressText": "Registrati in Svizzera. Il nostro indirizzo postale è in fase di aggiornamento; per resi o comunicazioni scritte, scrivi a {{email}} e ti confermeremo l'indirizzo attuale.",
+    "switzerland": "Svizzera"
+  },
+  "contact": {
+    "label": "Contatti",
+    "emailPrefix": "Email: ",
+    "telephonePrefix": "Telefono: "
+  },
+  "vat": {
+    "label": "IVA",
+    "text": "Come piccola impresa, {{legalName}} è esonerata dall'obbligo di applicare l'IVA svizzera. Tutti i prezzi sono netti e indicati in franchi svizzeri (CHF)."
+  },
+  "termsOfBusiness": {
+    "label": "Condizioni commerciali",
+    "prefix": "I nostri ",
+    "link": "Termini e condizioni",
+    "suffix": " si applicano a tutti gli ordini effettuati tramite questo sito web. L'offerta è rivolta esclusivamente a consumatori domiciliati in Svizzera."
+  },
+  "jurisdiction": {
+    "label": "Foro competente",
+    "text": "9000 San Gallo, o il domicilio del consumatore."
+  },
+  "liability": {
+    "label": "Responsabilità per contenuti e link",
+    "text": "{{legalName}} non si assume alcuna responsabilità per l'attualità, la completezza o la correttezza dei contenuti pubblicati su questo sito web. Sono escluse pretese di responsabilità per danni derivanti dall'uso delle informazioni fornite, comprese informazioni incomplete o non corrette. Riferimenti e link a siti web di terzi esulano dal nostro ambito di responsabilità."
+  }
+}

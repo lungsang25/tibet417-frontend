@@ -1,0 +1,51 @@
+{
+  "categories": {
+    "men": {
+      "heading": "Collezione Uomo",
+      "titleWord": "Uomo",
+      "title": "Abbigliamento tibetano e himalayano da uomo | Tibet417",
+      "description": "Scopri l'abbigliamento tibetano e himalayano da uomo di Tibet417. Capi superiori, inferiori e invernali, spediti in Svizzera e prezzati in CHF."
+    },
+    "women": {
+      "heading": "Collezione Donna",
+      "titleWord": "Donna",
+      "title": "Abbigliamento tibetano e himalayano da donna | Tibet417",
+      "description": "Scopri l'abbigliamento tibetano e himalayano da donna di Tibet417. Capi superiori, inferiori e invernali, spediti in Svizzera e prezzati in CHF."
+    },
+    "kids": {
+      "heading": "Collezione Bambini",
+      "titleWord": "Bambini",
+      "title": "Abbigliamento tibetano e himalayano per bambini | Tibet417",
+      "description": "Scopri l'abbigliamento tibetano e himalayano per bambini di Tibet417. Spedito in Svizzera e prezzato in CHF."
+    }
+  },
+  "allProducts": {
+    "title": "Tutti i prodotti | Tibet417",
+    "description": "Sfoglia l'intera collezione Tibet417 di abbigliamento e accessori tibetani e himalayani. Spedita in Svizzera, prezzata in CHF."
+  },
+  "filters": {
+    "label": "FILTRI",
+    "categoriesLabel": "CATEGORIE",
+    "typeLabel": "TIPO",
+    "men": "Uomo",
+    "women": "Donna",
+    "kids": "Bambini",
+    "topwear": "Capi superiori",
+    "bottomwear": "Capi inferiori",
+    "winterwear": "Abbigliamento invernale"
+  },
+  "sort": {
+    "relevant": "Ordina per: Rilevanza",
+    "lowHigh": "Ordina per: Prezzo crescente",
+    "highLow": "Ordina per: Prezzo decrescente"
+  },
+  "headings": {
+    "all": "TUTTE LE",
+    "collections": "COLLEZIONI",
+    "collection": "COLLEZIONE"
+  },
+  "empty": {
+    "text": "Non c'è ancora nulla qui.",
+    "linkText": "Sfoglia l'intera collezione"
+  }
+}

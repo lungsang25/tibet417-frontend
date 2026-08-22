@@ -1,0 +1,61 @@
+{
+  "seo": {
+    "title": "Tibet417 | Authentic Tibetan & Himalayan Fashion",
+    "description": "Tibet417 brings authentic Tibetan and Himalayan fashion to Switzerland. Handpicked clothing and accessories, shipped from Switzerland in CHF."
+  },
+  "h1": "Tibet417 — authentic Tibetan and Himalayan fashion, shipped in Switzerland",
+  "hero": {
+    "slides": [
+      {
+        "eyebrow": "New Arrivals",
+        "title": "Woven in the Himalayas",
+        "cta": "Shop the collection",
+        "alt": "Model wearing a hand-woven Tibetan wool piece from the new arrivals collection"
+      },
+      {
+        "eyebrow": "The Winter Edit",
+        "title": "Made for the cold",
+        "cta": "Explore winterwear",
+        "alt": "Layered winterwear styled against a mountain backdrop"
+      },
+      {
+        "eyebrow": "Best Sellers",
+        "title": "Pieces that endure",
+        "cta": "Shop best sellers",
+        "alt": "Close-up of textured fabric from the Tibet417 best sellers range"
+      }
+    ]
+  },
+  "sections": {
+    "latest": {
+      "text1": "LATEST",
+      "text2": "COLLECTIONS",
+      "description": "The newest pieces to arrive in store — considered, made to last, and made in limited runs."
+    },
+    "bestSellers": {
+      "text1": "BEST",
+      "text2": "SELLERS",
+      "description": "The pieces our customers keep coming back for."
+    }
+  },
+  "policy": {
+    "exchange": {
+      "heading": "Easy Exchange Policy",
+      "text": "We offer hassle free exchange policy"
+    },
+    "returns": {
+      "heading": "7 Days Return Policy",
+      "text": "We provide 7 days free return policy"
+    },
+    "support": {
+      "heading": "Best customer support",
+      "text": "we provide 24/7 customer support"
+    }
+  },
+  "newsletter": {
+    "heading": "Stay in touch",
+    "text": "Hear first when new Tibetan and Himalayan pieces arrive in the collection.",
+    "placeholder": "Enter your email",
+    "button": "SUBSCRIBE"
+  }
+}

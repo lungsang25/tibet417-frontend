@@ -1,0 +1,61 @@
+{
+  "seo": {
+    "title": "Tibet417 | Mode tibétaine et himalayenne authentique",
+    "description": "Tibet417 apporte une mode tibétaine et himalayenne authentique en Suisse. Vêtements et accessoires soigneusement sélectionnés, expédiés depuis la Suisse, en CHF."
+  },
+  "h1": "Tibet417 — mode tibétaine et himalayenne authentique, expédiée depuis la Suisse",
+  "hero": {
+    "slides": [
+      {
+        "eyebrow": "Nouveautés",
+        "title": "Tissé dans l'Himalaya",
+        "cta": "Découvrir la collection",
+        "alt": "Mannequin portant une pièce en laine tibétaine tissée à la main de la nouvelle collection"
+      },
+      {
+        "eyebrow": "La sélection hiver",
+        "title": "Conçu pour le froid",
+        "cta": "Découvrir les vêtements d'hiver",
+        "alt": "Vêtements d'hiver superposés devant un décor de montagne"
+      },
+      {
+        "eyebrow": "Meilleures ventes",
+        "title": "Des pièces qui durent",
+        "cta": "Découvrir les meilleures ventes",
+        "alt": "Gros plan sur un tissu texturé de la gamme des meilleures ventes Tibet417"
+      }
+    ]
+  },
+  "sections": {
+    "latest": {
+      "text1": "DERNIÈRES",
+      "text2": "COLLECTIONS",
+      "description": "Les pièces les plus récentes de la boutique — pensées pour durer, produites en séries limitées."
+    },
+    "bestSellers": {
+      "text1": "MEILLEURES",
+      "text2": "VENTES",
+      "description": "Les pièces que nos clients continuent de choisir."
+    }
+  },
+  "policy": {
+    "exchange": {
+      "heading": "Échange facile",
+      "text": "Nous offrons une politique d'échange sans tracas"
+    },
+    "returns": {
+      "heading": "Retour gratuit sous 7 jours",
+      "text": "Nous offrons un retour gratuit sous 7 jours"
+    },
+    "support": {
+      "heading": "Un service client de qualité",
+      "text": "Nous offrons un service client disponible 24h/24 et 7j/7"
+    }
+  },
+  "newsletter": {
+    "heading": "Restons en contact",
+    "text": "Soyez informé·e en premier de l'arrivée de nouvelles pièces tibétaines et himalayennes dans la collection.",
+    "placeholder": "Entrez votre e-mail",
+    "button": "S'ABONNER"
+  }
+}

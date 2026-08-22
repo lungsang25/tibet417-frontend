@@ -1,0 +1,51 @@
+{
+  "categories": {
+    "men": {
+      "heading": "Men's Collection",
+      "titleWord": "Men's",
+      "title": "Men's Tibetan & Himalayan Clothing | Tibet417",
+      "description": "Shop men's Tibetan and Himalayan clothing at Tibet417. Topwear, bottomwear and winterwear, shipped within Switzerland and priced in CHF."
+    },
+    "women": {
+      "heading": "Women's Collection",
+      "titleWord": "Women's",
+      "title": "Women's Tibetan & Himalayan Clothing | Tibet417",
+      "description": "Shop women's Tibetan and Himalayan clothing at Tibet417. Topwear, bottomwear and winterwear, shipped within Switzerland and priced in CHF."
+    },
+    "kids": {
+      "heading": "Kids' Collection",
+      "titleWord": "Kids'",
+      "title": "Kids' Tibetan & Himalayan Clothing | Tibet417",
+      "description": "Shop kids' Tibetan and Himalayan clothing at Tibet417. Shipped within Switzerland and priced in CHF."
+    }
+  },
+  "allProducts": {
+    "title": "Shop All Products | Tibet417",
+    "description": "Browse the full Tibet417 collection of Tibetan and Himalayan clothing and accessories. Shipped within Switzerland, priced in CHF."
+  },
+  "filters": {
+    "label": "FILTERS",
+    "categoriesLabel": "CATEGORIES",
+    "typeLabel": "TYPE",
+    "men": "Men",
+    "women": "Women",
+    "kids": "Kids",
+    "topwear": "Topwear",
+    "bottomwear": "Bottomwear",
+    "winterwear": "Winterwear"
+  },
+  "sort": {
+    "relevant": "Sort by: Relevant",
+    "lowHigh": "Sort by: Low to High",
+    "highLow": "Sort by: High to Low"
+  },
+  "headings": {
+    "all": "ALL",
+    "collections": "COLLECTIONS",
+    "collection": "COLLECTION"
+  },
+  "empty": {
+    "text": "Nothing here just yet.",
+    "linkText": "Browse the full collection"
+  }
+}

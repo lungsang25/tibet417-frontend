@@ -1,0 +1,31 @@
+{
+  "deliveryInfo": { "text1": "INFORMATIONS DE", "text2": "LIVRAISON" },
+  "placeholders": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Adresse e-mail",
+    "street": "Rue",
+    "city": "Ville",
+    "state": "Canton",
+    "zipcode": "Code postal",
+    "country": "Pays",
+    "phone": "Téléphone"
+  },
+  "paymentMethod": { "text1": "MODE DE", "text2": "PAIEMENT" },
+  "cod": "PAIEMENT À LA LIVRAISON",
+  "termsPrefix": "J'ai lu et j'accepte les ",
+  "termsLink": "conditions générales",
+  "termsSuffix": ".",
+  "placeOrderButton": "PASSER LA COMMANDE",
+  "twintModal": {
+    "title": "Payer avec Twint",
+    "scanText": "Scannez avec votre application Twint",
+    "openPaymentPage": "Ouvrir la page de paiement",
+    "cancel": "Annuler"
+  },
+  "toasts": {
+    "paymentUrlUnavailable": "Lien de paiement indisponible",
+    "twintSuccess": "Paiement Twint réussi !",
+    "paymentVerificationFailed": "Échec de la vérification du paiement"
+  }
+}

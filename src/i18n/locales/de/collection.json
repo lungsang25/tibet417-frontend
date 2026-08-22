@@ -1,0 +1,51 @@
+{
+  "categories": {
+    "men": {
+      "heading": "Herrenkollektion",
+      "titleWord": "Herren",
+      "title": "Tibetische & himalajanische Herrenbekleidung | Tibet417",
+      "description": "Tibetische und himalajanische Herrenbekleidung bei Tibet417. Oberteile, Hosen und Winterbekleidung, versandt innerhalb der Schweiz und in CHF ausgezeichnet."
+    },
+    "women": {
+      "heading": "Damenkollektion",
+      "titleWord": "Damen",
+      "title": "Tibetische & himalajanische Damenbekleidung | Tibet417",
+      "description": "Tibetische und himalajanische Damenbekleidung bei Tibet417. Oberteile, Hosen und Winterbekleidung, versandt innerhalb der Schweiz und in CHF ausgezeichnet."
+    },
+    "kids": {
+      "heading": "Kinderkollektion",
+      "titleWord": "Kinder",
+      "title": "Tibetische & himalajanische Kinderbekleidung | Tibet417",
+      "description": "Tibetische und himalajanische Kinderbekleidung bei Tibet417. Versandt innerhalb der Schweiz und in CHF ausgezeichnet."
+    }
+  },
+  "allProducts": {
+    "title": "Alle Produkte | Tibet417",
+    "description": "Entdecken Sie die gesamte Tibet417-Kollektion tibetischer und himalajanischer Kleidung und Accessoires. Versandt innerhalb der Schweiz, in CHF ausgezeichnet."
+  },
+  "filters": {
+    "label": "FILTER",
+    "categoriesLabel": "KATEGORIEN",
+    "typeLabel": "TYP",
+    "men": "Herren",
+    "women": "Damen",
+    "kids": "Kinder",
+    "topwear": "Oberteile",
+    "bottomwear": "Hosen",
+    "winterwear": "Winterbekleidung"
+  },
+  "sort": {
+    "relevant": "Sortieren: Relevanz",
+    "lowHigh": "Sortieren: Preis aufsteigend",
+    "highLow": "Sortieren: Preis absteigend"
+  },
+  "headings": {
+    "all": "ALLE",
+    "collections": "KOLLEKTIONEN",
+    "collection": "KOLLEKTION"
+  },
+  "empty": {
+    "text": "Hier gibt es noch nichts.",
+    "linkText": "Gesamte Kollektion durchstöbern"
+  }
+}

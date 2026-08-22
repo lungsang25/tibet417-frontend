@@ -1,0 +1,22 @@
+{
+  "description": "Tibet417 apporte une mode tibétaine et himalayenne authentique en Suisse — vêtements et accessoires choisis pour leur savoir-faire et leur provenance, expédiés depuis la Suisse et facturés en CHF.",
+  "shop": {
+    "heading": "BOUTIQUE",
+    "allProducts": "Tous les produits",
+    "men": "Hommes",
+    "women": "Femmes",
+    "kids": "Enfants"
+  },
+  "company": {
+    "heading": "ENTREPRISE",
+    "home": "Accueil",
+    "aboutUs": "À propos",
+    "contact": "Contact",
+    "terms": "Conditions générales",
+    "impressum": "Mentions légales"
+  },
+  "getInTouch": {
+    "heading": "NOUS CONTACTER"
+  },
+  "copyright": "© {{year}} {{legalName}}. Tous droits réservés."
+}

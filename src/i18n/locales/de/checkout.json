@@ -1,0 +1,31 @@
+{
+  "deliveryInfo": { "text1": "LIEFER-", "text2": "INFORMATIONEN" },
+  "placeholders": {
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "email": "E-Mail-Adresse",
+    "street": "Strasse",
+    "city": "Ort",
+    "state": "Kanton",
+    "zipcode": "PLZ",
+    "country": "Land",
+    "phone": "Telefon"
+  },
+  "paymentMethod": { "text1": "ZAHLUNGS-", "text2": "METHODE" },
+  "cod": "NACHNAHME",
+  "termsPrefix": "Ich habe die ",
+  "termsLink": "AGB",
+  "termsSuffix": " gelesen und akzeptiere sie.",
+  "placeOrderButton": "BESTELLUNG AUFGEBEN",
+  "twintModal": {
+    "title": "Mit Twint bezahlen",
+    "scanText": "Mit Ihrer Twint-App scannen",
+    "openPaymentPage": "Zahlungsseite öffnen",
+    "cancel": "Abbrechen"
+  },
+  "toasts": {
+    "paymentUrlUnavailable": "Zahlungslink nicht verfügbar",
+    "twintSuccess": "Twint-Zahlung erfolgreich!",
+    "paymentVerificationFailed": "Zahlungsüberprüfung fehlgeschlagen"
+  }
+}

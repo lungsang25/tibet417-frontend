@@ -1,0 +1,11 @@
+{
+  "selectSize": "Choisir la taille",
+  "imgAltView": "{{name}} — vue {{index}}",
+  "shippingNote": "Expédié en Suisse.",
+  "vatNote": "Prix en CHF. En tant que petite entreprise, nous sommes exonérés de TVA.",
+  "withdrawalNotePrefix": "Droit de rétractation de 10 jours — voir nos ",
+  "withdrawalNoteSuffix": ".",
+  "termsLink": "Conditions générales",
+  "descriptionTab": "Description",
+  "related": { "text1": "PRODUITS", "text2": "SIMILAIRES" }
+}

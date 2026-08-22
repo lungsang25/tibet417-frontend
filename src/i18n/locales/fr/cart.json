@@ -1,0 +1,10 @@
+{
+  "heading": { "text1": "VOTRE", "text2": "PANIER" },
+  "checkoutButton": "PASSER À LA CAISSE",
+  "total": {
+    "heading": { "text1": "TOTAL DU", "text2": "PANIER" },
+    "subtotal": "Sous-total",
+    "shippingFee": "Frais de livraison",
+    "total": "Total"
+  }
+}

@@ -1,5 +1,82 @@
 {
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/collection",
+      "destination": "/en/collection",
+      "permanent": true
+    },
+    {
+      "source": "/collection/:slug",
+      "destination": "/en/collection/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/product/:id",
+      "destination": "/en/product/:id",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/en/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/en/contact",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/en/terms",
+      "permanent": true
+    },
+    {
+      "source": "/impressum",
+      "destination": "/en/impressum",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/en/cart",
+      "permanent": true
+    },
+    {
+      "source": "/login",
+      "destination": "/en/login",
+      "permanent": true
+    },
+    {
+      "source": "/place-order",
+      "destination": "/en/place-order",
+      "permanent": true
+    },
+    {
+      "source": "/orders",
+      "destination": "/en/orders",
+      "permanent": true
+    },
+    {
+      "source": "/profile",
+      "destination": "/en/profile",
+      "permanent": true
+    },
+    {
+      "source": "/verify",
+      "destination": "/en/verify",
+      "permanent": true
+    },
+    {
+      "source": "/verify-twint",
+      "destination": "/en/verify-twint",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!.*\\.[a-zA-Z0-9]+$).*)",
@@ -16,7 +93,7 @@
       ]
     },
     {
-      "source": "/(cart|login|place-order|orders|profile|verify|verify-twint)",
+      "source": "/(en|de|fr|it)/(cart|login|place-order|orders|profile|verify|verify-twint)",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     },
     {

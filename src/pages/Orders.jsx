@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ShopContext } from '../context/ShopContext'
 import Title from '../components/Title';
 import axios from 'axios';
@@ -6,6 +7,7 @@ import { getThumbnail } from '../utils/imageUtils';
 
 const Orders = () => {
 
+  const { t } = useTranslation('account')
   const { backendUrl, token , currency} = useContext(ShopContext);
 
   const [orderData,setorderData] = useState([])
@@ -44,7 +46,7 @@ const Orders = () => {
     <div className='border-t pt-16'>
 
         <div className='text-2xl'>
-            <Title text1={'MY'} text2={'ORDERS'} as='h1'/>
+            <Title text1={t('orders.heading.text1')} text2={t('orders.heading.text2')} as='h1'/>
         </div>
 
         <div>
@@ -57,11 +59,11 @@ const Orders = () => {
                           <p className='sm:text-base font-medium'>{item.name}</p>
                           <div className='flex items-center gap-3 mt-1 text-base text-gray-700'>
                             <p>{currency}{item.price}</p>
-                            <p>Quantity: {item.quantity}</p>
-                            <p>Size: {item.size}</p>
+                            <p>{t('orders.quantity')} {item.quantity}</p>
+                            <p>{t('orders.size')} {item.size}</p>
                           </div>
-                          <p className='mt-1'>Date: <span className=' text-gray-400'>{new Date(item.date).toDateString()}</span></p>
-                          <p className='mt-1'>Payment: <span className=' text-gray-400'>{item.paymentMethod}</span></p>
+                          <p className='mt-1'>{t('orders.date')} <span className=' text-gray-400'>{new Date(item.date).toDateString()}</span></p>
+                          <p className='mt-1'>{t('orders.payment')} <span className=' text-gray-400'>{item.paymentMethod}</span></p>
                         </div>
                     </div>
                     <div className='md:w-1/2 flex justify-between'>
@@ -69,7 +71,7 @@ const Orders = () => {
                             <p className='min-w-2 h-2 rounded-full bg-green-500'></p>
                             <p className='text-sm md:text-base'>{item.status}</p>
                         </div>
-                        <button onClick={loadOrderData} className='border px-4 py-2 text-sm font-medium rounded-sm'>Track Order</button>
+                        <button onClick={loadOrderData} className='border px-4 py-2 text-sm font-medium rounded-sm'>{t('orders.trackOrder')}</button>
                     </div>
                 </div>
               ))

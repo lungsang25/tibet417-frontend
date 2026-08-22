@@ -1,0 +1,31 @@
+{
+  "deliveryInfo": { "text1": "DELIVERY", "text2": "INFORMATION" },
+  "placeholders": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email address",
+    "street": "Street",
+    "city": "City",
+    "state": "State",
+    "zipcode": "Zipcode",
+    "country": "Country",
+    "phone": "Phone"
+  },
+  "paymentMethod": { "text1": "PAYMENT", "text2": "METHOD" },
+  "cod": "CASH ON DELIVERY",
+  "termsPrefix": "I have read and accept the ",
+  "termsLink": "Terms & Conditions",
+  "termsSuffix": ".",
+  "placeOrderButton": "PLACE ORDER",
+  "twintModal": {
+    "title": "Pay with Twint",
+    "scanText": "Scan with your Twint app",
+    "openPaymentPage": "Open Payment Page",
+    "cancel": "Cancel"
+  },
+  "toasts": {
+    "paymentUrlUnavailable": "Payment URL not available",
+    "twintSuccess": "Twint payment successful!",
+    "paymentVerificationFailed": "Payment verification failed"
+  }
+}

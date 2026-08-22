@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation'
 import { assets } from '../assets/assets'
 import { siteName, legalName, business } from '../config/site'
 
@@ -7,6 +8,7 @@ import { siteName, legalName, business } from '../config/site'
 // part of how Google models the hierarchy that sitelinks are drawn from. It now
 // links the category pages rather than listing dead <li> text.
 const Footer = () => {
+  const { t } = useTranslation('footer')
   const year = new Date().getFullYear()
 
   return (
@@ -16,35 +18,33 @@ const Footer = () => {
         <div>
             <img src={assets.logo} className='mb-5 w-32' alt={`${siteName} logo`} />
             <p className='w-full md:w-2/3 text-gray-600'>
-            {siteName} brings authentic Tibetan and Himalayan fashion to
-            Switzerland — clothing and accessories chosen for craft and
-            provenance, shipped from Switzerland and priced in CHF.
+            {t('description')}
             </p>
         </div>
 
         <div>
-            <p className='text-xl font-medium mb-5'>SHOP</p>
+            <p className='text-xl font-medium mb-5'>{t('shop.heading')}</p>
             <ul className='flex flex-col gap-1 text-gray-600'>
-                <li><Link to='/collection'>All products</Link></li>
-                <li><Link to='/collection/men'>Men</Link></li>
-                <li><Link to='/collection/women'>Women</Link></li>
-                <li><Link to='/collection/kids'>Kids</Link></li>
+                <li><Link to='/collection'>{t('shop.allProducts')}</Link></li>
+                <li><Link to='/collection/men'>{t('shop.men')}</Link></li>
+                <li><Link to='/collection/women'>{t('shop.women')}</Link></li>
+                <li><Link to='/collection/kids'>{t('shop.kids')}</Link></li>
             </ul>
         </div>
 
         <div>
-            <p className='text-xl font-medium mb-5'>COMPANY</p>
+            <p className='text-xl font-medium mb-5'>{t('company.heading')}</p>
             <ul className='flex flex-col gap-1 text-gray-600'>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/about'>About us</Link></li>
-                <li><Link to='/contact'>Contact</Link></li>
-                <li><Link to='/terms'>Terms &amp; Conditions</Link></li>
-                <li><Link to='/impressum'>Impressum</Link></li>
+                <li><Link to='/'>{t('company.home')}</Link></li>
+                <li><Link to='/about'>{t('company.aboutUs')}</Link></li>
+                <li><Link to='/contact'>{t('company.contact')}</Link></li>
+                <li><Link to='/terms'>{t('company.terms')}</Link></li>
+                <li><Link to='/impressum'>{t('company.impressum')}</Link></li>
             </ul>
         </div>
 
         <div>
-            <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
+            <p className='text-xl font-medium mb-5'>{t('getInTouch.heading')}</p>
             <ul className='flex flex-col gap-1 text-gray-600'>
                 {business.telephone && <li>{business.telephone}</li>}
                 <li><a href={`mailto:${business.email}`}>{business.email}</a></li>
@@ -55,7 +55,7 @@ const Footer = () => {
 
         <div>
             <hr />
-            <p className='py-5 text-sm text-center'>© {year} {legalName}. All rights reserved.</p>
+            <p className='py-5 text-sm text-center'>{t('copyright', { year, legalName })}</p>
         </div>
 
     </div>

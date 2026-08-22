@@ -1,12 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import {
   siteName,
   defaultTitle,
   defaultDescription,
-  locale,
-  language,
   absoluteUrl,
+  localeFor,
+  hreflangAlternates,
+  SUPPORTED_LANGS,
   ogImage as defaultOgImage,
 } from '../config/site';
 import { buildGraph } from '../config/schema';
@@ -34,12 +36,19 @@ const SEO = ({
   breadcrumb = null,
   extraSchemaNodes = [],
 }) => {
-  const canonical = absoluteUrl(path);
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+
+  // Each locale's canonical points at itself, not at the English URL — the
+  // standard, non-contradictory hreflang pattern. `path` stays unprefixed
+  // ('/about') so no call site needs to know about locales.
+  const canonical = absoluteUrl(`/${lang}${path === '/' ? '' : path}`);
+  const alternates = hreflangAlternates(path);
 
   // A noindex page should not be advertising itself to schema consumers either.
   const graph = noindex
     ? null
-    : buildGraph({ url: canonical, title, description, breadcrumb, extraNodes: extraSchemaNodes });
+    : buildGraph({ url: canonical, title, description, breadcrumb, extraNodes: extraSchemaNodes, lang });
 
   return (
     <>
@@ -62,10 +71,18 @@ const SEO = ({
       />
     )}
     <Helmet>
-      <html lang={language} />
+      <html lang={lang} />
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonical} />
+
+      {/* Tells Google the other language versions of this exact page exist,
+          each pointing at its own self-referential canonical (see above) —
+          the standard hreflang pattern, including a self-reference and one
+          x-default entry. */}
+      {alternates.map(({ lang: altLang, url }) => (
+        <link key={altLang} rel="alternate" hrefLang={altLang} href={url} />
+      ))}
 
       {noindex ? (
         <meta name="robots" content="noindex, follow" />
@@ -74,7 +91,10 @@ const SEO = ({
       )}
 
       <meta property="og:site_name" content={siteName} />
-      <meta property="og:locale" content={locale} />
+      <meta property="og:locale" content={localeFor(lang)} />
+      {SUPPORTED_LANGS.filter((l) => l !== lang).map((l) => (
+        <meta key={l} property="og:locale:alternate" content={localeFor(l)} />
+      ))}
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

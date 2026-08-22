@@ -1,0 +1,27 @@
+{
+  "seo": {
+    "title": "About Tibet417 | Tibetan & Himalayan Fashion in Switzerland",
+    "description": "Tibet417 Fashion brings authentic Tibetan and Himalayan clothing and accessories to customers in Switzerland. Learn who we are and how we source our collection."
+  },
+  "heading": { "text1": "ABOUT", "text2": "US" },
+  "imgAlt": "Tibet417 Tibetan and Himalayan collection",
+  "intro1": "Tibet417 exists to bring Tibetan and Himalayan craft to people living in Switzerland. We work with clothing and accessories rooted in Himalayan making traditions — pieces chosen for their material, their construction and where they come from, rather than for how quickly they can be produced.",
+  "intro2": "We are a small Swiss business. Our offering is directed at customers domiciled in Switzerland, prices are stated net in Swiss francs, and orders are dispatched from Switzerland by post or courier.",
+  "missionLabel": "Our Mission",
+  "missionText": "To make Himalayan design available here without flattening what makes it worth having: honest provenance, clear pricing, and a shop small enough to answer for every piece it sells.",
+  "whyChoose": { "text1": "WHY", "text2": "CHOOSE US" },
+  "cards": {
+    "provenance": {
+      "label": "Provenance:",
+      "text": "Our collection is drawn from Tibetan and Himalayan making traditions, and we are direct about where a piece comes from."
+    },
+    "swissDelivery": {
+      "label": "Swiss delivery:",
+      "text": "Orders are dispatched within Switzerland by post or courier, with prices net in CHF and no VAT added."
+    },
+    "withdrawal": {
+      "label": "A 10-day right of withdrawal:",
+      "text": "You have ten calendar days after receipt to withdraw from your purchase, no reasons required, as set out in our Terms."
+    }
+  }
+}

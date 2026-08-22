@@ -1,0 +1,38 @@
+{
+  "login": {
+    "loginHeading": "Accedi",
+    "signUpHeading": "Registrati",
+    "namePlaceholder": "Nome",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "forgotPassword": "Password dimenticata?",
+    "createAccount": "Crea un account",
+    "loginHere": "Accedi qui",
+    "signInButton": "Accedi",
+    "signUpButton": "Registrati",
+    "or": "OPPURE",
+    "googleSignInFailed": "Accesso con Google non riuscito"
+  },
+  "orders": {
+    "heading": { "text1": "I MIEI", "text2": "ORDINI" },
+    "quantity": "Quantità:",
+    "size": "Taglia:",
+    "date": "Data:",
+    "payment": "Pagamento:",
+    "trackOrder": "Traccia ordine"
+  },
+  "profile": {
+    "loading": "Caricamento...",
+    "unableToLoad": "Impossibile caricare il profilo",
+    "emailLabel": "Email:",
+    "accountTypeLabel": "Tipo di account:",
+    "googleAccount": "Account Google",
+    "emailPassword": "Email e password"
+  },
+  "verify": {
+    "twintVerifying": "Verifica del pagamento Twint in corso...",
+    "pleaseWait": "Attendi mentre confermiamo il tuo pagamento.",
+    "paymentCompleted": "Pagamento completato con successo!",
+    "paymentVerificationFailed": "Verifica del pagamento non riuscita"
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation'
 import Title from './Title'
 import ProductItem from './ProductItem'
 
@@ -22,9 +23,10 @@ const ProductSection = ({
   products = [],
   count = 4,
   href = '/collection',
-  linkLabel = 'View all',
+  linkLabel,
   loading = false,
 }) => {
+  const { t } = useTranslation()
   // Nothing to show once loading has settled — don't render an empty section.
   if (!loading && products.length === 0) return null
 
@@ -44,7 +46,7 @@ const ProductSection = ({
           onClick={() => scrollTo(0, 0)}
           className='shrink-0 whitespace-nowrap text-[11px] uppercase tracking-label text-ink border-b border-ink pb-1 hover:text-stone hover:border-stone transition-colors duration-300'
         >
-          {linkLabel}
+          {linkLabel ?? t('common:actions.viewAll')}
         </Link>
       </div>
 

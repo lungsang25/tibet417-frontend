@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ShopContext } from '../context/ShopContext'
 import Title from '../components/Title';
 import { assets } from '../assets/assets';
@@ -7,6 +8,7 @@ import { getThumbnail } from '../utils/imageUtils';
 
 const Cart = () => {
 
+  const { t } = useTranslation('cart');
   const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
 
   const [cartData, setCartData] = useState([]);
@@ -34,7 +36,7 @@ const Cart = () => {
     <div className='border-t pt-14'>
 
       <div className=' text-2xl mb-3'>
-        <Title text1={'YOUR'} text2={'CART'} as='h1' />
+        <Title text1={t('heading.text1')} text2={t('heading.text2')} as='h1' />
       </div>
 
       <div>
@@ -68,7 +70,7 @@ const Cart = () => {
         <div className='w-full sm:w-[450px]'>
           <CartTotal />
           <div className=' w-full text-end'>
-            <button onClick={() => navigate('/place-order')} className='bg-black text-white text-sm my-8 px-8 py-3'>PROCEED TO CHECKOUT</button>
+            <button onClick={() => navigate('/place-order')} className='bg-black text-white text-sm my-8 px-8 py-3'>{t('checkoutButton')}</button>
           </div>
         </div>
       </div>

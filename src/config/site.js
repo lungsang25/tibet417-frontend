@@ -27,8 +27,29 @@ export const defaultDescription =
 export const currency = 'CHF'
 export const currencyCode = 'CHF'
 
+// Legacy static defaults — SEO.jsx and schema.js now derive the active
+// locale/language per-request from i18next instead of importing these, but
+// they remain as the English fallback for anything rendered outside a
+// language-aware context.
 export const locale = 'en_CH'
 export const language = 'en'
+
+export const SUPPORTED_LANGS = ['en', 'de', 'fr', 'it']
+export const DEFAULT_LANG = 'en'
+
+// Switzerland's national languages (de/fr/it) plus English, all localized to
+// the Swiss market rather than to Germany/France/Italy.
+export const LOCALE_MAP = { en: 'en_CH', de: 'de_CH', fr: 'fr_CH', it: 'it_CH' }
+export const localeFor = (lang) => LOCALE_MAP[lang] || LOCALE_MAP[DEFAULT_LANG]
+
+/** hreflang alternates (incl. x-default) for an unprefixed path like '/about'. */
+export const hreflangAlternates = (unprefixedPath = '/') => [
+  ...SUPPORTED_LANGS.map((lang) => ({
+    lang,
+    url: absoluteUrl(`/${lang}${unprefixedPath === '/' ? '' : unprefixedPath}`),
+  })),
+  { lang: 'x-default', url: absoluteUrl(`/${DEFAULT_LANG}${unprefixedPath === '/' ? '' : unprefixedPath}`) },
+]
 
 export const business = {
   email: 'admin@tibet417.com', // TODO confirm: contact@ / admin@ / support@ are all in use across the site

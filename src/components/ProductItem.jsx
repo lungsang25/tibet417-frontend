@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { ShopContext } from '../context/ShopContext'
-import {Link} from 'react-router-dom'
+import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation'
 import { getMediumImage } from '../utils/imageUtils'
 import OptimizedImage from './OptimizedImage'
 

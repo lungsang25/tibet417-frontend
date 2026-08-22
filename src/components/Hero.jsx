@@ -1,39 +1,17 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation'
 import hero_img from '../assets/hero/hero_img.png'
 import hero_img1 from '../assets/hero/p_img38(1).jpg'
 import hero_img2 from '../assets/hero/p_img4.png'
 
-// Single source of truth for the hero. Add, reorder or swap slides here —
-// nothing below needs to change.
-const slides = [
-  {
-    image: hero_img,
-    eyebrow: 'New Arrivals',
-    title: 'Woven in the Himalayas',
-    cta: 'Shop the collection',
-    href: '/collection',
-    alt: 'Model wearing a hand-woven Tibetan wool piece from the new arrivals collection',
-    position: 'center',
-  },
-  {
-    image: hero_img1,
-    eyebrow: 'The Winter Edit',
-    title: 'Made for the cold',
-    cta: 'Explore winterwear',
-    href: '/collection',
-    alt: 'Layered winterwear styled against a mountain backdrop',
-    position: 'center',
-  },
-  {
-    image: hero_img2,
-    eyebrow: 'Best Sellers',
-    title: 'Pieces that endure',
-    cta: 'Shop best sellers',
-    href: '/collection',
-    alt: 'Close-up of textured fabric from the Tibet417 best sellers range',
-    position: 'center',
-  },
+// Images and hrefs are the only things fixed here — copy comes from
+// home.json's hero.slides array (same order: new arrivals, winter, best
+// sellers) so it can be translated.
+const SLIDE_MEDIA = [
+  { image: hero_img, href: '/collection', position: 'center' },
+  { image: hero_img1, href: '/collection', position: 'center' },
+  { image: hero_img2, href: '/collection', position: 'center' },
 ]
 
 const AUTOPLAY_MS = 5000
@@ -55,6 +33,10 @@ const Chevron = ({ direction }) => (
 )
 
 const Hero = () => {
+  const { t } = useTranslation('home')
+  const slideCopy = t('hero.slides', { returnObjects: true })
+  const slides = SLIDE_MEDIA.map((media, i) => ({ ...media, ...slideCopy[i] }))
+
   // [lastClone, ...slides, firstClone] gives a seamless infinite slide.
   const track = [slides[slides.length - 1], ...slides, slides[0]]
   const lastIndex = track.length - 1

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation'
 import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
 import { assets } from '../assets/assets'
@@ -9,6 +10,7 @@ import { toast } from 'react-toastify'
 
 const PlaceOrder = () => {
 
+    const { t } = useTranslation('checkout')
     const [method, setMethod] = useState('cod');
     const [acceptedTerms, setAcceptedTerms] = useState(false);
     const { navigate, backendUrl, token, cartItems, setCartItems, getCartAmount, delivery_fee, products } = useContext(ShopContext);
@@ -39,7 +41,7 @@ const PlaceOrder = () => {
             // Show QR code modal for mobile payments
             showTwintQRModal(paymentData);
         } else {
-            toast.error('Payment URL not available');
+            toast.error(t('toasts.paymentUrlUnavailable'));
         }
     }
 
@@ -49,18 +51,18 @@ const PlaceOrder = () => {
         modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
         modal.innerHTML = `
             <div class="bg-white p-6 rounded-lg max-w-md mx-4">
-                <h3 class="text-lg font-bold mb-4 text-center">Pay with Twint</h3>
+                <h3 class="text-lg font-bold mb-4 text-center">${t('twintModal.title')}</h3>
                 <div class="text-center mb-4">
                     <img src="${paymentData.qrCodeUrl}" alt="Twint QR Code" class="w-48 h-48 mx-auto mb-4 border" />
-                    <p class="text-sm text-gray-600 mb-2">Scan with your Twint app</p>
+                    <p class="text-sm text-gray-600 mb-2">${t('twintModal.scanText')}</p>
                     <p class="text-lg font-semibold">CHF ${(paymentData.amount).toFixed(2)}</p>
                 </div>
                 <div class="flex gap-2">
                     <button onclick="window.location.href='${paymentData.paymentUrl}'" class="flex-1 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
-                        Open Payment Page
+                        ${t('twintModal.openPaymentPage')}
                     </button>
                     <button onclick="this.closest('.fixed').remove()" class="flex-1 bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600">
-                        Cancel
+                        ${t('twintModal.cancel')}
                     </button>
                 </div>
             </div>
@@ -74,13 +76,13 @@ const PlaceOrder = () => {
                 orderId: orderId,
                 success: paymentStatus
             }, {headers: {token}})
-            
+
             if (data.success) {
                 setCartItems({})
                 navigate('/orders')
-                toast.success('Twint payment successful!')
+                toast.success(t('toasts.twintSuccess'))
             } else {
-                toast.error(data.message || 'Payment verification failed')
+                toast.error(data.message || t('toasts.paymentVerificationFailed'))
             }
         } catch (error) {
             console.log(error)
@@ -163,23 +165,23 @@ const PlaceOrder = () => {
             <div className='flex flex-col gap-4 w-full sm:max-w-[480px]'>
 
                 <div className='text-xl sm:text-2xl my-3'>
-                    <Title text1={'DELIVERY'} text2={'INFORMATION'} as='h1' />
+                    <Title text1={t('deliveryInfo.text1')} text2={t('deliveryInfo.text2')} as='h1' />
                 </div>
                 <div className='flex gap-3'>
-                    <input required onChange={onChangeHandler} name='firstName' value={formData.firstName} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='First name' />
-                    <input required onChange={onChangeHandler} name='lastName' value={formData.lastName} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Last name' />
+                    <input required onChange={onChangeHandler} name='firstName' value={formData.firstName} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder={t('placeholders.firstName')} />
+                    <input required onChange={onChangeHandler} name='lastName' value={formData.lastName} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder={t('placeholders.lastName')} />
                 </div>
-                <input required onChange={onChangeHandler} name='email' value={formData.email} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="email" placeholder='Email address' />
-                <input required onChange={onChangeHandler} name='street' value={formData.street} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Street' />
+                <input required onChange={onChangeHandler} name='email' value={formData.email} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="email" placeholder={t('placeholders.email')} />
+                <input required onChange={onChangeHandler} name='street' value={formData.street} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder={t('placeholders.street')} />
                 <div className='flex gap-3'>
-                    <input required onChange={onChangeHandler} name='city' value={formData.city} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='City' />
-                    <input onChange={onChangeHandler} name='state' value={formData.state} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='State' />
+                    <input required onChange={onChangeHandler} name='city' value={formData.city} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder={t('placeholders.city')} />
+                    <input onChange={onChangeHandler} name='state' value={formData.state} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder={t('placeholders.state')} />
                 </div>
                 <div className='flex gap-3'>
-                    <input required onChange={onChangeHandler} name='zipcode' value={formData.zipcode} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder='Zipcode' />
-                    <input required onChange={onChangeHandler} name='country' value={formData.country} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder='Country' />
+                    <input required onChange={onChangeHandler} name='zipcode' value={formData.zipcode} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder={t('placeholders.zipcode')} />
+                    <input required onChange={onChangeHandler} name='country' value={formData.country} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="text" placeholder={t('placeholders.country')} />
                 </div>
-                <input required onChange={onChangeHandler} name='phone' value={formData.phone} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder='Phone' />
+                <input required onChange={onChangeHandler} name='phone' value={formData.phone} className='border border-gray-300 rounded py-1.5 px-3.5 w-full' type="number" placeholder={t('placeholders.phone')} />
             </div>
 
             {/* ------------- Right Side ------------------ */}
@@ -190,7 +192,7 @@ const PlaceOrder = () => {
                 </div>
 
                 <div className='mt-12'>
-                    <Title text1={'PAYMENT'} text2={'METHOD'} />
+                    <Title text1={t('paymentMethod.text1')} text2={t('paymentMethod.text2')} />
                     {/* --------------- Payment Method Selection ------------- */}
                     <div className='flex gap-3 flex-col lg:flex-row'>
                         <div onClick={() => setMethod('stripe')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
@@ -203,17 +205,17 @@ const PlaceOrder = () => {
                         </div>
                         <div onClick={() => setMethod('cod')} className='flex items-center gap-3 border p-2 px-3 cursor-pointer'>
                             <p className={`min-w-3.5 h-3.5 border rounded-full ${method === 'cod' ? 'bg-green-400' : ''}`}></p>
-                            <p className='text-gray-500 text-sm font-medium mx-4'>CASH ON DELIVERY</p>
+                            <p className='text-gray-500 text-sm font-medium mx-4'>{t('cod')}</p>
                         </div>
                     </div>
 
                     <label className='flex items-start gap-3 mt-8 text-sm text-gray-600 cursor-pointer'>
                         <input required type='checkbox' className='mt-0.5' checked={acceptedTerms} onChange={(event) => setAcceptedTerms(event.target.checked)} />
-                        <span>I have read and accept the <Link to='/terms' target='_blank' className='underline text-gray-800'>Terms & Conditions</Link>.</span>
+                        <span>{t('termsPrefix')}<Link to='/terms' target='_blank' className='underline text-gray-800'>{t('termsLink')}</Link>{t('termsSuffix')}</span>
                     </label>
 
                     <div className='w-full text-end mt-6'>
-                        <button type='submit' className='bg-black text-white px-16 py-3 text-sm'>PLACE ORDER</button>
+                        <button type='submit' className='bg-black text-white px-16 py-3 text-sm'>{t('placeOrderButton')}</button>
                     </div>
 
                 </div>

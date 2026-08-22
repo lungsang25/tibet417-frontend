@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import Hero from '../components/Hero'
 import LatestCollection from '../components/LatestCollection'
 import BestSeller from '../components/BestSeller'
@@ -8,7 +9,6 @@ import SEO from '../components/SEO'
 import {
   siteName,
   legalName,
-  defaultTitle,
   defaultDescription,
   currencyCode,
   logoUrl,
@@ -20,6 +20,7 @@ import {
 import { ORGANIZATION_ID } from '../config/schema'
 
 const Home = () => {
+  const { t } = useTranslation('home')
   const address = postalAddressSchema()
 
   // The Store node describes the shop itself and hangs off the site-wide
@@ -50,8 +51,8 @@ const Home = () => {
   return (
     <div>
       <SEO
-        title={defaultTitle}
-        description={defaultDescription}
+        title={t('seo.title')}
+        description={t('seo.description')}
         path='/'
         breadcrumb={[{ name: 'Home' }]}
         extraSchemaNodes={[storeNode]}
@@ -61,7 +62,7 @@ const Home = () => {
           tell a crawler what this site is in any case. Visually hidden rather
           than shown so the hero design is untouched; the text describes exactly
           what the page is, and screen readers announce it. */}
-      <h1 className='sr-only'>Tibet417 — authentic Tibetan and Himalayan fashion, shipped in Switzerland</h1>
+      <h1 className='sr-only'>{t('h1')}</h1>
       <Hero />
       <LatestCollection />
       <BestSeller />

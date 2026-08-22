@@ -1,0 +1,51 @@
+{
+  "categories": {
+    "men": {
+      "heading": "Collection Hommes",
+      "titleWord": "Hommes",
+      "title": "Vêtements tibétains & himalayens pour hommes | Tibet417",
+      "description": "Découvrez les vêtements tibétains et himalayens pour hommes chez Tibet417. Hauts, bas et vêtements d'hiver, expédiés en Suisse et facturés en CHF."
+    },
+    "women": {
+      "heading": "Collection Femmes",
+      "titleWord": "Femmes",
+      "title": "Vêtements tibétains & himalayens pour femmes | Tibet417",
+      "description": "Découvrez les vêtements tibétains et himalayens pour femmes chez Tibet417. Hauts, bas et vêtements d'hiver, expédiés en Suisse et facturés en CHF."
+    },
+    "kids": {
+      "heading": "Collection Enfants",
+      "titleWord": "Enfants",
+      "title": "Vêtements tibétains & himalayens pour enfants | Tibet417",
+      "description": "Découvrez les vêtements tibétains et himalayens pour enfants chez Tibet417. Expédiés en Suisse et facturés en CHF."
+    }
+  },
+  "allProducts": {
+    "title": "Tous les produits | Tibet417",
+    "description": "Parcourez toute la collection Tibet417 de vêtements et accessoires tibétains et himalayens. Expédiée en Suisse, facturée en CHF."
+  },
+  "filters": {
+    "label": "FILTRES",
+    "categoriesLabel": "CATÉGORIES",
+    "typeLabel": "TYPE",
+    "men": "Hommes",
+    "women": "Femmes",
+    "kids": "Enfants",
+    "topwear": "Hauts",
+    "bottomwear": "Bas",
+    "winterwear": "Vêtements d'hiver"
+  },
+  "sort": {
+    "relevant": "Trier par : Pertinence",
+    "lowHigh": "Trier par : Prix croissant",
+    "highLow": "Trier par : Prix décroissant"
+  },
+  "headings": {
+    "all": "TOUTES LES",
+    "collections": "COLLECTIONS",
+    "collection": "COLLECTION"
+  },
+  "empty": {
+    "text": "Rien à afficher pour le moment.",
+    "linkText": "Parcourir toute la collection"
+  }
+}

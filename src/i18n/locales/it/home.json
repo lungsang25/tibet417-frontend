@@ -1,0 +1,61 @@
+{
+  "seo": {
+    "title": "Tibet417 | Moda tibetana e himalayana autentica",
+    "description": "Tibet417 porta l'autentica moda tibetana e himalayana in Svizzera. Abbigliamento e accessori selezionati, spediti dalla Svizzera, in CHF."
+  },
+  "h1": "Tibet417 — autentica moda tibetana e himalayana, spedita dalla Svizzera",
+  "hero": {
+    "slides": [
+      {
+        "eyebrow": "Nuovi arrivi",
+        "title": "Tessuto sull'Himalaya",
+        "cta": "Scopri la collezione",
+        "alt": "Modello che indossa un capo in lana tibetana tessuto a mano della nuova collezione"
+      },
+      {
+        "eyebrow": "La selezione invernale",
+        "title": "Pensato per il freddo",
+        "cta": "Scopri l'abbigliamento invernale",
+        "alt": "Abbigliamento invernale a strati su uno sfondo di montagna"
+      },
+      {
+        "eyebrow": "I più venduti",
+        "title": "Capi che durano nel tempo",
+        "cta": "Scopri i più venduti",
+        "alt": "Primo piano su un tessuto lavorato della linea best seller Tibet417"
+      }
+    ]
+  },
+  "sections": {
+    "latest": {
+      "text1": "ULTIME",
+      "text2": "COLLEZIONI",
+      "description": "I capi appena arrivati in negozio — pensati per durare e realizzati in edizione limitata."
+    },
+    "bestSellers": {
+      "text1": "I PIÙ",
+      "text2": "VENDUTI",
+      "description": "I capi che i nostri clienti scelgono sempre di nuovo."
+    }
+  },
+  "policy": {
+    "exchange": {
+      "heading": "Cambio facile",
+      "text": "Offriamo una politica di cambio senza pensieri"
+    },
+    "returns": {
+      "heading": "Reso gratuito entro 7 giorni",
+      "text": "Offriamo un reso gratuito entro 7 giorni"
+    },
+    "support": {
+      "heading": "La migliore assistenza clienti",
+      "text": "Offriamo assistenza clienti 24 ore su 24, 7 giorni su 7"
+    }
+  },
+  "newsletter": {
+    "heading": "Restiamo in contatto",
+    "text": "Scopri per primo i nuovi capi tibetani e himalayani in arrivo nella collezione.",
+    "placeholder": "Inserisci la tua email",
+    "button": "ISCRIVITI"
+  }
+}

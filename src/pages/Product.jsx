@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ShopContext } from '../context/ShopContext';
 import RelatedProducts from '../components/RelatedProducts';
 import { getLargeImage, getMediumImage } from '../utils/imageUtils';
 import SEO from '../components/SEO';
 import { currencyCode, absoluteUrl, siteName } from '../config/site';
+import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation';
 
 const Product = () => {
 
+  const { t } = useTranslation('product');
   const { productId } = useParams();
   const { products, currency ,addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
@@ -81,7 +84,7 @@ const Product = () => {
           <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
               {
                 productData.image.map((item,index)=>(
-                  <img onClick={()=>setImage(item)} src={getMediumImage(item)} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer' alt={`${productData.name} — view ${index + 1}`} loading='lazy' />
+                  <img onClick={()=>setImage(item)} src={getMediumImage(item)} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer' alt={t('imgAltView', { name: productData.name, index: index + 1 })} loading='lazy' />
                 ))
               }
           </div>
@@ -96,23 +99,23 @@ const Product = () => {
           <p className='mt-5 text-3xl font-medium'>{currency} {productData.price}</p>
           <p className='mt-5 text-gray-500 md:w-4/5'>{productData.description}</p>
           <div className='flex flex-col gap-4 my-8'>
-              <p>Select Size</p>
+              <p>{t('selectSize')}</p>
               <div className='flex gap-2'>
                 {productData.sizes.map((item,index)=>(
                   <button onClick={()=>setSize(item)} className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500' : ''}`} key={index}>{item}</button>
                 ))}
               </div>
           </div>
-          <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
+          <button onClick={()=>addToCart(productData._id,size)} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>{t('common:actions.addToCart')}</button>
           <hr className='mt-8 sm:w-4/5' />
           {/* Claims here must match the GTC: 10 calendar days of withdrawal
               (clause 8), delivery within Switzerland, prices net in CHF. The
               previous copy promised cash on delivery, which is not an offered
               payment method, and a 7-day return window the GTC do not grant. */}
           <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
-              <p>Shipped within Switzerland.</p>
-              <p>Prices in CHF. As a small business we are exempt from VAT.</p>
-              <p>10-day right of withdrawal — see our <Link to='/terms' className='underline'>Terms &amp; Conditions</Link>.</p>
+              <p>{t('shippingNote')}</p>
+              <p>{t('vatNote')}</p>
+              <p>{t('withdrawalNotePrefix')}<Link to='/terms' className='underline'>{t('termsLink')}</Link>{t('withdrawalNoteSuffix')}</p>
           </div>
         </div>
       </div>
@@ -124,7 +127,7 @@ const Product = () => {
           the thin, templated content that keeps product pages out of the index. */}
       <div className='mt-20'>
         <div className='flex'>
-          <b className='border px-5 py-3 text-sm'>Description</b>
+          <b className='border px-5 py-3 text-sm'>{t('descriptionTab')}</b>
         </div>
         <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
           <p>{productData.description}</p>

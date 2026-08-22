@@ -1,0 +1,31 @@
+{
+  "deliveryInfo": { "text1": "INFORMAZIONI DI", "text2": "CONSEGNA" },
+  "placeholders": {
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Indirizzo email",
+    "street": "Via",
+    "city": "Città",
+    "state": "Cantone",
+    "zipcode": "CAP",
+    "country": "Paese",
+    "phone": "Telefono"
+  },
+  "paymentMethod": { "text1": "METODO DI", "text2": "PAGAMENTO" },
+  "cod": "CONTRASSEGNO",
+  "termsPrefix": "Ho letto e accetto i ",
+  "termsLink": "termini e condizioni",
+  "termsSuffix": ".",
+  "placeOrderButton": "EFFETTUA ORDINE",
+  "twintModal": {
+    "title": "Paga con Twint",
+    "scanText": "Scansiona con la tua app Twint",
+    "openPaymentPage": "Apri pagina di pagamento",
+    "cancel": "Annulla"
+  },
+  "toasts": {
+    "paymentUrlUnavailable": "URL di pagamento non disponibile",
+    "twintSuccess": "Pagamento Twint riuscito!",
+    "paymentVerificationFailed": "Verifica del pagamento non riuscita"
+  }
+}

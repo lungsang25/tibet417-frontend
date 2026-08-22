@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { getMediumImage } from '../utils/imageUtils'
+import { useLocalizedNavigate } from '../hooks/useLocalizedNavigation'
 
 export const ShopContext = createContext();
 
@@ -38,7 +38,7 @@ const ShopContextProvider = (props) => {
     const [products, setProducts] = useState(() => preloadedProducts() ?? []);
     const [productsLoaded, setProductsLoaded] = useState(() => preloadedProducts() !== null);
     const [token, setToken] = useState('')
-    const navigate = useNavigate();
+    const navigate = useLocalizedNavigate();
 
 
     const addToCart = async (itemId, size) => {

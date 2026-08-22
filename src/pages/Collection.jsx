@@ -1,42 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams, useSearchParams, Link } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ShopContext } from '../context/ShopContext'
 import { assets } from '../assets/assets';
 import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
 import SEO from '../components/SEO';
-import { siteName, absoluteUrl } from '../config/site';
+import { absoluteUrl } from '../config/site';
+import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation';
 
 // Top-level categories get their own crawlable URL (/collection/men). Before
 // this, the entire catalogue lived at a single /collection URL behind
 // client-side checkboxes, so there was nothing for Google to list as a sitelink
 // and no page that could rank for a category term.
-export const CATEGORIES = {
-  men: {
-    value: 'Men',
-    heading: "Men's Collection",
-    title: `Men's Tibetan & Himalayan Clothing | ${siteName}`,
-    description: `Shop men's Tibetan and Himalayan clothing at ${siteName}. Topwear, bottomwear and winterwear, shipped within Switzerland and priced in CHF.`,
-  },
-  women: {
-    value: 'Women',
-    heading: "Women's Collection",
-    title: `Women's Tibetan & Himalayan Clothing | ${siteName}`,
-    description: `Shop women's Tibetan and Himalayan clothing at ${siteName}. Topwear, bottomwear and winterwear, shipped within Switzerland and priced in CHF.`,
-  },
-  kids: {
-    value: 'Kids',
-    heading: "Kids' Collection",
-    title: `Kids' Tibetan & Himalayan Clothing | ${siteName}`,
-    description: `Shop kids' Tibetan and Himalayan clothing at ${siteName}. Shipped within Switzerland and priced in CHF.`,
-  },
-}
+//
+// `value` matches the backend's product.category field (English, from the
+// database) and must never be translated. Everything else is a translation
+// key resolved from collection.json at render time.
+const CATEGORY_VALUES = { men: 'Men', women: 'Women', kids: 'Kids' }
 
 const Collection = () => {
 
+  const { t } = useTranslation('collection');
   const { categorySlug } = useParams();
   const [searchParams] = useSearchParams();
-  const activeCategory = categorySlug ? CATEGORIES[categorySlug.toLowerCase()] : null;
+  const slug = categorySlug?.toLowerCase();
+  const activeCategory = slug && CATEGORY_VALUES[slug]
+    ? {
+        value: CATEGORY_VALUES[slug],
+        heading: t(`categories.${slug}.heading`),
+        titleWord: t(`categories.${slug}.titleWord`),
+        title: t(`categories.${slug}.title`),
+        description: t(`categories.${slug}.description`),
+      }
+    : null;
 
   const { products , productsLoaded , search , setSearch, showSearch, setShowSearch } = useContext(ShopContext);
   const [showFilter,setShowFilter] = useState(false);
@@ -131,8 +128,8 @@ const Collection = () => {
     sortProduct();
   },[sortType])
 
-  const path = activeCategory ? `/collection/${categorySlug.toLowerCase()}` : '/collection';
-  const heading = activeCategory ? activeCategory.heading : 'All Collections';
+  const path = activeCategory ? `/collection/${slug}` : '/collection';
+  const heading = activeCategory ? activeCategory.heading : `${t('headings.all')} ${t('headings.collections')}`;
 
   // A category with nothing in it is a soft 404 — Google indexes the URL, finds
   // no content, and the thin page drags on the rest of the site. /collection/kids
@@ -166,10 +163,8 @@ const Collection = () => {
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
       <SEO
-        title={activeCategory ? activeCategory.title : `Shop All Products | ${siteName}`}
-        description={activeCategory
-          ? activeCategory.description
-          : `Browse the full ${siteName} collection of Tibetan and Himalayan clothing and accessories. Shipped within Switzerland, priced in CHF.`}
+        title={activeCategory ? activeCategory.title : t('allProducts.title')}
+        description={activeCategory ? activeCategory.description : t('allProducts.description')}
         path={path}
         noindex={categoryIsEmpty}
         breadcrumb={breadcrumb}
@@ -178,38 +173,38 @@ const Collection = () => {
 
       {/* Filter Options */}
       <div className='min-w-60'>
-        <p onClick={()=>setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS
+        <p onClick={()=>setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>{t('filters.label')}
           <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`} src={assets.dropdown_icon} alt="" />
         </p>
         {/* Category Filter — hidden on a category URL, which already pins it */}
         {!activeCategory && (
         <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' :'hidden'} sm:block`}>
-          <p className='mb-3 text-sm font-medium'>CATEGORIES</p>
+          <p className='mb-3 text-sm font-medium'>{t('filters.categoriesLabel')}</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Men'} onChange={toggleCategory}/> Men
+              <input className='w-3' type="checkbox" value={'Men'} onChange={toggleCategory}/> {t('filters.men')}
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Women'} onChange={toggleCategory}/> Women
+              <input className='w-3' type="checkbox" value={'Women'} onChange={toggleCategory}/> {t('filters.women')}
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Kids'} onChange={toggleCategory}/> Kids
+              <input className='w-3' type="checkbox" value={'Kids'} onChange={toggleCategory}/> {t('filters.kids')}
             </p>
           </div>
         </div>
         )}
         {/* SubCategory Filter */}
         <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? '' :'hidden'} sm:block`}>
-          <p className='mb-3 text-sm font-medium'>TYPE</p>
+          <p className='mb-3 text-sm font-medium'>{t('filters.typeLabel')}</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Topwear'} onChange={toggleSubCategory}/> Topwear
+              <input className='w-3' type="checkbox" value={'Topwear'} onChange={toggleSubCategory}/> {t('filters.topwear')}
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Bottomwear'} onChange={toggleSubCategory}/> Bottomwear
+              <input className='w-3' type="checkbox" value={'Bottomwear'} onChange={toggleSubCategory}/> {t('filters.bottomwear')}
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'Winterwear'} onChange={toggleSubCategory}/> Winterwear
+              <input className='w-3' type="checkbox" value={'Winterwear'} onChange={toggleSubCategory}/> {t('filters.winterwear')}
             </p>
           </div>
         </div>
@@ -219,12 +214,12 @@ const Collection = () => {
       <div className='flex-1'>
 
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
-            <Title text1={activeCategory ? activeCategory.heading.split(' ')[0] : 'ALL'} text2={activeCategory ? 'COLLECTION' : 'COLLECTIONS'} as='h1' />
+            <Title text1={activeCategory ? activeCategory.titleWord : t('headings.all')} text2={activeCategory ? t('headings.collection') : t('headings.collections')} as='h1' />
             {/* Porduct Sort */}
             <select onChange={(e)=>setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2' aria-label='Sort products'>
-              <option value="relavent">Sort by: Relevant</option>
-              <option value="low-high">Sort by: Low to High</option>
-              <option value="high-low">Sort by: High to Low</option>
+              <option value="relavent">{t('sort.relevant')}</option>
+              <option value="low-high">{t('sort.lowHigh')}</option>
+              <option value="high-low">{t('sort.highLow')}</option>
             </select>
         </div>
 
@@ -239,7 +234,7 @@ const Collection = () => {
 
         {productsLoaded && filterProducts.length === 0 && (
           <p className='text-gray-500 py-10'>
-            Nothing here just yet. <Link to='/collection' className='underline'>Browse the full collection</Link>.
+            {t('empty.text')} <Link to='/collection' className='underline'>{t('empty.linkText')}</Link>.
           </p>
         )}
       </div>

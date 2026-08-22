@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 /**
  * NOTE (owner): this form is not wired to anything. onSubmitHandler only calls
@@ -12,6 +13,7 @@ import React from 'react'
  * Google leans on most to work out what this business is.
  */
 const NewsletterBox = () => {
+    const { t } = useTranslation('home')
 
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -19,14 +21,14 @@ const NewsletterBox = () => {
 
   return (
     <div className=' text-center'>
-      <p className='text-2xl font-medium text-gray-800'>Stay in touch</p>
+      <p className='text-2xl font-medium text-gray-800'>{t('newsletter.heading')}</p>
       <p className='text-gray-400 mt-3'>
-      Hear first when new Tibetan and Himalayan pieces arrive in the collection.
+      {t('newsletter.text')}
       </p>
       <form onSubmit={onSubmitHandler} className='w-full sm:w-1/2 flex items-center gap-3 mx-auto my-6 border pl-3'>
-        <label htmlFor='newsletter-email' className='sr-only'>Email address</label>
-        <input id='newsletter-email' className='w-full sm:flex-1 outline-none' type="email" placeholder='Enter your email' required/>
-        <button type='submit' className='bg-black text-white text-xs px-10 py-4'>SUBSCRIBE</button>
+        <label htmlFor='newsletter-email' className='sr-only'>{t('newsletter.placeholder')}</label>
+        <input id='newsletter-email' className='w-full sm:flex-1 outline-none' type="email" placeholder={t('newsletter.placeholder')} required/>
+        <button type='submit' className='bg-black text-white text-xs px-10 py-4'>{t('newsletter.button')}</button>
       </form>
     </div>
   )

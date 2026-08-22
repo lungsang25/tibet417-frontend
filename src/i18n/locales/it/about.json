@@ -1,0 +1,27 @@
+{
+  "seo": {
+    "title": "Chi è Tibet417 | Moda tibetana e himalayana in Svizzera",
+    "description": "Tibet417 Fashion porta abbigliamento e accessori tibetani e himalayani autentici ai clienti in Svizzera. Scopri chi siamo e come selezioniamo la nostra collezione."
+  },
+  "heading": { "text1": "CHI", "text2": "SIAMO" },
+  "imgAlt": "Collezione tibetana e himalayana Tibet417",
+  "intro1": "Tibet417 esiste per portare l'artigianato tibetano e himalayano alle persone che vivono in Svizzera. Lavoriamo con abbigliamento e accessori radicati nelle tradizioni artigianali himalayane — capi scelti per il materiale, la lavorazione e la provenienza, non per la velocità con cui possono essere prodotti.",
+  "intro2": "Siamo una piccola azienda svizzera. La nostra offerta è rivolta a clienti domiciliati in Svizzera, i prezzi sono indicati al netto in franchi svizzeri e gli ordini vengono spediti dalla Svizzera per posta o corriere.",
+  "missionLabel": "La nostra missione",
+  "missionText": "Rendere disponibile qui il design himalayano senza appiattire ciò che lo rende prezioso: provenienza onesta, prezzi chiari e un negozio abbastanza piccolo da rispondere di ogni capo venduto.",
+  "whyChoose": { "text1": "PERCHÉ", "text2": "SCEGLIERCI" },
+  "cards": {
+    "provenance": {
+      "label": "Provenienza:",
+      "text": "La nostra collezione nasce dalle tradizioni artigianali tibetane e himalayane e siamo trasparenti sulla provenienza di ogni capo."
+    },
+    "swissDelivery": {
+      "label": "Spedizione dalla Svizzera:",
+      "text": "Gli ordini vengono spediti dalla Svizzera per posta o corriere, con prezzi netti in CHF e senza IVA aggiunta."
+    },
+    "withdrawal": {
+      "label": "Diritto di recesso di 10 giorni:",
+      "text": "Hai dieci giorni di calendario dal ricevimento per recedere dall'acquisto, senza dover indicare motivi, come previsto dai nostri termini e condizioni."
+    }
+  }
+}

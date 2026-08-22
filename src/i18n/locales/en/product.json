@@ -1,0 +1,11 @@
+{
+  "selectSize": "Select Size",
+  "imgAltView": "{{name}} — view {{index}}",
+  "shippingNote": "Shipped within Switzerland.",
+  "vatNote": "Prices in CHF. As a small business we are exempt from VAT.",
+  "withdrawalNotePrefix": "10-day right of withdrawal — see our ",
+  "withdrawalNoteSuffix": ".",
+  "termsLink": "Terms & Conditions",
+  "descriptionTab": "Description",
+  "related": { "text1": "RELATED", "text2": "PRODUCTS" }
+}

@@ -38,6 +38,7 @@ import { readFile, writeFile, mkdir, access, copyFile } from 'node:fs/promises'
 import { join, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import puppeteer from 'puppeteer-core'
+import { SUPPORTED_LANGS, DEFAULT_LANG } from '../src/config/site.js'
 
 /**
  * @sparticuz/chromium ships the shared libraries Chromium needs (libnss3 and
@@ -159,7 +160,10 @@ const run = async () => {
     products.some((p) => p.category?.toLowerCase() === slug),
   )
 
-  const staticRoutes = [
+  // Unprefixed/logical routes — multiplied across all 4 locales below. No
+  // entry for '/': the homepage now lives at '/en', '/de', etc., and bare
+  // '/' is a redirect (vercel.json + LocaleLayout), not a prerendered page.
+  const baseRoutes = [
     { path: '/', changefreq: 'daily', priority: '1.0' },
     { path: '/collection', changefreq: 'daily', priority: '0.9' },
     ...stockedCategories.map((slug) => ({
@@ -173,14 +177,22 @@ const run = async () => {
     { path: '/impressum', changefreq: 'yearly', priority: '0.3' },
   ]
 
-  const productRoutes = products.map((p) => ({
+  const baseProductRoutes = products.map((p) => ({
     path: `/product/${p._id}`,
     changefreq: 'weekly',
     priority: '0.8',
     lastmod: p.date ? new Date(p.date).toISOString().slice(0, 10) : undefined,
   }))
 
-  const routes = [...staticRoutes, ...productRoutes]
+  // `basePath` is the cross-language join key writeSitemap() uses to group
+  // sibling-language URLs together for hreflang. `path` becomes the real,
+  // lang-prefixed route that gets snapshotted (home: '/en', not '/en/').
+  const localize = (base) =>
+    SUPPORTED_LANGS.flatMap((lang) =>
+      base.map((r) => ({ ...r, basePath: r.path, lang, path: `/${lang}${r.path === '/' ? '' : r.path}` })),
+    )
+
+  const routes = [...localize(baseRoutes), ...localize(baseProductRoutes)]
 
   // Preserve the untouched shell before prerendering overwrites index.html with
   // the homepage. vercel.json points its SPA fallback at this file, so routes
@@ -208,27 +220,38 @@ const run = async () => {
 
   const failures = []
 
-  try {
-    for (const route of routes) {
-      // Routes occasionally miss networkidle0 under build-machine load. One
-      // retry keeps a transient blip from failing an otherwise good deploy.
-      let lastError
-      for (let attempt = 1; attempt <= 2; attempt++) {
-        try {
-          const kb = await snapshot(browser, route, products)
-          console.log(`  ✓ ${route.path.padEnd(34)} ${kb} KB`)
-          lastError = null
-          break
-        } catch (err) {
-          lastError = err
-          if (attempt === 1) console.warn(`  … ${route.path} attempt 1 failed (${err.message}); retrying`)
-        }
-      }
-      if (lastError) {
-        failures.push({ path: route.path, message: lastError.message })
-        console.error(`  ✗ ${route.path.padEnd(34)} ${lastError.message}`)
+  // One route per language now stands where one used to (≈4x the pages), so
+  // a fully sequential loop would ≈4x the build time too. Puppeteer happily
+  // drives several pages of one browser at once, so a small worker pool
+  // keeps wall-clock time close to what it was pre-migration.
+  const CONCURRENCY = 5
+
+  const snapshotWithRetry = async (route) => {
+    // Routes occasionally miss networkidle0 under build-machine load. One
+    // retry keeps a transient blip from failing an otherwise good deploy.
+    let lastError
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const kb = await snapshot(browser, route, products)
+        console.log(`  ✓ ${route.path.padEnd(34)} ${kb} KB`)
+        return
+      } catch (err) {
+        lastError = err
+        if (attempt === 1) console.warn(`  … ${route.path} attempt 1 failed (${err.message}); retrying`)
       }
     }
+    failures.push({ path: route.path, message: lastError.message })
+    console.error(`  ✗ ${route.path.padEnd(34)} ${lastError.message}`)
+  }
+
+  try {
+    let next = 0
+    const workers = Array.from({ length: Math.min(CONCURRENCY, routes.length) }, async () => {
+      while (next < routes.length) {
+        await snapshotWithRetry(routes[next++])
+      }
+    })
+    await Promise.all(workers)
   } finally {
     await browser.close()
     server.close()
@@ -271,7 +294,9 @@ const snapshot = async (browser, route, products) => {
       `<script>window.__TIBET417_PRODUCTS__=${JSON.stringify(products).replace(/</g, '\\u003c')}</script>`
     html = html.replace('</head>', `${preload}</head>`)
 
-    const outDir = route.path === '/' ? DIST : join(DIST, route.path)
+    // No route is literally '/' any more (home lives at '/en' etc.), so this
+    // always nests under DIST — no more special-casing the root.
+    const outDir = join(DIST, route.path)
     await mkdir(outDir, { recursive: true })
     await writeFile(join(outDir, 'index.html'), html, 'utf8')
 
@@ -283,18 +308,40 @@ const snapshot = async (browser, route, products) => {
 
 const writeSitemap = async (routes) => {
   const today = new Date().toISOString().slice(0, 10)
+
+  // Group sibling-language URLs by their shared logical route, so each <url>
+  // block can declare the full hreflang set (its own language plus every
+  // other language's URL for the same page, plus one x-default).
+  const byBasePath = new Map()
+  for (const r of routes) {
+    if (!byBasePath.has(r.basePath)) byBasePath.set(r.basePath, [])
+    byBasePath.get(r.basePath).push(r)
+  }
+
   const body = routes
-    .map((r) => [
-      '  <url>',
-      `    <loc>${SITE_URL}${r.path}</loc>`,
-      `    <lastmod>${r.lastmod || today}</lastmod>`,
-      `    <changefreq>${r.changefreq}</changefreq>`,
-      `    <priority>${r.priority}</priority>`,
-      '  </url>',
-    ].join('\n'))
+    .map((r) => {
+      const siblings = byBasePath.get(r.basePath)
+      const defaultSibling = siblings.find((s) => s.lang === DEFAULT_LANG) ?? r
+      const alternates = [
+        ...siblings.map((s) => ({ lang: s.lang, path: s.path })),
+        { lang: 'x-default', path: defaultSibling.path },
+      ]
+        .map(({ lang, path }) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${SITE_URL}${path}"/>`)
+        .join('\n')
+
+      return [
+        '  <url>',
+        `    <loc>${SITE_URL}${r.path}</loc>`,
+        `    <lastmod>${r.lastmod || today}</lastmod>`,
+        `    <changefreq>${r.changefreq}</changefreq>`,
+        `    <priority>${r.priority}</priority>`,
+        alternates,
+        '  </url>',
+      ].join('\n')
+    })
     .join('\n')
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${body}\n</urlset>\n`
   await writeFile(join(DIST, 'sitemap.xml'), xml, 'utf8')
   console.log(`\n  ✓ sitemap.xml (${routes.length} URLs)`)
 }

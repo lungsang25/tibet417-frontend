@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "HOME",
+    "collection": "COLLECTION",
+    "men": "MEN",
+    "women": "WOMEN",
+    "kids": "KIDS",
+    "about": "ABOUT",
+    "contact": "CONTACT",
+    "login": "LOGIN",
+    "back": "Back"
+  },
+  "profileMenu": {
+    "myProfile": "My Profile",
+    "orders": "Orders",
+    "logout": "Logout"
+  },
+  "mobileMenu": {
+    "myProfile": "MY PROFILE",
+    "orders": "ORDERS",
+    "logout": "LOGOUT"
+  },
+  "actions": {
+    "addToCart": "ADD TO CART",
+    "viewAll": "View all"
+  },
+  "search": {
+    "placeholder": "Search"
+  },
+  "language": {
+    "en": "English",
+    "de": "Deutsch",
+    "fr": "Français",
+    "it": "Italiano"
+  }
+}

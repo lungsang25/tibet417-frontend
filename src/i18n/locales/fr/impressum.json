@@ -1,0 +1,36 @@
+{
+  "seo": {
+    "title": "Mentions légales | Tibet417",
+    "description": "Mentions légales de Tibet417 Fashion — informations sur l'exploitant, adresse de contact et responsable pour tibet417.com."
+  },
+  "heading": { "text1": "MENTIONS", "text2": "LÉGALES" },
+  "aiDisclaimer": "Cette page a été traduite de l'anglais par IA et n'a pas encore été relue par un juriste. Pour toute question sur les informations juridiquement contraignantes, veuillez nous contacter directement.",
+  "operator": {
+    "label": "Exploitant de ce site web",
+    "noAddressText": "Enregistrés en Suisse. Notre adresse postale est en cours de modification ; pour un retour ou une notification écrite, merci d'écrire à {{email}} et nous vous confirmerons l'adresse actuelle.",
+    "switzerland": "Suisse"
+  },
+  "contact": {
+    "label": "Contact",
+    "emailPrefix": "E-mail : ",
+    "telephonePrefix": "Téléphone : "
+  },
+  "vat": {
+    "label": "TVA",
+    "text": "En tant que petite entreprise, {{legalName}} est exonérée de l'obligation de facturer la TVA suisse. Tous les prix sont nets et indiqués en francs suisses (CHF)."
+  },
+  "termsOfBusiness": {
+    "label": "Conditions commerciales",
+    "prefix": "Nos ",
+    "link": "conditions générales de vente",
+    "suffix": " s'appliquent à toutes les commandes passées via ce site. L'offre s'adresse exclusivement aux consommateurs domiciliés en Suisse."
+  },
+  "jurisdiction": {
+    "label": "For juridique",
+    "text": "9000 St-Gall, ou le domicile du consommateur."
+  },
+  "liability": {
+    "label": "Responsabilité relative au contenu et aux liens",
+    "text": "{{legalName}} décline toute responsabilité quant à l'actualité, l'exhaustivité ou l'exactitude du contenu publié sur ce site. Toute prétention en responsabilité pour des dommages résultant de l'utilisation des informations fournies, y compris des informations incomplètes ou incorrectes, est exclue. Les références et liens vers des sites de tiers ne relèvent pas de notre domaine de responsabilité."
+  }
+}

@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ShopContext } from '../context/ShopContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
 const Profile = () => {
+  const { t } = useTranslation('account')
   const { token, backendUrl, navigate } = useContext(ShopContext)
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -39,7 +41,7 @@ const Profile = () => {
   if (loading) {
     return (
       <div className='flex justify-center items-center min-h-[60vh]'>
-        <div className='text-gray-500'>Loading...</div>
+        <div className='text-gray-500'>{t('profile.loading')}</div>
       </div>
     )
   }
@@ -47,7 +49,7 @@ const Profile = () => {
   if (!user) {
     return (
       <div className='flex justify-center items-center min-h-[60vh]'>
-        <div className='text-gray-500'>Unable to load profile</div>
+        <div className='text-gray-500'>{t('profile.unableToLoad')}</div>
       </div>
     )
   }
@@ -73,12 +75,12 @@ const Profile = () => {
           
           <div className='w-full mt-4 space-y-3'>
             <div className='flex items-center gap-3 p-3 bg-gray-50 rounded'>
-              <span className='text-gray-500 text-sm font-medium'>Email:</span>
+              <span className='text-gray-500 text-sm font-medium'>{t('profile.emailLabel')}</span>
               <span className='text-gray-800'>{user.email}</span>
             </div>
-            
+
             <div className='flex items-center gap-3 p-3 bg-gray-50 rounded'>
-              <span className='text-gray-500 text-sm font-medium'>Account Type:</span>
+              <span className='text-gray-500 text-sm font-medium'>{t('profile.accountTypeLabel')}</span>
               <span className='text-gray-800'>
                 {user.googleId ? (
                   <span className='flex items-center gap-2'>
@@ -88,10 +90,10 @@ const Profile = () => {
                       <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                       <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                     </svg>
-                    Google Account
+                    {t('profile.googleAccount')}
                   </span>
                 ) : (
-                  'Email & Password'
+                  t('profile.emailPassword')
                 )}
               </span>
             </div>

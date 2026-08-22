@@ -12,7 +12,7 @@ import {
   siteName,
   legalName,
   defaultDescription,
-  language,
+  DEFAULT_LANG,
   logoUrl,
   socialProfiles,
   business,
@@ -47,13 +47,13 @@ export const organizationNode = () => {
       contactType: 'customer service',
       email: business.email,
       areaServed: 'CH',
-      availableLanguage: ['en', 'de'],
+      availableLanguage: ['en', 'de', 'fr', 'it'],
       ...(business.telephone ? { telephone: business.telephone } : {}),
     },
   }
 }
 
-export const webSiteNode = () => ({
+export const webSiteNode = (lang = DEFAULT_LANG) => ({
   '@type': 'WebSite',
   '@id': WEBSITE_ID,
   url: `${siteUrl}/`,
@@ -61,18 +61,18 @@ export const webSiteNode = () => ({
   alternateName: legalName,
   description: defaultDescription,
   publisher: { '@id': ORGANIZATION_ID },
-  inLanguage: language,
+  inLanguage: lang,
   potentialAction: {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: `${siteUrl}/collection?search={search_term_string}`,
+      urlTemplate: `${siteUrl}/${lang}/collection?search={search_term_string}`,
     },
     'query-input': 'required name=search_term_string',
   },
 })
 
-export const webPageNode = ({ url, title, description }) => ({
+export const webPageNode = ({ url, title, description, lang = DEFAULT_LANG }) => ({
   '@type': 'WebPage',
   '@id': `${url}#webpage`,
   url,
@@ -80,7 +80,7 @@ export const webPageNode = ({ url, title, description }) => ({
   description,
   isPartOf: { '@id': WEBSITE_ID },
   about: { '@id': ORGANIZATION_ID },
-  inLanguage: language,
+  inLanguage: lang,
 })
 
 /**
@@ -101,12 +101,12 @@ export const breadcrumbNode = (trail, pageUrl) => ({
  * Assembles the full @graph for a page: site-wide identity nodes first, then
  * the page-specific ones.
  */
-export const buildGraph = ({ url, title, description, breadcrumb, extraNodes = [] }) => ({
+export const buildGraph = ({ url, title, description, breadcrumb, extraNodes = [], lang = DEFAULT_LANG }) => ({
   '@context': 'https://schema.org',
   '@graph': [
     organizationNode(),
-    webSiteNode(),
-    webPageNode({ url, title, description }),
+    webSiteNode(lang),
+    webPageNode({ url, title, description, lang }),
     ...(breadcrumb ? [breadcrumbNode(breadcrumb, url)] : []),
     ...extraNodes,
   ],

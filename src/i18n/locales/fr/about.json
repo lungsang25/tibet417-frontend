@@ -1,0 +1,27 @@
+{
+  "seo": {
+    "title": "À propos de Tibet417 | Mode tibétaine et himalayenne en Suisse",
+    "description": "Tibet417 Fashion apporte des vêtements et accessoires tibétains et himalayens authentiques aux clients en Suisse. Découvrez qui nous sommes et comment nous sélectionnons notre collection."
+  },
+  "heading": { "text1": "À PROPOS", "text2": "DE NOUS" },
+  "imgAlt": "Collection tibétaine et himalayenne Tibet417",
+  "intro1": "Tibet417 existe pour faire découvrir l'artisanat tibétain et himalayen aux personnes vivant en Suisse. Nous travaillons avec des vêtements et accessoires ancrés dans les traditions artisanales himalayennes — des pièces choisies pour leur matière, leur fabrication et leur origine, plutôt que pour la rapidité de leur production.",
+  "intro2": "Nous sommes une petite entreprise suisse. Notre offre s'adresse aux clients domiciliés en Suisse, les prix sont indiqués nets en francs suisses, et les commandes sont expédiées depuis la Suisse par la poste ou par coursier.",
+  "missionLabel": "Notre mission",
+  "missionText": "Rendre le design himalayen accessible ici sans en aplatir ce qui en fait la valeur : une provenance honnête, des prix clairs, et une boutique assez petite pour répondre de chaque pièce qu'elle vend.",
+  "whyChoose": { "text1": "POURQUOI", "text2": "NOUS CHOISIR" },
+  "cards": {
+    "provenance": {
+      "label": "Provenance :",
+      "text": "Notre collection est issue des traditions artisanales tibétaines et himalayennes, et nous sommes transparents sur l'origine de chaque pièce."
+    },
+    "swissDelivery": {
+      "label": "Livraison depuis la Suisse :",
+      "text": "Les commandes sont expédiées depuis la Suisse par la poste ou par coursier, avec des prix nets en CHF et sans TVA ajoutée."
+    },
+    "withdrawal": {
+      "label": "Droit de rétractation de 10 jours :",
+      "text": "Vous disposez de dix jours calendaires après réception pour vous rétracter de votre achat, sans avoir à justifier de motif, conformément à nos conditions générales."
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "seo": {
+    "title": "Impressum | Tibet417",
+    "description": "Legal notice for Tibet417 Fashion — operator details, contact address and responsible party for tibet417.com."
+  },
+  "heading": { "text1": "LEGAL", "text2": "NOTICE" },
+  "aiDisclaimer": "",
+  "operator": {
+    "label": "Operator of this website",
+    "noAddressText": "Registered in Switzerland. Our postal address is in the process of changing; for returns or written notice, please email {{email}} and we will confirm the current address.",
+    "switzerland": "Switzerland"
+  },
+  "contact": {
+    "label": "Contact",
+    "emailPrefix": "Email: ",
+    "telephonePrefix": "Telephone: "
+  },
+  "vat": {
+    "label": "VAT",
+    "text": "As a small business, {{legalName}} is exempt from the obligation to charge Swiss VAT. All prices are net and stated in Swiss francs (CHF)."
+  },
+  "termsOfBusiness": {
+    "label": "Terms of business",
+    "prefix": "Our ",
+    "link": "General Terms and Conditions",
+    "suffix": " apply to all orders placed through this website. The offering is directed exclusively at consumers domiciled in Switzerland."
+  },
+  "jurisdiction": {
+    "label": "Place of jurisdiction",
+    "text": "9000 St. Gallen, or the domicile of the consumer."
+  },
+  "liability": {
+    "label": "Liability for content and links",
+    "text": "{{legalName}} accepts no liability for the currency, completeness or correctness of the content published on this website. Liability claims regarding damage caused by the use of any information provided, including information which is incomplete or incorrect, are excluded. References and links to third-party websites lie outside our area of responsibility."
+  }
+}

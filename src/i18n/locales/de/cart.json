@@ -1,0 +1,10 @@
+{
+  "heading": { "text1": "IHR", "text2": "WARENKORB" },
+  "checkoutButton": "ZUR KASSE",
+  "total": {
+    "heading": { "text1": "WARENKORB", "text2": "SUMME" },
+    "subtotal": "Zwischensumme",
+    "shippingFee": "Versandkosten",
+    "total": "Gesamt"
+  }
+}

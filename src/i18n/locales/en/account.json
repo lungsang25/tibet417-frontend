@@ -1,0 +1,38 @@
+{
+  "login": {
+    "loginHeading": "Login",
+    "signUpHeading": "Sign Up",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "forgotPassword": "Forgot your password?",
+    "createAccount": "Create account",
+    "loginHere": "Login Here",
+    "signInButton": "Sign In",
+    "signUpButton": "Sign Up",
+    "or": "OR",
+    "googleSignInFailed": "Google Sign-In failed"
+  },
+  "orders": {
+    "heading": { "text1": "MY", "text2": "ORDERS" },
+    "quantity": "Quantity:",
+    "size": "Size:",
+    "date": "Date:",
+    "payment": "Payment:",
+    "trackOrder": "Track Order"
+  },
+  "profile": {
+    "loading": "Loading...",
+    "unableToLoad": "Unable to load profile",
+    "emailLabel": "Email:",
+    "accountTypeLabel": "Account Type:",
+    "googleAccount": "Google Account",
+    "emailPassword": "Email & Password"
+  },
+  "verify": {
+    "twintVerifying": "Verifying your Twint payment...",
+    "pleaseWait": "Please wait while we confirm your payment.",
+    "paymentCompleted": "Payment completed successfully!",
+    "paymentVerificationFailed": "Payment verification failed"
+  }
+}

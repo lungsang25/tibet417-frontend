@@ -1,0 +1,61 @@
+{
+  "seo": {
+    "title": "Tibet417 | Authentische tibetische & himalajanische Mode",
+    "description": "Tibet417 bringt authentische tibetische und himalajanische Mode in die Schweiz. Handverlesene Kleidung und Accessoires, versandt aus der Schweiz, in CHF."
+  },
+  "h1": "Tibet417 — authentische tibetische und himalajanische Mode, versandt aus der Schweiz",
+  "hero": {
+    "slides": [
+      {
+        "eyebrow": "Neu eingetroffen",
+        "title": "Gewebt im Himalaya",
+        "cta": "Zur Kollektion",
+        "alt": "Model trägt ein handgewebtes tibetisches Wollstück aus der neuen Kollektion"
+      },
+      {
+        "eyebrow": "Die Winterkollektion",
+        "title": "Gemacht für die Kälte",
+        "cta": "Winterkleidung entdecken",
+        "alt": "Winterkleidung im Schichtlook vor einer Bergkulisse"
+      },
+      {
+        "eyebrow": "Bestseller",
+        "title": "Stücke, die bleiben",
+        "cta": "Bestseller entdecken",
+        "alt": "Nahaufnahme eines strukturierten Stoffs aus der Tibet417-Bestsellerkollektion"
+      }
+    ]
+  },
+  "sections": {
+    "latest": {
+      "text1": "NEUE",
+      "text2": "KOLLEKTIONEN",
+      "description": "Die neuesten Stücke im Shop — durchdacht, langlebig gemacht und in limitierter Auflage produziert."
+    },
+    "bestSellers": {
+      "text1": "UNSERE",
+      "text2": "BESTSELLER",
+      "description": "Die Stücke, zu denen unsere Kundinnen und Kunden immer wieder zurückkehren."
+    }
+  },
+  "policy": {
+    "exchange": {
+      "heading": "Einfacher Umtausch",
+      "text": "Wir bieten einen unkomplizierten Umtausch"
+    },
+    "returns": {
+      "heading": "7 Tage Rückgaberecht",
+      "text": "Wir bieten 7 Tage kostenlose Rückgabe"
+    },
+    "support": {
+      "heading": "Bester Kundenservice",
+      "text": "Wir bieten 24/7 Kundensupport"
+    }
+  },
+  "newsletter": {
+    "heading": "Bleiben Sie in Kontakt",
+    "text": "Erfahren Sie als Erste bzw. Erster von neuen tibetischen und himalajanischen Stücken in der Kollektion.",
+    "placeholder": "E-Mail-Adresse eingeben",
+    "button": "ABONNIEREN"
+  }
+}
