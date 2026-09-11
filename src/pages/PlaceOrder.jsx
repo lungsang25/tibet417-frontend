@@ -86,6 +86,55 @@ const PlaceOrder = () => {
         setFormData(data => ({ ...data, [name]: value }))
     }
 
+    // Prefills the shipping form from the customer's saved profile/address —
+    // only into fields still at their empty default, so it can never clobber
+    // something the customer already typed while the requests were in flight.
+    useEffect(() => {
+        if (!token) return
+        let cancelled = false
+        const prefillFromProfile = async () => {
+            try {
+                const [profileRes, addressRes] = await Promise.all([
+                    axios.post(backendUrl + '/api/user/profile', {}, { headers: { token } }),
+                    axios.post(backendUrl + '/api/user/address', {}, { headers: { token } })
+                ])
+                if (cancelled) return
+
+                const profile = profileRes.data?.success ? profileRes.data.user : null
+                const address = addressRes.data?.success ? addressRes.data.address : null
+                if (!profile && !address) return
+
+                setFormData(prev => {
+                    const next = { ...prev }
+                    if (profile) {
+                        if (!next.email) next.email = profile.email || ''
+                        // userModel only stores a single `name` field — split on
+                        // the first space as a best effort; both fields stay
+                        // freely editable so an imperfect split isn't destructive.
+                        if (!next.firstName && !next.lastName && profile.name) {
+                            const [first, ...rest] = profile.name.trim().split(' ')
+                            next.firstName = first || ''
+                            next.lastName = rest.join(' ')
+                        }
+                    }
+                    if (address) {
+                        if (!next.street) next.street = address.street || ''
+                        if (!next.city) next.city = address.city || ''
+                        if (!next.state) next.state = address.state || ''
+                        if (!next.zipcode) next.zipcode = address.zipcode || ''
+                        if (!next.country) next.country = address.country || ''
+                        if (!next.phone) next.phone = address.phone || ''
+                    }
+                    return next
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        prefillFromProfile()
+        return () => { cancelled = true }
+    }, [token])
+
     const handleTwintPayment = (paymentData) => {
         // Real Payrexx integration - redirect to payment URL
         if (paymentData.paymentUrl) {

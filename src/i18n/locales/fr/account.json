@@ -68,7 +68,25 @@
     "googleAccount": "Compte Google",
     "emailPassword": "E-mail & mot de passe",
     "rewardsBalance": "{{count}} points disponibles",
-    "rewardsCta": "Voir mes récompenses"
+    "rewardsCta": "Voir mes récompenses",
+    "personalDetails": "Informations personnelles",
+    "address": "Adresse",
+    "personalDetailsPage": {
+      "heading": "Informations personnelles",
+      "namePlaceholder": "Nom complet",
+      "saveButton": "Enregistrer les modifications",
+      "saveSuccess": "Informations personnelles mises à jour",
+      "saveFailed": "Impossible d'enregistrer vos modifications — veuillez réessayer.",
+      "back": "Retour au profil"
+    },
+    "addressPage": {
+      "heading": "Adresse",
+      "saveButton": "Enregistrer l'adresse",
+      "saveSuccess": "Adresse mise à jour",
+      "saveFailed": "Impossible d'enregistrer votre adresse — veuillez réessayer.",
+      "empty": "Aucune adresse enregistrée pour le moment.",
+      "back": "Retour au profil"
+    }
   },
   "verify": {
     "twintVerifying": "Vérification de votre paiement Twint...",

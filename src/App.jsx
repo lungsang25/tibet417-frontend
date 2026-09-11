@@ -30,6 +30,8 @@ const PlaceOrder = lazy(() => import('./pages/PlaceOrder'))
 const Orders = lazy(() => import('./pages/Orders'))
 const OrderDetail = lazy(() => import('./pages/OrderDetail'))
 const Profile = lazy(() => import('./pages/Profile'))
+const PersonalDetails = lazy(() => import('./pages/PersonalDetails'))
+const Address = lazy(() => import('./pages/Address'))
 const Rewards = lazy(() => import('./pages/Rewards'))
 const Wishlist = lazy(() => import('./pages/Wishlist'))
 const Verify = lazy(() => import('./pages/Verify'))
@@ -50,6 +52,8 @@ const PRIVATE_ROUTE_TITLES = {
   '/place-order': (t) => `${t('checkout:deliveryInfo.text1')} ${t('checkout:deliveryInfo.text2')}`,
   '/orders': (t) => `${t('account:orders.heading.text1')} ${t('account:orders.heading.text2')}`,
   '/profile': (t) => t('common:profileMenu.myProfile'),
+  '/profile/personal-details': (t) => t('account:profile.personalDetailsPage.heading'),
+  '/profile/address': (t) => t('account:profile.addressPage.heading'),
   '/rewards': (t) => t('common:profileMenu.rewards'),
   '/wishlist': (t) => t('wishlist:title'),
   '/verify': (t) => t('account:verify.twintVerifying'),
@@ -126,6 +130,8 @@ const App = () => {
               <Route path='orders' element={<Orders />} />
               <Route path='orders/:orderId' element={<OrderDetail />} />
               <Route path='profile' element={<Profile />} />
+              <Route path='profile/personal-details' element={<PersonalDetails />} />
+              <Route path='profile/address' element={<Address />} />
               <Route path='rewards' element={<Rewards />} />
               <Route path='wishlist' element={<Wishlist />} />
               <Route path='verify' element={<Verify />} />

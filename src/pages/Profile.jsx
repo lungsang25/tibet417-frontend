@@ -95,6 +95,24 @@ const Profile = () => {
           <h2 className='text-2xl font-semibold text-gray-800'>{user.name}</h2>
           
           <div className='w-full mt-4 space-y-3'>
+            <button
+              type='button'
+              onClick={() => navigate('/profile/personal-details')}
+              className='w-full flex items-center justify-between gap-3 p-3 bg-gray-50 rounded hover:bg-gray-100 text-left cursor-pointer border-0'
+            >
+              <span className='text-gray-800 font-medium'>{t('profile.personalDetails')}</span>
+              <span className='text-gray-500 text-sm'>&rsaquo;</span>
+            </button>
+
+            <button
+              type='button'
+              onClick={() => navigate('/profile/address')}
+              className='w-full flex items-center justify-between gap-3 p-3 bg-gray-50 rounded hover:bg-gray-100 text-left cursor-pointer border-0'
+            >
+              <span className='text-gray-800 font-medium'>{t('profile.address')}</span>
+              <span className='text-gray-500 text-sm'>&rsaquo;</span>
+            </button>
+
             <div className='flex items-center gap-3 p-3 bg-gray-50 rounded'>
               <span className='text-gray-500 text-sm font-medium'>{t('profile.emailLabel')}</span>
               <span className='text-gray-800'>{user.email}</span>
