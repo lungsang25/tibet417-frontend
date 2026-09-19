@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#1a1915" />
+    <title>Offline | Tibet417</title>
+    <!-- Served by public/sw.js when a page cannot be fetched. Self-contained on
+         purpose: it has to render with no network, so no bundle, no web font. -->
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: #faf9f7;
+        color: #1a1a1a;
+        font-family: 'Outfit', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        text-align: center;
+      }
+      main { max-width: 360px; }
+      img { width: 96px; height: 96px; border-radius: 20px; margin-bottom: 24px; }
+      h1 { margin: 0 0 12px; font-size: 22px; font-weight: 500; }
+      p { margin: 0 0 28px; color: #8a8580; line-height: 1.5; }
+      button {
+        padding: 12px 28px;
+        border: 0;
+        background: #1a1a1a;
+        color: #fff;
+        font: inherit;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/web-app-manifest-192x192.png" alt="" width="96" height="96" />
+      <h1 id="title">You're offline</h1>
+      <p id="text">Check your connection and try again. Pages you've already visited may still open.</p>
+      <button id="retry" type="button">Try again</button>
+    </main>
+    <script>
+      var copy = {
+        en: ["You're offline", "Check your connection and try again. Pages you've already visited may still open.", 'Try again'],
+        de: ['Sie sind offline', 'Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut. Bereits besuchte Seiten lassen sich möglicherweise weiterhin öffnen.', 'Erneut versuchen'],
+        fr: ['Vous êtes hors ligne', 'Vérifiez votre connexion et réessayez. Les pages déjà consultées peuvent rester accessibles.', 'Réessayer'],
+        it: ['Sei offline', 'Controlla la connessione e riprova. Le pagine già visitate potrebbero essere ancora disponibili.', 'Riprova'],
+      }
+      // The service worker answers under the URL that was requested, so the
+      // /de/... prefix is still in the address bar; otherwise fall back to the
+      // browser language.
+      var lang = location.pathname.split('/')[1]
+      if (!copy[lang]) lang = (navigator.language || 'en').slice(0, 2).toLowerCase()
+      if (!copy[lang]) lang = 'en'
+      document.documentElement.lang = lang
+      document.title = copy[lang][0] + ' | Tibet417'
+      document.getElementById('title').textContent = copy[lang][0]
+      document.getElementById('text').textContent = copy[lang][1]
+      document.getElementById('retry').textContent = copy[lang][2]
+      document.getElementById('retry').addEventListener('click', function () { location.reload() })
+      window.addEventListener('online', function () { location.reload() })
+    </script>
+  </body>
+</html>

@@ -68,5 +68,13 @@
   },
   "a11y": {
     "skipToContent": "Aller au contenu"
+  },
+  "install": {
+    "title": "Installer l’application Tibet417",
+    "description": "Ajoutez-la à votre écran d’accueil pour y accéder plus vite.",
+    "action": "Installer",
+    "dismiss": "Fermer",
+    "iosSteps": "Appuyez sur <share/> puis sur « Sur l’écran d’accueil ».",
+    "share": "Partager"
   }
 }

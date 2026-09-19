@@ -68,5 +68,13 @@
   },
   "a11y": {
     "skipToContent": "Vai al contenuto"
+  },
+  "install": {
+    "title": "Installa l’app Tibet417",
+    "description": "Aggiungila alla schermata Home per accedere più in fretta.",
+    "action": "Installa",
+    "dismiss": "Chiudi",
+    "iosSteps": "Tocca <share/> e poi «Aggiungi alla schermata Home».",
+    "share": "Condividi"
   }
 }

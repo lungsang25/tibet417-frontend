@@ -8,6 +8,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
 import Analytics from './components/Analytics'
+import InstallPrompt from './components/InstallPrompt'
 import PageLoader from './components/PageLoader'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -108,6 +109,7 @@ const App = () => {
       )}
       <Analytics />
       <ToastContainer />
+      <InstallPrompt />
       <Navbar />
       <SearchBar />
       <main id='main-content'>

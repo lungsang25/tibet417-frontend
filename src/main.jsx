@@ -2,7 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+// Must stay above './i18n': it may rewrite the URL's language segment, which
+// i18n reads on import.
+import './pwa/launchLanguage'
 import './i18n'
+import { registerServiceWorker } from './pwa/registerServiceWorker'
 import { BrowserRouter } from 'react-router-dom'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import ShopContextProvider from './context/ShopContext.jsx'
@@ -38,3 +42,5 @@ const tree = (
 // users get the same DOM either way, painted from the snapshot first and then
 // rendered from window.__TIBET417_PRODUCTS__ without another API round-trip.
 ReactDOM.createRoot(container).render(tree)
+
+registerServiceWorker()

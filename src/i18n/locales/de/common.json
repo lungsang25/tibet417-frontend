@@ -68,5 +68,13 @@
   },
   "a11y": {
     "skipToContent": "Zum Inhalt springen"
+  },
+  "install": {
+    "title": "Tibet417-App installieren",
+    "description": "Fügen Sie sie Ihrem Home-Bildschirm hinzu, um schneller darauf zuzugreifen.",
+    "action": "Installieren",
+    "dismiss": "Schliessen",
+    "iosSteps": "Tippen Sie auf <share/> und dann auf «Zum Home-Bildschirm».",
+    "share": "Teilen"
   }
 }
