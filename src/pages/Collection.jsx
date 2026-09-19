@@ -7,11 +7,13 @@ import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
 import SEO from '../components/SEO';
 import { absoluteUrl } from '../config/site';
-import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation';
+import { LocalizedLink as Link, LocalizedNavLink as NavLink } from '../hooks/useLocalizedNavigation';
 import { ProductCardSkeleton } from '../components/ProductSection';
 import FilterChip from '../components/FilterChip';
 import useDebouncedValue from '../hooks/useDebouncedValue';
 import { getProductBadge } from '../utils/productBadges';
+import { isUnderPriceLimit, UNDER_PRICE_SLUG } from '../utils/priceCollections';
+import { SEASON_SLUGS, hasSeason, isSeasonSlug } from '../utils/seasons';
 
 // Top-level categories get their own crawlable URL (/collection/men). Before
 // this, the entire catalogue lived at a single /collection URL behind
@@ -30,9 +32,16 @@ const Collection = () => {
   const { categorySlug } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const slug = categorySlug?.toLowerCase();
-  const activeCategory = slug && CATEGORY_VALUES[slug]
+  // /collection/under-30 is scoped by price, not by the DB category, so it has a
+  // page heading and SEO copy like a category but no pinned `value` — the
+  // Men/Women/Kids checkboxes stay available to narrow it.
+  const isPriceCollection = slug === UNDER_PRICE_SLUG;
+  // Season pages (/collection/winter) are scoped by product.seasons, the same
+  // way: page heading and SEO copy, but no pinned category.
+  const isSeasonCollection = isSeasonSlug(slug);
+  const activeCategory = slug && (CATEGORY_VALUES[slug] || isPriceCollection || isSeasonCollection)
     ? {
-        value: CATEGORY_VALUES[slug],
+        value: CATEGORY_VALUES[slug] ?? null,
         heading: t(`categories.${slug}.heading`),
         titleWord: t(`categories.${slug}.titleWord`),
         title: t(`categories.${slug}.title`),
@@ -67,7 +76,7 @@ const Collection = () => {
   // A category URL pins its own filter; the checkbox group is for the
   // unscoped /collection page.
   useEffect(() => {
-    setCategory(activeCategory ? [activeCategory.value] : []);
+    setCategory(activeCategory?.value ? [activeCategory.value] : []);
   }, [categorySlug])
 
   // Keeps subcategory/sort/search filters in the URL so they survive a
@@ -111,6 +120,14 @@ const Collection = () => {
   const filterProducts = useMemo(() => {
     let result = products.slice();
 
+    if (isPriceCollection) {
+      result = result.filter(isUnderPriceLimit);
+    }
+
+    if (isSeasonCollection) {
+      result = result.filter(item => hasSeason(item, slug));
+    }
+
     if (showSearch && debouncedSearch) {
       const term = debouncedSearch.toLowerCase();
       result = result.filter(item =>
@@ -140,10 +157,10 @@ const Collection = () => {
     }
 
     return result;
-  }, [products, category, subCategory, debouncedSearch, showSearch, sortType])
+  }, [products, isPriceCollection, isSeasonCollection, slug, category, subCategory, debouncedSearch, showSearch, sortType])
 
   const activeFilterChips = [
-    ...(!activeCategory ? category.map(value => ({
+    ...(!activeCategory?.value ? category.map(value => ({
       key: `category-${value}`,
       label: t(`filters.${value.toLowerCase()}`),
       onRemove: () => setCategory(prev => prev.filter(item => item !== value)),
@@ -161,7 +178,7 @@ const Collection = () => {
   ];
 
   const clearAllFilters = () => {
-    if (!activeCategory) setCategory([]);
+    if (!activeCategory?.value) setCategory([]);
     setSubCategory([]);
     setSearch('');
     setShowSearch(false);
@@ -176,7 +193,11 @@ const Collection = () => {
   // so an active search box never flips a real category to noindex.
   const categoryIsEmpty =
     activeCategory && productsLoaded &&
-    !products.some((item) => item.category === activeCategory.value);
+    !products.some((item) => {
+      if (isPriceCollection) return isUnderPriceLimit(item);
+      if (isSeasonCollection) return hasSeason(item, slug);
+      return item.category === activeCategory.value;
+    });
 
   const breadcrumb = activeCategory
     ? [{ name: 'Home', path: '/' }, { name: 'Collection', path: '/collection' }, { name: activeCategory.heading }]
@@ -222,7 +243,7 @@ const Collection = () => {
           <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`} src={assets.dropdown_icon} alt="" />
         </button>
         {/* Category Filter — hidden on a category URL, which already pins it */}
-        {!activeCategory && (
+        {!activeCategory?.value && (
         <fieldset className={`border border-line pl-5 py-3 mt-6 ${showFilter ? '' :'hidden'} sm:block`}>
           <legend className='mb-3 text-sm font-medium px-0'>{t('filters.categoriesLabel')}</legend>
           <div className='flex flex-col gap-2 text-sm font-light text-stone'>
@@ -267,6 +288,22 @@ const Collection = () => {
               <option value="high-low">{t('sort.highLow')}</option>
             </select>
         </div>
+
+        {isSeasonCollection && (
+          <nav aria-label={t('filters.seasonNav')} className='flex flex-wrap gap-2 mb-4'>
+            {SEASON_SLUGS.map(season => (
+              <NavLink
+                key={season}
+                to={`/collection/${season}`}
+                className={({ isActive }) =>
+                  `px-3 py-1 text-[11px] uppercase tracking-label border transition-colors duration-300 ${isActive ? 'bg-ink text-paper border-ink' : 'border-line text-stone hover:text-ink hover:border-ink'}`
+                }
+              >
+                {t(`categories.${season}.titleWord`)}
+              </NavLink>
+            ))}
+          </nav>
+        )}
 
         {(activeFilterChips.length > 0 || productsLoaded) && (
           <div className='flex flex-wrap items-center gap-2 mb-4'>

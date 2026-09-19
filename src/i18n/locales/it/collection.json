@@ -17,6 +17,36 @@
       "titleWord": "Bambini",
       "title": "Abbigliamento tibetano e himalayano per bambini | Tibet417",
       "description": "Scopri l'abbigliamento tibetano e himalayano per bambini di Tibet417. Spedito in Svizzera e prezzato in CHF."
+    },
+    "under-30": {
+      "heading": "Tutto sotto i 30 franchi",
+      "titleWord": "Sotto i 30 franchi",
+      "title": "Abbigliamento tibetano e himalayano sotto i 30 CHF | Tibet417",
+      "description": "Scopri l'abbigliamento e gli accessori tibetani e himalayani per uomo, donna e bambino a meno di 30 CHF su Tibet417. Spediti in Svizzera e prezzati in CHF."
+    },
+    "spring": {
+      "heading": "Collezione Primavera",
+      "titleWord": "Primavera",
+      "title": "Abbigliamento tibetano e himalayano per la primavera | Tibet417",
+      "description": "Scopri l'abbigliamento e gli accessori tibetani e himalayani per la primavera di Tibet417. Strati leggeri per uomo, donna e bambino, spediti in Svizzera e prezzati in CHF."
+    },
+    "summer": {
+      "heading": "Collezione Estate",
+      "titleWord": "Estate",
+      "title": "Abbigliamento tibetano e himalayano per l'estate | Tibet417",
+      "description": "Scopri l'abbigliamento e gli accessori tibetani e himalayani per l'estate di Tibet417. Capi leggeri e traspiranti per uomo, donna e bambino, spediti in Svizzera e prezzati in CHF."
+    },
+    "autumn": {
+      "heading": "Collezione Autunno",
+      "titleWord": "Autunno",
+      "title": "Abbigliamento tibetano e himalayano per l'autunno | Tibet417",
+      "description": "Scopri l'abbigliamento e gli accessori tibetani e himalayani per l'autunno di Tibet417. Strati caldi per uomo, donna e bambino, spediti in Svizzera e prezzati in CHF."
+    },
+    "winter": {
+      "heading": "Collezione Inverno",
+      "titleWord": "Inverno",
+      "title": "Abbigliamento tibetano e himalayano per l'inverno | Tibet417",
+      "description": "Scopri l'abbigliamento e gli accessori tibetani e himalayani per l'inverno di Tibet417. Capi caldi per uomo, donna e bambino, spediti in Svizzera e prezzati in CHF."
     }
   },
   "allProducts": {
@@ -33,7 +63,8 @@
     "topwear": "Capi superiori",
     "bottomwear": "Capi inferiori",
     "winterwear": "Abbigliamento invernale",
-    "clearAll": "Cancella tutto"
+    "clearAll": "Cancella tutto",
+    "seasonNav": "Acquista per stagione"
   },
   "sort": {
     "relevant": "Ordina per: Rilevanza",

@@ -17,6 +17,36 @@
       "titleWord": "Enfants",
       "title": "Vêtements tibétains & himalayens pour enfants | Tibet417",
       "description": "Découvrez les vêtements tibétains et himalayens pour enfants chez Tibet417. Expédiés en Suisse et facturés en CHF."
+    },
+    "under-30": {
+      "heading": "Tout à moins de 30 francs",
+      "titleWord": "Moins de 30 francs",
+      "title": "Vêtements tibétains & himalayens à moins de 30 CHF | Tibet417",
+      "description": "Découvrez les vêtements et accessoires tibétains et himalayens pour hommes, femmes et enfants à moins de 30 CHF chez Tibet417. Expédiés en Suisse et facturés en CHF."
+    },
+    "spring": {
+      "heading": "Collection Printemps",
+      "titleWord": "Printemps",
+      "title": "Vêtements tibétains & himalayens pour le printemps | Tibet417",
+      "description": "Découvrez les vêtements et accessoires tibétains et himalayens pour le printemps chez Tibet417. Des couches légères pour hommes, femmes et enfants, expédiés en Suisse et facturés en CHF."
+    },
+    "summer": {
+      "heading": "Collection Été",
+      "titleWord": "Été",
+      "title": "Vêtements tibétains & himalayens pour l'été | Tibet417",
+      "description": "Découvrez les vêtements et accessoires tibétains et himalayens pour l'été chez Tibet417. Des pièces légères et respirantes pour hommes, femmes et enfants, expédiés en Suisse et facturés en CHF."
+    },
+    "autumn": {
+      "heading": "Collection Automne",
+      "titleWord": "Automne",
+      "title": "Vêtements tibétains & himalayens pour l'automne | Tibet417",
+      "description": "Découvrez les vêtements et accessoires tibétains et himalayens pour l'automne chez Tibet417. Des couches chaudes pour hommes, femmes et enfants, expédiés en Suisse et facturés en CHF."
+    },
+    "winter": {
+      "heading": "Collection Hiver",
+      "titleWord": "Hiver",
+      "title": "Vêtements tibétains & himalayens pour l'hiver | Tibet417",
+      "description": "Découvrez les vêtements et accessoires tibétains et himalayens pour l'hiver chez Tibet417. Des pièces chaudes pour hommes, femmes et enfants, expédiés en Suisse et facturés en CHF."
     }
   },
   "allProducts": {
@@ -33,7 +63,8 @@
     "topwear": "Hauts",
     "bottomwear": "Bas",
     "winterwear": "Vêtements d'hiver",
-    "clearAll": "Tout effacer"
+    "clearAll": "Tout effacer",
+    "seasonNav": "Acheter par saison"
   },
   "sort": {
     "relevant": "Trier par : Pertinence",

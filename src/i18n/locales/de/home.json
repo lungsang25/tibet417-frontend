@@ -36,6 +36,27 @@
       "text1": "UNSERE",
       "text2": "BESTSELLER",
       "description": "Die Stücke, zu denen unsere Kundinnen und Kunden immer wieder zurückkehren."
+    },
+    "underThirty": {
+      "text1": "ALLES UNTER",
+      "text2": "30 FRANKEN",
+      "description": "Kleidung und Extras für Damen, Herren und Kinder — jedes Stück unter 30 CHF."
+    },
+    "style": {
+      "text1": "TAUCH EIN IN",
+      "text2": "DEN STIL",
+      "description": "Echte Looks, getragen von unseren Models — tippe auf ein Foto und shoppe jedes Teil daraus.",
+      "cta": "Look shoppen",
+      "modalTitle": "In diesem Look",
+      "close": "Schliessen",
+      "alt": "Model trägt Stücke aus der Tibet417-Kollektion"
+    },
+    "seasons": {
+      "text1": "NACH",
+      "text2": "JAHRESZEIT",
+      "description": "Stücke für jede Jahreszeit — wähle eine Saison und entdecke, was jetzt passt.",
+      "cta": "Saison entdecken",
+      "inSeason": "Jetzt in Saison"
     }
   },
   "policy": {

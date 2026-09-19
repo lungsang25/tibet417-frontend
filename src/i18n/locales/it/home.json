@@ -36,6 +36,27 @@
       "text1": "I PIÙ",
       "text2": "VENDUTI",
       "description": "I capi che i nostri clienti scelgono sempre di nuovo."
+    },
+    "underThirty": {
+      "text1": "TUTTO SOTTO I",
+      "text2": "30 FRANCHI",
+      "description": "Abbigliamento ed extra per uomo, donna e bambino — ogni capo a meno di 30 CHF."
+    },
+    "style": {
+      "text1": "IMMERGITI NELLO",
+      "text2": "STILE",
+      "description": "Look reali indossati dai nostri modelli — tocca una foto per acquistare ogni capo.",
+      "cta": "Acquista il look",
+      "modalTitle": "In questo look",
+      "close": "Chiudi",
+      "alt": "Modello che indossa capi della collezione Tibet417"
+    },
+    "seasons": {
+      "text1": "ACQUISTA PER",
+      "text2": "STAGIONE",
+      "description": "Capi per ogni periodo dell'anno — scegli una stagione per scoprire cosa indossare ora.",
+      "cta": "Scopri la stagione",
+      "inSeason": "Di stagione ora"
     }
   },
   "policy": {

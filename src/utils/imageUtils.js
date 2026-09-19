@@ -49,7 +49,9 @@ export const getLargeImage = (url) => {
  * widths, so a product card on a phone doesn't download the same bytes as one
  * on a 4K desktop. No-op (returns undefined) for non-Cloudinary sources.
  */
-export const getSrcSet = (url, widths = [240, 400, 600, 800]) => {
+export const getSrcSet = (url, widths = [240, 400, 600, 800], heightRatio = 1) => {
     if (!url || !url.includes('cloudinary.com')) return undefined;
-    return widths.map((width) => `${getOptimizedImage(url, { width, height: width })} ${width}w`).join(', ');
+    return widths
+        .map((width) => `${getOptimizedImage(url, { width, height: Math.round(width * heightRatio) })} ${width}w`)
+        .join(', ');
 };

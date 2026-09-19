@@ -1,8 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import Hero from '../components/Hero'
+import SeasonsSection from '../components/SeasonsSection'
 import LatestCollection from '../components/LatestCollection'
 import BestSeller from '../components/BestSeller'
+import UnderThirty from '../components/UnderThirty'
+import StyleSection from '../components/StyleSection'
 import OurPolicy from '../components/OurPolicy'
 import SEO from '../components/SEO'
 import {
@@ -63,8 +66,11 @@ const Home = () => {
           what the page is, and screen readers announce it. */}
       <h1 className='sr-only'>{t('h1')}</h1>
       <Hero />
+      <SeasonsSection />
       <LatestCollection />
+      <StyleSection />
       <BestSeller />
+      <UnderThirty />
       <OurPolicy />
     </div>
   )

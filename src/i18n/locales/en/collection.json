@@ -17,6 +17,36 @@
       "titleWord": "Kids'",
       "title": "Kids' Tibetan & Himalayan Clothing | Tibet417",
       "description": "Shop kids' Tibetan and Himalayan clothing at Tibet417. Shipped within Switzerland and priced in CHF."
+    },
+    "under-30": {
+      "heading": "All You Can Get Under 30 Franc",
+      "titleWord": "Under 30 Franc",
+      "title": "Tibetan & Himalayan Clothing Under 30 CHF | Tibet417",
+      "description": "Shop Tibetan and Himalayan clothing and accessories for men, women and kids, all under 30 CHF at Tibet417. Shipped within Switzerland and priced in CHF."
+    },
+    "spring": {
+      "heading": "Spring Collection",
+      "titleWord": "Spring",
+      "title": "Spring Tibetan & Himalayan Clothing | Tibet417",
+      "description": "Shop Tibetan and Himalayan clothing and accessories for spring at Tibet417. Light layers for men, women and kids, shipped within Switzerland and priced in CHF."
+    },
+    "summer": {
+      "heading": "Summer Collection",
+      "titleWord": "Summer",
+      "title": "Summer Tibetan & Himalayan Clothing | Tibet417",
+      "description": "Shop Tibetan and Himalayan clothing and accessories for summer at Tibet417. Easy, breathable pieces for men, women and kids, shipped within Switzerland and priced in CHF."
+    },
+    "autumn": {
+      "heading": "Autumn Collection",
+      "titleWord": "Autumn",
+      "title": "Autumn Tibetan & Himalayan Clothing | Tibet417",
+      "description": "Shop Tibetan and Himalayan clothing and accessories for autumn at Tibet417. Warm layers for men, women and kids, shipped within Switzerland and priced in CHF."
+    },
+    "winter": {
+      "heading": "Winter Collection",
+      "titleWord": "Winter",
+      "title": "Winter Tibetan & Himalayan Clothing | Tibet417",
+      "description": "Shop Tibetan and Himalayan clothing and accessories for winter at Tibet417. Warm pieces for men, women and kids, shipped within Switzerland and priced in CHF."
     }
   },
   "allProducts": {
@@ -33,7 +63,8 @@
     "topwear": "Topwear",
     "bottomwear": "Bottomwear",
     "winterwear": "Winterwear",
-    "clearAll": "Clear all"
+    "clearAll": "Clear all",
+    "seasonNav": "Shop by season"
   },
   "sort": {
     "relevant": "Sort by: Relevant",

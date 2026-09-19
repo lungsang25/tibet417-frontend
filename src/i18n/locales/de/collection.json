@@ -17,6 +17,36 @@
       "titleWord": "Kinder",
       "title": "Tibetische & himalajanische Kinderbekleidung | Tibet417",
       "description": "Tibetische und himalajanische Kinderbekleidung bei Tibet417. Versandt innerhalb der Schweiz und in CHF ausgezeichnet."
+    },
+    "under-30": {
+      "heading": "Alles unter 30 Franken",
+      "titleWord": "Unter 30 Franken",
+      "title": "Tibetische & himalajanische Kleidung unter 30 CHF | Tibet417",
+      "description": "Tibetische und himalajanische Kleidung und Accessoires für Damen, Herren und Kinder, alles unter 30 CHF bei Tibet417. Versandt innerhalb der Schweiz und in CHF ausgezeichnet."
+    },
+    "spring": {
+      "heading": "Frühlingskollektion",
+      "titleWord": "Frühling",
+      "title": "Tibetische & himalajanische Kleidung für den Frühling | Tibet417",
+      "description": "Tibetische und himalajanische Kleidung und Accessoires für den Frühling bei Tibet417. Leichte Lagen für Damen, Herren und Kinder, versandt innerhalb der Schweiz und in CHF ausgezeichnet."
+    },
+    "summer": {
+      "heading": "Sommerkollektion",
+      "titleWord": "Sommer",
+      "title": "Tibetische & himalajanische Kleidung für den Sommer | Tibet417",
+      "description": "Tibetische und himalajanische Kleidung und Accessoires für den Sommer bei Tibet417. Leichte, luftige Stücke für Damen, Herren und Kinder, versandt innerhalb der Schweiz und in CHF ausgezeichnet."
+    },
+    "autumn": {
+      "heading": "Herbstkollektion",
+      "titleWord": "Herbst",
+      "title": "Tibetische & himalajanische Kleidung für den Herbst | Tibet417",
+      "description": "Tibetische und himalajanische Kleidung und Accessoires für den Herbst bei Tibet417. Warme Lagen für Damen, Herren und Kinder, versandt innerhalb der Schweiz und in CHF ausgezeichnet."
+    },
+    "winter": {
+      "heading": "Winterkollektion",
+      "titleWord": "Winter",
+      "title": "Tibetische & himalajanische Kleidung für den Winter | Tibet417",
+      "description": "Tibetische und himalajanische Kleidung und Accessoires für den Winter bei Tibet417. Wärmende Stücke für Damen, Herren und Kinder, versandt innerhalb der Schweiz und in CHF ausgezeichnet."
     }
   },
   "allProducts": {
@@ -33,7 +63,8 @@
     "topwear": "Oberteile",
     "bottomwear": "Hosen",
     "winterwear": "Winterbekleidung",
-    "clearAll": "Alle löschen"
+    "clearAll": "Alle löschen",
+    "seasonNav": "Nach Jahreszeit einkaufen"
   },
   "sort": {
     "relevant": "Sortieren: Relevanz",

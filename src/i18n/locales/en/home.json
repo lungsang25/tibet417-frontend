@@ -36,6 +36,27 @@
       "text1": "BEST",
       "text2": "SELLERS",
       "description": "The pieces our customers keep coming back for."
+    },
+    "underThirty": {
+      "text1": "ALL YOU CAN GET",
+      "text2": "UNDER 30 FRANC",
+      "description": "Clothing and extras for men, women and kids — every piece under 30 CHF."
+    },
+    "style": {
+      "text1": "DIVE INTO",
+      "text2": "STYLE",
+      "description": "Real looks worn by our models — tap a photo to shop every piece in it.",
+      "cta": "Shop the look",
+      "modalTitle": "In this look",
+      "close": "Close",
+      "alt": "Model wearing pieces from the Tibet417 collection"
+    },
+    "seasons": {
+      "text1": "SHOP BY",
+      "text2": "SEASON",
+      "description": "Pieces for every time of year — pick a season to see what to wear now.",
+      "cta": "Shop the season",
+      "inSeason": "In season now"
     }
   },
   "policy": {

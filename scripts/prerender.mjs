@@ -39,6 +39,8 @@ import { join, extname, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import puppeteer from 'puppeteer-core'
 import { SUPPORTED_LANGS, DEFAULT_LANG } from '../src/config/site.js'
+import { isUnderPriceLimit, UNDER_PRICE_SLUG } from '../src/utils/priceCollections.js'
+import { SEASON_SLUGS, hasSeason } from '../src/utils/seasons.js'
 
 /**
  * @sparticuz/chromium ships the shared libraries Chromium needs (libnss3 and
@@ -170,6 +172,18 @@ const run = async () => {
       path: `/collection/${slug}`,
       changefreq: 'weekly',
       priority: '0.8',
+    })),
+    // Same rule as the categories above: an empty /collection/under-30 would be
+    // a soft 404, so it only ships once a product actually qualifies.
+    ...(products.some(isUnderPriceLimit)
+      ? [{ path: `/collection/${UNDER_PRICE_SLUG}`, changefreq: 'weekly', priority: '0.8' }]
+      : []),
+    // Season pages follow the same rule: a season nobody has tagged a product
+    // for yet would be an empty, noindexed page, so it stays out of the sitemap.
+    ...SEASON_SLUGS.filter((slug) => products.some((p) => hasSeason(p, slug))).map((slug) => ({
+      path: `/collection/${slug}`,
+      changefreq: 'weekly',
+      priority: '0.7',
     })),
     { path: '/about', changefreq: 'monthly', priority: '0.7' },
     { path: '/contact', changefreq: 'monthly', priority: '0.6' },
