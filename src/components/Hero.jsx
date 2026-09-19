@@ -12,15 +12,16 @@ import hero_img2 from '../assets/hero/p_img4.png?w=800;1280;1920&format=avif;web
 
 // Images and scroll targets are the only things fixed here — copy comes from
 // home.json's hero.slides array (same order, one slide per homepage section,
-// in the order the sections appear on the page) so it can be translated.
+// in the order the sections appear on the page) so it can be translated. The
+// SALE section has no slide: it sits directly under the hero.
 // There are only three full-size hero images, so they repeat; the order keeps
 // neighbouring slides (including the 5 → 1 wrap) on different images.
 const SLIDE_MEDIA = [
-  { image: hero_img, sectionId: HOME_SECTION_IDS.seasons, position: 'center' },
-  { image: hero_img1, sectionId: HOME_SECTION_IDS.latest, position: 'center' },
   { image: hero_img2, sectionId: HOME_SECTION_IDS.style, position: 'center' },
-  { image: hero_img, sectionId: HOME_SECTION_IDS.bestSellers, position: 'center' },
-  { image: hero_img1, sectionId: HOME_SECTION_IDS.underThirty, position: 'center' },
+  { image: hero_img, sectionId: HOME_SECTION_IDS.seasons, position: 'center' },
+  { image: hero_img2, sectionId: HOME_SECTION_IDS.bestSellers, position: 'center' },
+  { image: hero_img1, sectionId: HOME_SECTION_IDS.latest, position: 'center' },
+  { image: hero_img, sectionId: HOME_SECTION_IDS.underThirty, position: 'center' },
 ]
 
 const AUTOPLAY_MS = 5000

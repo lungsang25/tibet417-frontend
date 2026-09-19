@@ -7,10 +7,22 @@
   "hero": {
     "slides": [
       {
+        "eyebrow": "Vrais looks",
+        "title": "Plongez dans le style",
+        "cta": "Découvrir les looks",
+        "alt": "Femme portant une veste rose, stylisée dans un look Tibet417"
+      },
+      {
         "eyebrow": "Toute l'année",
         "title": "Acheter par saison",
         "cta": "Découvrir les saisons",
         "alt": "Mannequin avec une écharpe noire issue des collections saisonnières Tibet417"
+      },
+      {
+        "eyebrow": "Coups de cœur clients",
+        "title": "Meilleures ventes",
+        "cta": "Découvrir les meilleures ventes",
+        "alt": "Femme portant une veste rose issue des meilleures ventes Tibet417"
       },
       {
         "eyebrow": "Nouveautés",
@@ -19,22 +31,10 @@
         "alt": "Homme portant un t-shirt bleu marine de la dernière collection Tibet417"
       },
       {
-        "eyebrow": "Vrais looks",
-        "title": "Plongez dans le style",
-        "cta": "Découvrir les looks",
-        "alt": "Femme portant une veste rose, stylisée dans un look Tibet417"
-      },
-      {
-        "eyebrow": "Coups de cœur clients",
-        "title": "Meilleures ventes",
-        "cta": "Découvrir les meilleures ventes",
-        "alt": "Mannequin avec une écharpe noire issue des meilleures ventes Tibet417"
-      },
-      {
         "eyebrow": "Petits prix",
         "title": "Tout à moins de 30 francs",
         "cta": "Voir les petits prix",
-        "alt": "Homme portant un t-shirt bleu marine de la gamme Tibet417 à moins de 30 francs"
+        "alt": "Mannequin avec une écharpe noire de la gamme Tibet417 à moins de 30 francs"
       }
     ]
   },

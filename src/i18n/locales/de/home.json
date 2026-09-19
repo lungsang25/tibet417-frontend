@@ -7,10 +7,22 @@
   "hero": {
     "slides": [
       {
+        "eyebrow": "Echte Looks",
+        "title": "Tauch ein in den Stil",
+        "cta": "Looks entdecken",
+        "alt": "Frau in einer rosa Jacke, gestylt in einem Tibet417-Look"
+      },
+      {
         "eyebrow": "Zu jeder Jahreszeit",
         "title": "Nach Jahreszeit",
         "cta": "Jahreszeiten entdecken",
         "alt": "Model mit schwarzem Schal aus den saisonalen Kollektionen von Tibet417"
+      },
+      {
+        "eyebrow": "Kundenlieblinge",
+        "title": "Unsere Bestseller",
+        "cta": "Bestseller entdecken",
+        "alt": "Frau in einer rosa Jacke aus den Tibet417-Bestsellern"
       },
       {
         "eyebrow": "Neu eingetroffen",
@@ -19,22 +31,10 @@
         "alt": "Mann in einem marineblauen T-Shirt aus der neuesten Tibet417-Kollektion"
       },
       {
-        "eyebrow": "Echte Looks",
-        "title": "Tauch ein in den Stil",
-        "cta": "Looks entdecken",
-        "alt": "Frau in einer rosa Jacke, gestylt in einem Tibet417-Look"
-      },
-      {
-        "eyebrow": "Kundenlieblinge",
-        "title": "Unsere Bestseller",
-        "cta": "Bestseller entdecken",
-        "alt": "Model mit schwarzem Schal aus den Tibet417-Bestsellern"
-      },
-      {
         "eyebrow": "Gutes für wenig Geld",
         "title": "Alles unter 30 Franken",
         "cta": "Unter 30 CHF entdecken",
-        "alt": "Mann in einem marineblauen T-Shirt aus dem Tibet417-Sortiment unter 30 Franken"
+        "alt": "Model mit schwarzem Schal aus dem Tibet417-Sortiment unter 30 Franken"
       }
     ]
   },

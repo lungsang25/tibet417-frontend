@@ -7,10 +7,22 @@
   "hero": {
     "slides": [
       {
+        "eyebrow": "Look reali",
+        "title": "Immergiti nello stile",
+        "cta": "Scopri i look",
+        "alt": "Donna con una giacca rosa, in un look Tibet417"
+      },
+      {
         "eyebrow": "Per ogni stagione",
         "title": "Acquista per stagione",
         "cta": "Scopri le stagioni",
         "alt": "Modella con una sciarpa nera dalle collezioni stagionali Tibet417"
+      },
+      {
+        "eyebrow": "I preferiti dai clienti",
+        "title": "I più venduti",
+        "cta": "Scopri i più venduti",
+        "alt": "Donna con una giacca rosa dai più venduti Tibet417"
       },
       {
         "eyebrow": "Nuovi arrivi",
@@ -19,22 +31,10 @@
         "alt": "Uomo con una t-shirt blu navy dell'ultima collezione Tibet417"
       },
       {
-        "eyebrow": "Look reali",
-        "title": "Immergiti nello stile",
-        "cta": "Scopri i look",
-        "alt": "Donna con una giacca rosa, in un look Tibet417"
-      },
-      {
-        "eyebrow": "I preferiti dai clienti",
-        "title": "I più venduti",
-        "cta": "Scopri i più venduti",
-        "alt": "Modella con una sciarpa nera dai più venduti Tibet417"
-      },
-      {
         "eyebrow": "Prezzi convenienti",
         "title": "Tutto sotto i 30 franchi",
         "cta": "Scopri gli articoli sotto i 30 CHF",
-        "alt": "Uomo con una t-shirt blu navy della linea Tibet417 sotto i 30 franchi"
+        "alt": "Modella con una sciarpa nera della linea Tibet417 sotto i 30 franchi"
       }
     ]
   },

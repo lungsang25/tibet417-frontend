@@ -7,10 +7,22 @@
   "hero": {
     "slides": [
       {
+        "eyebrow": "Real looks",
+        "title": "Dive into style",
+        "cta": "Shop the looks",
+        "alt": "Woman wearing a pink jacket, styled in a Tibet417 look"
+      },
+      {
         "eyebrow": "Every time of year",
         "title": "Shop by season",
         "cta": "Shop the seasons",
         "alt": "Model in a black scarf from the Tibet417 seasonal collections"
+      },
+      {
+        "eyebrow": "Customer favourites",
+        "title": "Best sellers",
+        "cta": "Shop best sellers",
+        "alt": "Woman wearing a pink jacket from the Tibet417 best sellers"
       },
       {
         "eyebrow": "New Arrivals",
@@ -19,22 +31,10 @@
         "alt": "Man wearing a navy T-shirt from the latest Tibet417 collection"
       },
       {
-        "eyebrow": "Real looks",
-        "title": "Dive into style",
-        "cta": "Shop the looks",
-        "alt": "Woman wearing a pink jacket, styled in a Tibet417 look"
-      },
-      {
-        "eyebrow": "Customer favourites",
-        "title": "Best sellers",
-        "cta": "Shop best sellers",
-        "alt": "Model in a black scarf from the Tibet417 best sellers"
-      },
-      {
         "eyebrow": "Great value",
         "title": "Under 30 franc",
         "cta": "Shop under 30 CHF",
-        "alt": "Man wearing a navy T-shirt from the Tibet417 range under 30 francs"
+        "alt": "Model in a black scarf from the Tibet417 range under 30 francs"
       }
     ]
   },

@@ -76,17 +76,17 @@ const Home = () => {
       {/* The ids live on wrappers here, not inside the sections: several of them
           render null when they have nothing to show, and the hero's scroll
           targets should exist regardless. scroll-mt clears the sticky navbar. */}
-      <div id={HOME_SECTION_IDS.seasons} className='scroll-mt-20'>
-        <SeasonsSection />
-      </div>
-      <div id={HOME_SECTION_IDS.latest} className='scroll-mt-20'>
-        <LatestCollection />
-      </div>
       <div id={HOME_SECTION_IDS.style} className='scroll-mt-20'>
         <StyleSection />
       </div>
+      <div id={HOME_SECTION_IDS.seasons} className='scroll-mt-20'>
+        <SeasonsSection />
+      </div>
       <div id={HOME_SECTION_IDS.bestSellers} className='scroll-mt-20'>
         <BestSeller />
+      </div>
+      <div id={HOME_SECTION_IDS.latest} className='scroll-mt-20'>
+        <LatestCollection />
       </div>
       <div id={HOME_SECTION_IDS.underThirty} className='scroll-mt-20'>
         <UnderThirty />
