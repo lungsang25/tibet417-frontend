@@ -63,6 +63,12 @@
       "close": "Schliessen",
       "alt": "Model trägt Stücke aus der Tibet417-Kollektion"
     },
+    "sale": {
+      "text1": "SALE",
+      "text2": "{{percent}}% RABATT",
+      "nextDrop": "Nächste Senkung: {{percent}}% Rabatt in",
+      "finalStage": "Endpreis — {{percent}}% Rabatt, solange der Vorrat reicht"
+    },
     "seasons": {
       "text1": "NACH",
       "text2": "JAHRESZEIT",

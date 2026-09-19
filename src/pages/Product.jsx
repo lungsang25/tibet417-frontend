@@ -13,12 +13,13 @@ import QuantityStepper from '../components/QuantityStepper';
 import Modal from '../components/Modal';
 import SizeRecommender from '../components/SizeRecommender';
 import SizeRecommenderButton from '../components/SizeRecommenderButton';
+import PriceTag from '../components/PriceTag';
 
 const Product = () => {
 
   const { t } = useTranslation('product');
   const { productId } = useParams();
-  const { products, productsLoaded, currency, cartItems, addToCart, updateQuantity } = useContext(ShopContext);
+  const { products, productsLoaded, currency, cartItems, addToCart, updateQuantity, getPriceInfo } = useContext(ShopContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState('')
   const [size,setSize] = useState('')
@@ -95,6 +96,10 @@ const Product = () => {
     )
   }
 
+  // While the product is in a sale this is the sale price; the structured
+  // data below must agree with what the page shows.
+  const { price: currentPrice, originalPrice } = getPriceInfo(productData._id, productData.price)
+
   return (
     <div className='border-t-2 pt-10 pb-28 sm:pb-10 transition-opacity ease-in duration-500 opacity-100'>
       <SEO
@@ -125,7 +130,7 @@ const Product = () => {
               // Matches what Payrexx actually charges (orderController.js) and
               // what the GTC state. This said USD while the checkout billed CHF.
               priceCurrency: currencyCode,
-              price: productData.price,
+              price: currentPrice,
               availability: 'https://schema.org/InStock',
               itemCondition: 'https://schema.org/NewCondition',
               eligibleRegion: { '@type': 'Country', name: 'CH' },
@@ -169,7 +174,9 @@ const Product = () => {
         {/* -------- Product Info ---------- */}
         <div className='flex-1'>
           <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
-          <p className='mt-5 text-3xl font-medium'>{currency} {productData.price}</p>
+          <p className='mt-5 text-3xl font-medium'>
+            <PriceTag currency={currency} price={currentPrice} originalPrice={originalPrice} space originalClassName='text-xl' />
+          </p>
           <p className='mt-5 text-stone md:w-4/5'>{productData.description}</p>
           <div className='flex flex-col gap-4 my-8'>
               <p>{t('selectSize')}</p>
@@ -219,7 +226,9 @@ const Product = () => {
 
       {/* Sticky mobile add-to-cart bar */}
       <div className='fixed bottom-0 left-0 right-0 sm:hidden bg-paper border-t border-line p-4 z-40 flex items-center justify-between gap-4'>
-        <p className='text-lg font-medium'>{currency} {productData.price}</p>
+        <p className='text-lg font-medium'>
+          <PriceTag currency={currency} price={currentPrice} originalPrice={originalPrice} space originalClassName='text-sm' />
+        </p>
         <button onClick={handleAddToCart} className='flex-1 bg-ink text-paper px-6 py-3 text-sm active:bg-stone'>{t('common:actions.addToCart')}</button>
       </div>
 

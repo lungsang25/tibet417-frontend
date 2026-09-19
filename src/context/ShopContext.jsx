@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import axios from 'axios'
 import { getMediumImage } from '../utils/imageUtils'
 import { useLocalizedNavigate } from '../hooks/useLocalizedNavigation'
+import { isPrerenderBrowser } from '../pwa/env'
+import { getEffectivePrice, serverNow } from '../utils/sale'
 
 export const ShopContext = createContext();
 
@@ -23,6 +25,21 @@ const preloadedProducts = () => {
     return normalizeProducts(window.__TIBET417_PRODUCTS__);
 };
 
+// The backend's description of the sale (see GET /api/sale/current) in the
+// shape the storefront wants: a Set for cheap "is this product on sale" checks,
+// and the gap between the server's clock and this device's so countdowns run on
+// server time.
+const toSaleState = (sale) => ({
+    active: sale.active,
+    percentOff: sale.percentOff,
+    stageIndex: sale.stageIndex,
+    stageCount: sale.stageCount,
+    nextChangeAt: sale.nextChangeAt,
+    nextPercentOff: sale.nextPercentOff,
+    productIds: new Set(sale.productIds),
+    clockOffset: sale.serverNow - Date.now(),
+});
+
 const ShopContextProvider = (props) => {
 
     // The checkout has always billed CHF (orderController.js -> Payrexx,
@@ -37,6 +54,7 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [products, setProducts] = useState(() => preloadedProducts() ?? []);
     const [productsLoaded, setProductsLoaded] = useState(() => preloadedProducts() !== null);
+    const [sale, setSale] = useState(null);
     const [wishlist, setWishlist] = useState([]);
     const [token, setToken] = useState('')
     const [authChecked, setAuthChecked] = useState(false)
@@ -132,21 +150,32 @@ const ShopContextProvider = (props) => {
 
     }
 
+    // What a product costs right now — its sale price while it is in a running
+    // sale, otherwise its regular price. `basePrice` is optional when the
+    // caller only has an id.
+    const getPriceInfo = (productId, basePrice) => {
+        const price = basePrice ?? products.find((product) => product._id === productId)?.price;
+        return getEffectivePrice(productId, price, sale);
+    }
+
     const getCartAmount = () => {
-        let totalAmount = 0;
+        let totalCents = 0;
         for (const items in cartItems) {
             let itemInfo = products.find((product) => product._id === items);
             for (const item in cartItems[items]) {
                 try {
                     if (cartItems[items][item] > 0) {
-                        totalAmount += itemInfo.price * cartItems[items][item];
+                        const { price } = getPriceInfo(itemInfo._id, itemInfo.price);
+                        // Whole cents, so sale prices like 14.93 don't
+                        // accumulate floating-point noise across lines.
+                        totalCents += Math.round(price * 100) * cartItems[items][item];
                     }
                 } catch (error) {
 
                 }
             }
         }
-        return totalAmount;
+        return totalCents / 100;
     }
 
     const preloadImages = (products) => {
@@ -181,6 +210,20 @@ const ShopContextProvider = (props) => {
             toast.error(error.message)
         } finally {
             setProductsLoaded(true)
+        }
+    }
+
+    // A failed sale fetch is deliberately silent: the sale is an extra, and
+    // falling back to regular prices is correct (the server prices the order
+    // itself in any case), so there is nothing useful to toast about.
+    const getSaleData = async () => {
+        try {
+            const response = await axios.get(backendUrl + '/api/sale/current')
+            if (response.data.success) {
+                setSale(toSaleState(response.data.sale))
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -261,6 +304,32 @@ const ShopContextProvider = (props) => {
     }, [])
 
     useEffect(() => {
+        // Prerendered snapshots are taken once, at build time, and served for
+        // days. A discount that steps up every 24h must never be baked into
+        // them, so the prerender browser doesn't ask for the sale at all.
+        if (isPrerenderBrowser()) return
+        getSaleData()
+        // A background tab or a sleeping laptop misses the timer below, and an
+        // admin can end the sale at any moment — re-check when the tab is back.
+        const onVisible = () => {
+            if (document.visibilityState === 'visible') getSaleData()
+        }
+        document.addEventListener('visibilitychange', onVisible)
+        return () => document.removeEventListener('visibilitychange', onVisible)
+    }, [])
+
+    // Re-fetch just after the next discount step so prices and the countdown
+    // move on by themselves. Keyed on the whole `sale` object, not just the
+    // timestamp: if the response was a few seconds stale and still describes
+    // the old step, this schedules another attempt instead of giving up.
+    useEffect(() => {
+        if (!sale?.nextChangeAt) return
+        const wait = sale.nextChangeAt - serverNow(sale) + 2000
+        const timer = setTimeout(getSaleData, Math.max(wait, 2000))
+        return () => clearTimeout(timer)
+    }, [sale])
+
+    useEffect(() => {
         if (!token && localStorage.getItem('token')) {
             setToken(localStorage.getItem('token'))
             getUserCart(localStorage.getItem('token'))
@@ -280,6 +349,7 @@ const ShopContextProvider = (props) => {
 
     const value = {
         products, productsLoaded, currency, delivery_fee,
+        sale, refreshSale: getSaleData, getPriceInfo,
         search, setSearch, showSearch, setShowSearch,
         cartItems, addToCart,setCartItems,
         getCartCount, updateQuantity,

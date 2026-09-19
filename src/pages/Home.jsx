@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import Hero from '../components/Hero'
+import SaleSection from '../components/SaleSection'
 import SeasonsSection from '../components/SeasonsSection'
 import LatestCollection from '../components/LatestCollection'
 import BestSeller from '../components/BestSeller'
@@ -67,6 +68,11 @@ const Home = () => {
           what the page is, and screen readers announce it. */}
       <h1 className='sr-only'>{t('h1')}</h1>
       <Hero />
+      {/* Right after the hero: the sale is the time-sensitive thing. It renders
+          nothing unless a sale is live, and it appears once the sale has
+          loaded — below the fold of the tall hero, so that isn't seen as a
+          layout shift. */}
+      <SaleSection />
       {/* The ids live on wrappers here, not inside the sections: several of them
           render null when they have nothing to show, and the hero's scroll
           targets should exist regardless. scroll-mt clears the sticky navbar. */}

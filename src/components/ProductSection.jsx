@@ -25,6 +25,7 @@ const ProductSection = ({
   count = 4,
   href = '/collection',
   linkLabel,
+  showLink = true,
   loading = false,
 }) => {
   const { t } = useTranslation()
@@ -42,13 +43,15 @@ const ProductSection = ({
             <p className='max-w-xl text-sm text-stone'>{description}</p>
           )}
         </div>
-        <Link
-          to={href}
-          onClick={() => scrollTo(0, 0)}
-          className='shrink-0 whitespace-nowrap text-[11px] uppercase tracking-label text-ink border-b border-ink pb-1 hover:text-stone hover:border-stone transition-colors duration-300'
-        >
-          {linkLabel ?? t('common:actions.viewAll')}
-        </Link>
+        {showLink && (
+          <Link
+            to={href}
+            onClick={() => scrollTo(0, 0)}
+            className='shrink-0 whitespace-nowrap text-[11px] uppercase tracking-label text-ink border-b border-ink pb-1 hover:text-stone hover:border-stone transition-colors duration-300'
+          >
+            {linkLabel ?? t('common:actions.viewAll')}
+          </Link>
+        )}
       </div>
 
       <div className='mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 sm:gap-x-6 gap-y-10'>

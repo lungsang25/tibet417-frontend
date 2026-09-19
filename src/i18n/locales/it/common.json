@@ -66,6 +66,10 @@
     "bestseller": "Più venduto",
     "new": "Novità"
   },
+  "sale": {
+    "was": "Prima",
+    "badge": "-{{percent}}%"
+  },
   "a11y": {
     "skipToContent": "Vai al contenuto"
   },

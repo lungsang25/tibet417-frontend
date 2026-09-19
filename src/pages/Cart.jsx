@@ -8,11 +8,13 @@ import QuantityStepper from '../components/QuantityStepper';
 import CartTotal from '../components/CartTotal';
 import { assets } from '../assets/assets';
 import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation';
+import PriceTag from '../components/PriceTag';
+import { formatPrice } from '../utils/sale';
 
 const Cart = () => {
 
   const { t } = useTranslation('cart');
-  const { products, productsLoaded, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
+  const { products, productsLoaded, currency, cartItems, updateQuantity, navigate, getPriceInfo } = useContext(ShopContext);
 
   const [cartData, setCartData] = useState([]);
 
@@ -56,6 +58,7 @@ const Cart = () => {
               cartData.map((item, index) => {
 
                 const productData = products.find((product) => product._id === item._id);
+                const { price, originalPrice } = getPriceInfo(productData._id, productData.price);
 
                 return (
                   <div key={index} className='py-4 border-t border-b text-stone grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4'>
@@ -64,10 +67,10 @@ const Cart = () => {
                       <div>
                         <p className='text-xs sm:text-lg font-medium'>{productData.name}</p>
                         <div className='flex items-center gap-5 mt-2'>
-                          <p>{currency}{productData.price}</p>
+                          <p><PriceTag currency={currency} price={price} originalPrice={originalPrice} /></p>
                           <p className='px-2 sm:px-3 sm:py-1 border bg-line'>{item.size}</p>
                         </div>
-                        <p className='text-xs text-stone mt-1'>{t('lineSubtotal', { currency, amount: productData.price * item.quantity })}</p>
+                        <p className='text-xs text-stone mt-1'>{t('lineSubtotal', { currency, amount: formatPrice(Math.round(price * 100) * item.quantity / 100) })}</p>
                       </div>
                     </div>
                     <QuantityStepper

@@ -63,6 +63,12 @@
       "close": "Close",
       "alt": "Model wearing pieces from the Tibet417 collection"
     },
+    "sale": {
+      "text1": "SALE",
+      "text2": "{{percent}}% OFF",
+      "nextDrop": "Next drop: {{percent}}% off in",
+      "finalStage": "Final price — {{percent}}% off while stock lasts"
+    },
     "seasons": {
       "text1": "SHOP BY",
       "text2": "SEASON",

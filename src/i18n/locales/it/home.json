@@ -63,6 +63,12 @@
       "close": "Chiudi",
       "alt": "Modello che indossa capi della collezione Tibet417"
     },
+    "sale": {
+      "text1": "SALDI",
+      "text2": "{{percent}}% DI SCONTO",
+      "nextDrop": "Prossimo ribasso: {{percent}}% di sconto tra",
+      "finalStage": "Prezzo finale — {{percent}}% di sconto fino a esaurimento scorte"
+    },
     "seasons": {
       "text1": "ACQUISTA PER",
       "text2": "STAGIONE",

@@ -66,6 +66,10 @@
     "bestseller": "Bestseller",
     "new": "Neu"
   },
+  "sale": {
+    "was": "Vorher",
+    "badge": "-{{percent}}%"
+  },
   "a11y": {
     "skipToContent": "Zum Inhalt springen"
   },

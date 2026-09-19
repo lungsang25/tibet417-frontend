@@ -63,6 +63,12 @@
       "close": "Fermer",
       "alt": "Mannequin portant des pièces de la collection Tibet417"
     },
+    "sale": {
+      "text1": "SOLDES",
+      "text2": "{{percent}}% DE RÉDUCTION",
+      "nextDrop": "Prochaine baisse : {{percent}}% de réduction dans",
+      "finalStage": "Prix final — {{percent}}% de réduction dans la limite des stocks"
+    },
     "seasons": {
       "text1": "ACHETER PAR",
       "text2": "SAISON",

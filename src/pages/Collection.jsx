@@ -49,7 +49,7 @@ const Collection = () => {
       }
     : null;
 
-  const { products , productsLoaded , search , setSearch, showSearch, setShowSearch } = useContext(ShopContext);
+  const { products , productsLoaded , search , setSearch, showSearch, setShowSearch, sale, getPriceInfo } = useContext(ShopContext);
   const [showFilter,setShowFilter] = useState(false);
   const [category,setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState(() => {
@@ -147,17 +147,17 @@ const Collection = () => {
 
     switch (sortType) {
       case 'low-high':
-        result = [...result].sort((a,b)=>(a.price - b.price));
+        result = [...result].sort((a,b)=>(getPriceInfo(a._id, a.price).price - getPriceInfo(b._id, b.price).price));
         break;
       case 'high-low':
-        result = [...result].sort((a,b)=>(b.price - a.price));
+        result = [...result].sort((a,b)=>(getPriceInfo(b._id, b.price).price - getPriceInfo(a._id, a.price).price));
         break;
       default:
         break;
     }
 
     return result;
-  }, [products, isPriceCollection, isSeasonCollection, slug, category, subCategory, debouncedSearch, showSearch, sortType])
+  }, [products, sale, isPriceCollection, isSeasonCollection, slug, category, subCategory, debouncedSearch, showSearch, sortType])
 
   const activeFilterChips = [
     ...(!activeCategory?.value ? category.map(value => ({

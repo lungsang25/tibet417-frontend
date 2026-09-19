@@ -5,6 +5,7 @@ import { getMediumImage, getSrcSet } from '../utils/imageUtils'
 import OptimizedImage from './OptimizedImage'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
+import PriceTag from './PriceTag'
 
 // Matches the 2/3/4-column grids these cards actually render in
 // (Collection.jsx, ProductSection.jsx, RelatedProducts.jsx) so the browser
@@ -13,7 +14,12 @@ const CARD_SIZES = '(min-width: 1024px) 23vw, (min-width: 640px) 30vw, 47vw'
 
 const ProductItem = ({id,image,name,price,priority = false,badge,sizes}) => {
     const { t } = useTranslation();
-    const {currency, addToCart, isInWishlist, addToWishlist, removeFromWishlist, products} = useContext(ShopContext);
+    const {currency, addToCart, isInWishlist, addToWishlist, removeFromWishlist, products, getPriceInfo} = useContext(ShopContext);
+    // Looked up here, by id, so every grid that renders a card (home rails,
+    // Collection, Wishlist, LookModal, RelatedProducts) shows the sale without
+    // each having to pass it down.
+    const { price: currentPrice, originalPrice, percentOff } = getPriceInfo(id, price);
+    const onSale = originalPrice !== null;
     const hoverImage = image?.[1];
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const inWishlist = isInWishlist(id);
@@ -81,9 +87,9 @@ const ProductItem = ({id,image,name,price,priority = false,badge,sizes}) => {
           </div>
         )}
 
-        {badge && (
-          <span className='absolute top-3 left-3 bg-white/95 text-ink px-2.5 py-1 text-[10px] uppercase tracking-label'>
-            {badge}
+        {(onSale || badge) && (
+          <span className={`absolute top-3 left-3 px-2.5 py-1 text-[10px] uppercase tracking-label ${onSale ? 'bg-ink text-paper' : 'bg-white/95 text-ink'}`}>
+            {onSale ? t('common:sale.badge', { percent: percentOff }) : badge}
           </span>
         )}
 
@@ -118,7 +124,9 @@ const ProductItem = ({id,image,name,price,priority = false,badge,sizes}) => {
       </div>
 
       <p className='pt-3 text-sm text-ink line-clamp-1'>{name}</p>
-      <p className='pt-1 text-sm text-stone'>{currency}{price}</p>
+      <p className='pt-1 text-sm text-stone'>
+        <PriceTag currency={currency} price={currentPrice} originalPrice={originalPrice} />
+      </p>
     </Link>
   )
 }
