@@ -66,10 +66,21 @@ export const business = {
   representativeName: 'Gyanaktsang',
 }
 
+// Social accounts shown as icons on the Contact page. The accounts are not
+// created yet, so every url is empty — paste the profile URL in here once each
+// exists. Icons stay visible meanwhile; an empty url makes the icon inert.
+export const socialLinks = [
+  { id: 'instagram', name: 'Instagram', url: '' },
+  { id: 'facebook', name: 'Facebook', url: '' },
+  { id: 'tiktok', name: 'TikTok', url: '' },
+  { id: 'youtube', name: 'YouTube', url: '' },
+]
+
 // Only list profiles that actually resolve. The previous Organization schema
 // pointed sameAs at facebook/instagram/twitter handles that do not exist, which
-// undermines the entity resolution it was meant to support.
-export const socialProfiles = []
+// undermines the entity resolution it was meant to support. Derived from
+// socialLinks so empty urls are never emitted and filling one in is enough.
+export const socialProfiles = socialLinks.map((s) => s.url).filter(Boolean)
 
 /** PostalAddress for JSON-LD, or null when the address is not filled in yet. */
 export const postalAddressSchema = () => {
