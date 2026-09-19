@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation'
+import { HOME_SECTION_IDS } from '../config/homeSections'
 // vite-imagetools generates AVIF/WebP + multiple widths at build time from
 // these three source files (the heaviest assets in the repo: up to 2MB each
 // as plain PNG/JPG) and returns { sources: { avif, webp, ... }, img: { src,
@@ -10,13 +10,17 @@ import hero_img from '../assets/hero/hero_img.png?w=800;1280;1920&format=avif;we
 import hero_img1 from '../assets/hero/p_img38(1).jpg?w=800;1280;1920&format=avif;webp;jpeg&quality=75&as=picture'
 import hero_img2 from '../assets/hero/p_img4.png?w=800;1280;1920&format=avif;webp;png&quality=75&as=picture'
 
-// Images and hrefs are the only things fixed here — copy comes from
-// home.json's hero.slides array (same order: new arrivals, winter, best
-// sellers) so it can be translated.
+// Images and scroll targets are the only things fixed here — copy comes from
+// home.json's hero.slides array (same order, one slide per homepage section,
+// in the order the sections appear on the page) so it can be translated.
+// There are only three full-size hero images, so they repeat; the order keeps
+// neighbouring slides (including the 5 → 1 wrap) on different images.
 const SLIDE_MEDIA = [
-  { image: hero_img, href: '/collection', position: 'center' },
-  { image: hero_img1, href: '/collection', position: 'center' },
-  { image: hero_img2, href: '/collection', position: 'center' },
+  { image: hero_img, sectionId: HOME_SECTION_IDS.seasons, position: 'center' },
+  { image: hero_img1, sectionId: HOME_SECTION_IDS.latest, position: 'center' },
+  { image: hero_img2, sectionId: HOME_SECTION_IDS.style, position: 'center' },
+  { image: hero_img, sectionId: HOME_SECTION_IDS.bestSellers, position: 'center' },
+  { image: hero_img1, sectionId: HOME_SECTION_IDS.underThirty, position: 'center' },
 ]
 
 const AUTOPLAY_MS = 5000
@@ -160,6 +164,17 @@ const Hero = () => {
     touchStartX.current = null
   }
 
+  // The CTA is a real #anchor link, but the router doesn't scroll to hashes on
+  // its own, so scroll explicitly. preventDefault also keeps the hash out of
+  // the URL. The target's scroll-mt (set in Home.jsx) clears the sticky navbar.
+  const handleCtaClick = (event, sectionId) => {
+    event.preventDefault()
+    document.getElementById(sectionId)?.scrollIntoView({
+      behavior: reducedMotion ? 'auto' : 'smooth',
+      block: 'start',
+    })
+  }
+
   const activeSlide = slides[activeIndex]
 
   return (
@@ -240,13 +255,13 @@ const Hero = () => {
             <h2 className='mt-4 font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] text-white'>
               {activeSlide.title}
             </h2>
-            <Link
-              to={activeSlide.href}
-              onClick={() => scrollTo(0, 0)}
+            <a
+              href={`#${activeSlide.sectionId}`}
+              onClick={(event) => handleCtaClick(event, activeSlide.sectionId)}
               className='inline-block mt-8 bg-paper text-ink px-8 py-3.5 text-[11px] uppercase tracking-label hover:bg-ink hover:text-paper transition-colors duration-300'
             >
               {activeSlide.cta}
-            </Link>
+            </a>
           </div>
         </div>
       </div>

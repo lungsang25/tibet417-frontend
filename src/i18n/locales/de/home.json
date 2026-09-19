@@ -7,22 +7,34 @@
   "hero": {
     "slides": [
       {
+        "eyebrow": "Zu jeder Jahreszeit",
+        "title": "Nach Jahreszeit",
+        "cta": "Jahreszeiten entdecken",
+        "alt": "Model mit schwarzem Schal aus den saisonalen Kollektionen von Tibet417"
+      },
+      {
         "eyebrow": "Neu eingetroffen",
-        "title": "Gewebt im Himalaya",
-        "cta": "Zur Kollektion",
-        "alt": "Model trägt ein handgewebtes tibetisches Wollstück aus der neuen Kollektion"
+        "title": "Neue Kollektionen",
+        "cta": "Neuheiten ansehen",
+        "alt": "Mann in einem marineblauen T-Shirt aus der neuesten Tibet417-Kollektion"
       },
       {
-        "eyebrow": "Die Winterkollektion",
-        "title": "Gemacht für die Kälte",
-        "cta": "Winterkleidung entdecken",
-        "alt": "Winterkleidung im Schichtlook vor einer Bergkulisse"
+        "eyebrow": "Echte Looks",
+        "title": "Tauch ein in den Stil",
+        "cta": "Looks entdecken",
+        "alt": "Frau in einer rosa Jacke, gestylt in einem Tibet417-Look"
       },
       {
-        "eyebrow": "Bestseller",
-        "title": "Stücke, die bleiben",
+        "eyebrow": "Kundenlieblinge",
+        "title": "Unsere Bestseller",
         "cta": "Bestseller entdecken",
-        "alt": "Nahaufnahme eines strukturierten Stoffs aus der Tibet417-Bestsellerkollektion"
+        "alt": "Model mit schwarzem Schal aus den Tibet417-Bestsellern"
+      },
+      {
+        "eyebrow": "Gutes für wenig Geld",
+        "title": "Alles unter 30 Franken",
+        "cta": "Unter 30 CHF entdecken",
+        "alt": "Mann in einem marineblauen T-Shirt aus dem Tibet417-Sortiment unter 30 Franken"
       }
     ]
   },

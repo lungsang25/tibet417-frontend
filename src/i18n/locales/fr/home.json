@@ -7,22 +7,34 @@
   "hero": {
     "slides": [
       {
+        "eyebrow": "Toute l'année",
+        "title": "Acheter par saison",
+        "cta": "Découvrir les saisons",
+        "alt": "Mannequin avec une écharpe noire issue des collections saisonnières Tibet417"
+      },
+      {
         "eyebrow": "Nouveautés",
-        "title": "Tissé dans l'Himalaya",
-        "cta": "Découvrir la collection",
-        "alt": "Mannequin portant une pièce en laine tibétaine tissée à la main de la nouvelle collection"
+        "title": "Dernières collections",
+        "cta": "Voir les nouveautés",
+        "alt": "Homme portant un t-shirt bleu marine de la dernière collection Tibet417"
       },
       {
-        "eyebrow": "La sélection hiver",
-        "title": "Conçu pour le froid",
-        "cta": "Découvrir les vêtements d'hiver",
-        "alt": "Vêtements d'hiver superposés devant un décor de montagne"
+        "eyebrow": "Vrais looks",
+        "title": "Plongez dans le style",
+        "cta": "Découvrir les looks",
+        "alt": "Femme portant une veste rose, stylisée dans un look Tibet417"
       },
       {
-        "eyebrow": "Meilleures ventes",
-        "title": "Des pièces qui durent",
+        "eyebrow": "Coups de cœur clients",
+        "title": "Meilleures ventes",
         "cta": "Découvrir les meilleures ventes",
-        "alt": "Gros plan sur un tissu texturé de la gamme des meilleures ventes Tibet417"
+        "alt": "Mannequin avec une écharpe noire issue des meilleures ventes Tibet417"
+      },
+      {
+        "eyebrow": "Petits prix",
+        "title": "Tout à moins de 30 francs",
+        "cta": "Voir les petits prix",
+        "alt": "Homme portant un t-shirt bleu marine de la gamme Tibet417 à moins de 30 francs"
       }
     ]
   },
