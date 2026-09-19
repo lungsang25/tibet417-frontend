@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation'
 import { assets } from '../assets/assets'
 import { siteName, legalName, business } from '../config/site'
+import SocialLinks from './SocialLinks'
 
 // The footer is the site's most repeated internal-link block, so it is a large
 // part of how Google models the hierarchy that sitelinks are drawn from. It now
@@ -45,7 +46,10 @@ const Footer = () => {
 
         <div>
             <p className='text-xl font-medium mb-5'>{t('getInTouch.heading')}</p>
-            <ul className='flex flex-col gap-1 text-stone'>
+            {/* Below sm (mobile) the phone/email are replaced by social icons;
+                from sm up the footer is unchanged. */}
+            <SocialLinks className='sm:hidden' />
+            <ul className='hidden sm:flex flex-col gap-1 text-stone'>
                 {business.telephone && <li>{business.telephone}</li>}
                 <li><a href={`mailto:${business.email}`}>{business.email}</a></li>
             </ul>
