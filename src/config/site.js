@@ -66,13 +66,13 @@ export const business = {
   representativeName: 'Gyanaktsang',
 }
 
-// Social accounts shown as icons on the Contact page. The accounts are not
-// created yet, so every url is empty — paste the profile URL in here once each
-// exists. Icons stay visible meanwhile; an empty url makes the icon inert.
+// Social accounts shown as icons on the Contact page. An empty url makes the
+// icon inert (visible but not a link) — paste the profile URL in here once an
+// account exists. YouTube has none yet.
 export const socialLinks = [
-  { id: 'instagram', name: 'Instagram', url: '' },
-  { id: 'facebook', name: 'Facebook', url: '' },
-  { id: 'tiktok', name: 'TikTok', url: '' },
+  { id: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/tibet417_fashion/' },
+  { id: 'facebook', name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61594582564858&mibextid=wwXIfr&rdid=rMPmVJaNGVRksi4c&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CGWfqqPWj%2F%3Fmibextid%3DwwXIfr' },
+  { id: 'tiktok', name: 'TikTok', url: 'https://www.tiktok.com/@tibet417.fashion' },
   { id: 'youtube', name: 'YouTube', url: '' },
 ]
 
