@@ -26,7 +26,7 @@ const Footer = () => {
         <div>
             <p className='text-xl font-medium mb-5'>{t('shop.heading')}</p>
             <ul className='flex flex-col gap-1 text-stone'>
-                <li><Link to='/collection'>{t('shop.allProducts')}</Link></li>
+                <li><Link to='/'>{t('company.home')}</Link></li>
                 <li><Link to='/collection/men'>{t('shop.men')}</Link></li>
                 <li><Link to='/collection/women'>{t('shop.women')}</Link></li>
                 <li><Link to='/collection/kids'>{t('shop.kids')}</Link></li>
@@ -36,7 +36,6 @@ const Footer = () => {
         <div>
             <p className='text-xl font-medium mb-5'>{t('company.heading')}</p>
             <ul className='flex flex-col gap-1 text-stone'>
-                <li><Link to='/'>{t('company.home')}</Link></li>
                 <li><Link to='/about'>{t('company.aboutUs')}</Link></li>
                 <li><Link to='/contact'>{t('company.contact')}</Link></li>
                 <li><Link to='/terms'>{t('company.terms')}</Link></li>
