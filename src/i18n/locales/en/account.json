@@ -68,6 +68,8 @@
     "googleAccount": "Google Account",
     "emailPassword": "Email & Password",
     "rewardsBalance": "{{count}} points available",
+    "welcomeTitle": "Welcome to Tibet417, {{name}}!",
+    "welcomeBody": "We have added {{count}} bonus points to your account as a warm thank-you for joining us.",
     "rewardsCta": "View my rewards",
     "personalDetails": "Personal Details",
     "address": "Address",

@@ -13,6 +13,7 @@ const Profile = () => {
   // the rest of the profile page from rendering.
   const [pointsBalance, setPointsBalance] = useState(null)
   const [rewardsActive, setRewardsActive] = useState(false)
+  const [welcomePoints, setWelcomePoints] = useState(0)
 
   const fetchProfile = async () => {
     try {
@@ -41,6 +42,7 @@ const Profile = () => {
         metaRes.data.welcome?.active || metaRes.data.referral?.active || metaRes.data.purchase?.active
       ))
       setRewardsActive(active)
+      setWelcomePoints(metaRes.data?.welcome?.points || 0)
       if (!active) return
 
       const balanceRes = await axios.post(backendUrl + '/api/bonus/balance', {}, { headers: { token } })
@@ -75,8 +77,25 @@ const Profile = () => {
     )
   }
 
+  // The welcome card is a first-weeks greeting, not a permanent fixture.
+  const showWelcome = rewardsActive && welcomePoints > 0 && user.welcomeBonusGrantedAt
+    && Date.now() - user.welcomeBonusGrantedAt < 30 * 24 * 60 * 60 * 1000
+
   return (
     <div className='flex flex-col items-center py-10'>
+      {showWelcome && (
+        <div className='bg-amber-50 border border-amber-200 rounded-lg p-5 w-full max-w-md mb-4 text-center'>
+          <p className='text-lg font-semibold text-gray-800'>{t('profile.welcomeTitle', { name: user.name.split(' ')[0] })}</p>
+          <p className='text-sm text-gray-600 mt-2'>{t('profile.welcomeBody', { count: welcomePoints })}</p>
+          <button
+            type='button'
+            onClick={() => navigate('/rewards')}
+            className='mt-3 text-sm underline text-gray-800 cursor-pointer bg-transparent border-0'
+          >
+            {t('profile.rewardsCta')}
+          </button>
+        </div>
+      )}
       <div className='bg-white shadow-md rounded-lg p-8 w-full max-w-md'>
         <div className='flex flex-col items-center gap-4'>
           {user.picture ? (

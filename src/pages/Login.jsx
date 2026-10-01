@@ -8,7 +8,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const Login = () => {
 
-  const { t } = useTranslation('account')
+  const { t, i18n } = useTranslation('account')
   const [currentState, setCurrentState] = useState('Login');
   const { token, setToken, navigate, backendUrl } = useContext(ShopContext)
   const [searchParams] = useSearchParams()
@@ -23,7 +23,7 @@ const Login = () => {
         if (currentState === 'Sign Up') {
 
           const referralCode = localStorage.getItem('referralCode') || undefined
-          const response = await axios.post(backendUrl + '/api/user/register',{name,email,password,referralCode})
+          const response = await axios.post(backendUrl + '/api/user/register',{name,email,password,referralCode,locale: i18n.language})
           if (response.data.success) {
             setToken(response.data.token)
             localStorage.setItem('token',response.data.token)
@@ -57,6 +57,7 @@ const Login = () => {
       const response = await axios.post(backendUrl + '/api/user/google', {
         credential: credentialResponse.credential,
         referralCode,
+        locale: i18n.language,
       });
       if (response.data.success) {
         setToken(response.data.token);
