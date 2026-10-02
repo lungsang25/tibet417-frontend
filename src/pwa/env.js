@@ -14,6 +14,11 @@ export const isStandalone = () =>
 export const isPrerenderBrowser = () =>
   typeof navigator !== 'undefined' && /HeadlessChrome/.test(navigator.userAgent)
 
+/** Any iPhone/iPad/iPod browser — they all share WebKit, but only Safari can install. */
+export const isIos = () =>
+  typeof navigator !== 'undefined' &&
+  (/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
+
 /**
  * iOS Safari specifically — the only iOS browser this app shows manual
  * "Add to Home Screen" steps for. In-app browsers (Facebook, Instagram, ...)
@@ -21,8 +26,6 @@ export const isPrerenderBrowser = () =>
  * iPadOS 13+ reports itself as a Mac, hence the touch-points check.
  */
 export const isIosSafari = () => {
-  if (typeof navigator === 'undefined') return false
-  const ua = navigator.userAgent
-  const isIos = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-  return isIos && /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|FBAN|FBAV|Instagram|Line\//.test(ua)
+  if (!isIos()) return false
+  return /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA|FBAN|FBAV|Instagram|Line\//.test(navigator.userAgent)
 }

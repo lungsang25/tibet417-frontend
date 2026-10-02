@@ -78,7 +78,12 @@
     "description": "Aggiungila alla schermata Home per accedere più in fretta.",
     "action": "Installa",
     "dismiss": "Chiudi",
-    "iosSteps": "Tocca <share/> e poi «Aggiungi alla schermata Home».",
-    "share": "Condividi"
+    "share": "Condividi",
+    "iosIntro": "Aggiungila alla schermata Home in pochi tocchi. Funziona in Safari.",
+    "iosOpenSafari": "Per installarla, apri questa pagina in Safari e usa Condividi → Aggiungi alla schermata Home.",
+    "showHow": "Mostra come fare",
+    "step1": "Tocca il pulsante Condividi <share/> nella barra di Safari",
+    "step2": "Scorri e tocca «Aggiungi alla schermata Home»",
+    "step3": "Tocca «Aggiungi» in alto"
   }
 }

@@ -78,7 +78,12 @@
     "description": "Ajoutez-la à votre écran d’accueil pour y accéder plus vite.",
     "action": "Installer",
     "dismiss": "Fermer",
-    "iosSteps": "Appuyez sur <share/> puis sur « Sur l’écran d’accueil ».",
-    "share": "Partager"
+    "share": "Partager",
+    "iosIntro": "Ajoutez-la à votre écran d’accueil en quelques appuis. Cela fonctionne dans Safari.",
+    "iosOpenSafari": "Pour l’installer, ouvrez cette page dans Safari, puis utilisez Partager → Sur l’écran d’accueil.",
+    "showHow": "Voir comment faire",
+    "step1": "Appuyez sur le bouton Partager <share/> dans la barre de Safari",
+    "step2": "Faites défiler et appuyez sur « Sur l’écran d’accueil »",
+    "step3": "Appuyez sur « Ajouter » en haut"
   }
 }

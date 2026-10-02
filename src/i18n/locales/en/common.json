@@ -78,7 +78,12 @@
     "description": "Add it to your home screen for quicker access.",
     "action": "Install",
     "dismiss": "Close",
-    "iosSteps": "Tap <share/> then “Add to Home Screen”.",
-    "share": "Share"
+    "share": "Share",
+    "iosIntro": "Add it to your home screen in a few taps. This works in Safari.",
+    "iosOpenSafari": "To install, open this page in Safari, then use Share → Add to Home Screen.",
+    "showHow": "Show me how",
+    "step1": "Tap the Share button <share/> in Safari's toolbar",
+    "step2": "Scroll down and tap “Add to Home Screen”",
+    "step3": "Tap “Add” in the top corner"
   }
 }

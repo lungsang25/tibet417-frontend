@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
-import { isIosSafari, isPrerenderBrowser, isStandalone } from '../pwa/env'
+import { isIos, isIosSafari, isPrerenderBrowser, isStandalone } from '../pwa/env'
 
 const DISMISS_KEY = 'tibet417_install_dismissed'
 const DISMISS_DAYS = 30
@@ -66,7 +66,8 @@ const InstallPrompt = () => {
   const { t } = useTranslation('common')
   const { pathname } = useLocation()
   const [installEvent, setInstallEvent] = useState(null)
-  const [showIosSteps, setShowIosSteps] = useState(false)
+  const [iosMode, setIosMode] = useState(null) // 'safari' | 'other' (iOS, but not Safari)
+  const [showSteps, setShowSteps] = useState(false)
   const [waited, setWaited] = useState(false)
   const [dismissed, setDismissed] = useState(true) // start hidden; decided in the effect below
 
@@ -74,7 +75,8 @@ const InstallPrompt = () => {
     if (isPrerenderBrowser() || isStandalone() || wasDismissedRecently()) return
 
     setDismissed(false)
-    setShowIosSteps(isIosSafari())
+    if (isIosSafari()) setIosMode('safari')
+    else if (isIos()) setIosMode('other')
 
     const onBeforeInstall = (e) => {
       e.preventDefault()
@@ -95,7 +97,7 @@ const InstallPrompt = () => {
     }
   }, [])
 
-  if (dismissed || !waited || QUIET_ROUTE.test(pathname) || (!installEvent && !showIosSteps)) return null
+  if (dismissed || !waited || QUIET_ROUTE.test(pathname) || (!installEvent && !iosMode)) return null
 
   const dismiss = () => {
     rememberDismissal()
@@ -121,12 +123,30 @@ const InstallPrompt = () => {
       <div className='flex-1 text-sm'>
         <p className='font-medium'>{t('install.title')}</p>
         <p className='mt-0.5 text-white/70'>
-          {installEvent ? t('install.description') : <Trans t={t} i18nKey='install.iosSteps' components={{ share: <ShareIcon /> }} />}
+          {installEvent ? t('install.description') : iosMode === 'other' ? t('install.iosOpenSafari') : t('install.iosIntro')}
         </p>
         {installEvent && (
           <button type='button' onClick={install} className='mt-3 bg-white px-4 py-2 text-sm font-medium text-ink'>
             {t('install.action')}
           </button>
+        )}
+        {!installEvent && iosMode === 'safari' && (
+          <>
+            {!showSteps && (
+              <button type='button' onClick={() => setShowSteps(true)} className='mt-3 bg-white px-4 py-2 text-sm font-medium text-ink'>
+                {t('install.showHow')}
+              </button>
+            )}
+            {showSteps && (
+              <ol className='mt-3 list-decimal space-y-1 pl-5 text-white/90'>
+                <li>
+                  <Trans t={t} i18nKey='install.step1' components={{ share: <ShareIcon /> }} />
+                </li>
+                <li>{t('install.step2')}</li>
+                <li>{t('install.step3')}</li>
+              </ol>
+            )}
+          </>
         )}
       </div>
       <button type='button' onClick={dismiss} aria-label={t('install.dismiss')} className='-m-1 p-1 text-white/70 hover:text-white'>

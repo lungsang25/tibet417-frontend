@@ -78,7 +78,12 @@
     "description": "Fügen Sie sie Ihrem Home-Bildschirm hinzu, um schneller darauf zuzugreifen.",
     "action": "Installieren",
     "dismiss": "Schliessen",
-    "iosSteps": "Tippen Sie auf <share/> und dann auf «Zum Home-Bildschirm».",
-    "share": "Teilen"
+    "share": "Teilen",
+    "iosIntro": "Fügen Sie sie mit wenigen Tipps Ihrem Home-Bildschirm hinzu. Das funktioniert in Safari.",
+    "iosOpenSafari": "Öffnen Sie diese Seite zum Installieren in Safari und wählen Sie Teilen → Zum Home-Bildschirm.",
+    "showHow": "Anleitung anzeigen",
+    "step1": "Tippen Sie in der Safari-Leiste auf «Teilen» <share/>",
+    "step2": "Scrollen Sie nach unten und tippen Sie auf «Zum Home-Bildschirm»",
+    "step3": "Tippen Sie oben rechts auf «Hinzufügen»"
   }
 }
