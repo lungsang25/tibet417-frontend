@@ -88,6 +88,15 @@
       "saveFailed": "Impossible d'enregistrer votre adresse — veuillez réessayer.",
       "empty": "Aucune adresse enregistrée pour le moment.",
       "back": "Retour au profil"
+    },
+    "receipts": {
+      "title": "Vos achats et reçus",
+      "thanksTitle": "Merci pour votre achat, {{name}} !",
+      "thanksBody_one": "Vous avez effectué {{count}} achat chez Tibet417 — {{total}} au total. Toutes vos factures sont conservées ici.",
+      "thanksBody_other": "Vous avez effectué {{count}} achats chez Tibet417 — {{total}} au total. Toutes vos factures sont conservées ici.",
+      "view": "Voir le reçu",
+      "viewAll": "Voir toutes les commandes",
+      "orderNumber": "Commande {{id}}"
     }
   },
   "verify": {
@@ -96,5 +105,27 @@
     "paymentCompleted": "Paiement effectué avec succès !",
     "paymentVerificationFailed": "Échec de la vérification du paiement",
     "verifying": "Vérification de votre paiement…"
+  },
+  "receipt": {
+    "loading": "Chargement de votre reçu…",
+    "notFound": "Nous n’avons pas trouvé ce reçu.",
+    "back": "Retour à la commande",
+    "title": "Reçu",
+    "number": "Reçu n°",
+    "date": "Date",
+    "payment": "Paiement",
+    "item": "Article",
+    "size": "Taille",
+    "qty": "Qté",
+    "unit": "Prix unitaire",
+    "lineTotal": "Total",
+    "subtotal": "Sous-total",
+    "discount": "Réduction points",
+    "shipping": "Livraison",
+    "total": "Total (CHF)",
+    "billedTo": "Facturé à",
+    "print": "Imprimer / Enregistrer en PDF",
+    "thanks": "Merci pour votre achat ! Nous apprécions votre soutien.",
+    "viewReceipt": "Voir le reçu"
   }
 }

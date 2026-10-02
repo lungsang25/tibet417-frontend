@@ -30,6 +30,7 @@ const Login = lazy(() => import('./pages/Login'))
 const PlaceOrder = lazy(() => import('./pages/PlaceOrder'))
 const Orders = lazy(() => import('./pages/Orders'))
 const OrderDetail = lazy(() => import('./pages/OrderDetail'))
+const Receipt = lazy(() => import('./pages/Receipt'))
 const Profile = lazy(() => import('./pages/Profile'))
 const PersonalDetails = lazy(() => import('./pages/PersonalDetails'))
 const Address = lazy(() => import('./pages/Address'))
@@ -131,6 +132,7 @@ const App = () => {
               <Route path='place-order' element={<PlaceOrder />} />
               <Route path='orders' element={<Orders />} />
               <Route path='orders/:orderId' element={<OrderDetail />} />
+              <Route path='orders/:orderId/receipt' element={<Receipt />} />
               <Route path='profile' element={<Profile />} />
               <Route path='profile/personal-details' element={<PersonalDetails />} />
               <Route path='profile/address' element={<Address />} />

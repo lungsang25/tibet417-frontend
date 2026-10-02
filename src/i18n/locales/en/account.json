@@ -88,6 +88,15 @@
       "saveFailed": "Couldn't save your address — please try again.",
       "empty": "No address saved yet.",
       "back": "Back to profile"
+    },
+    "receipts": {
+      "title": "Your purchases & receipts",
+      "thanksTitle": "Thank you for shopping with us, {{name}}!",
+      "thanksBody_one": "You have completed {{count}} purchase with Tibet417 — {{total}} in total. Every bill is kept here for you.",
+      "thanksBody_other": "You have completed {{count}} purchases with Tibet417 — {{total}} in total. Every bill is kept here for you.",
+      "view": "View receipt",
+      "viewAll": "View all orders",
+      "orderNumber": "Order {{id}}"
     }
   },
   "verify": {
@@ -96,5 +105,27 @@
     "paymentCompleted": "Payment completed successfully!",
     "paymentVerificationFailed": "Payment verification failed",
     "verifying": "Verifying your payment…"
+  },
+  "receipt": {
+    "loading": "Loading your receipt…",
+    "notFound": "We couldn't find that receipt.",
+    "back": "Back to order",
+    "title": "Receipt",
+    "number": "Receipt no.",
+    "date": "Date",
+    "payment": "Payment",
+    "item": "Item",
+    "size": "Size",
+    "qty": "Qty",
+    "unit": "Unit price",
+    "lineTotal": "Total",
+    "subtotal": "Subtotal",
+    "discount": "Points discount",
+    "shipping": "Shipping",
+    "total": "Total (CHF)",
+    "billedTo": "Billed to",
+    "print": "Print / Save as PDF",
+    "thanks": "Thank you for your purchase! We appreciate your support.",
+    "viewReceipt": "View receipt"
   }
 }

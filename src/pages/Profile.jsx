@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { ShopContext } from '../context/ShopContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { formatDate } from '../utils/formatDate'
 
 const Profile = () => {
-  const { t } = useTranslation('account')
-  const { token, backendUrl, navigate } = useContext(ShopContext)
+  const { t, i18n } = useTranslation('account')
+  const { token, backendUrl, navigate, currency } = useContext(ShopContext)
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   // Independent of the profile fetch above — a rewards outage must not block
@@ -14,6 +15,7 @@ const Profile = () => {
   const [pointsBalance, setPointsBalance] = useState(null)
   const [rewardsActive, setRewardsActive] = useState(false)
   const [welcomePoints, setWelcomePoints] = useState(0)
+  const [receipts, setReceipts] = useState(null)
 
   const fetchProfile = async () => {
     try {
@@ -52,6 +54,16 @@ const Profile = () => {
     }
   }
 
+  // Independent too: a receipts outage just hides the card.
+  const fetchReceipts = async () => {
+    try {
+      const response = await axios.post(backendUrl + '/api/order/receipts', {}, { headers: { token } })
+      if (response.data.success) setReceipts(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     if (!token) {
       navigate('/login')
@@ -59,6 +71,7 @@ const Profile = () => {
     }
     fetchProfile()
     fetchRewardsSummary()
+    fetchReceipts()
   }, [token])
 
   if (loading) {
@@ -169,6 +182,47 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
+      {receipts && receipts.count > 0 && (
+        <div className='bg-white shadow-md rounded-lg p-8 w-full max-w-md mt-4'>
+          <h3 className='text-lg font-semibold text-gray-800'>{t('profile.receipts.title')}</h3>
+          <p className='text-base text-gray-800 mt-3'>
+            {t('profile.receipts.thanksTitle', { name: user.name.split(' ')[0] })}
+          </p>
+          <p className='text-sm text-gray-600 mt-1'>
+            {t('profile.receipts.thanksBody', {
+              count: receipts.count,
+              total: `${currency} ${receipts.totalSpent.toFixed(2)}`,
+            })}
+          </p>
+          <ul className='mt-4 space-y-2 list-none p-0'>
+            {receipts.orders.slice(0, 5).map((order) => (
+              <li key={order._id} className='flex items-center justify-between gap-3 p-3 bg-gray-50 rounded text-sm'>
+                <div>
+                  <p className='text-gray-800 font-medium'>
+                    {t('profile.receipts.orderNumber', { id: order._id.slice(-8).toUpperCase() })}
+                  </p>
+                  <p className='text-gray-500'>{formatDate(order.date, i18n.language)} · {currency} {order.amount.toFixed(2)}</p>
+                </div>
+                <button
+                  type='button'
+                  onClick={() => navigate(`/orders/${order._id}/receipt`)}
+                  className='underline text-gray-800 cursor-pointer bg-transparent border-0'
+                >
+                  {t('profile.receipts.view')}
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button
+            type='button'
+            onClick={() => navigate('/orders')}
+            className='mt-4 text-sm underline text-gray-800 cursor-pointer bg-transparent border-0'
+          >
+            {t('profile.receipts.viewAll')}
+          </button>
+        </div>
+      )}
     </div>
   )
 }

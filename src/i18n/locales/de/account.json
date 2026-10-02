@@ -88,6 +88,15 @@
       "saveFailed": "Adresse konnte nicht gespeichert werden — bitte versuchen Sie es erneut.",
       "empty": "Noch keine Adresse gespeichert.",
       "back": "Zurück zum Profil"
+    },
+    "receipts": {
+      "title": "Ihre Einkäufe & Belege",
+      "thanksTitle": "Vielen Dank für Ihren Einkauf, {{name}}!",
+      "thanksBody_one": "Sie haben {{count}} Einkauf bei Tibet417 abgeschlossen – insgesamt {{total}}. Alle Rechnungen finden Sie hier.",
+      "thanksBody_other": "Sie haben {{count}} Einkäufe bei Tibet417 abgeschlossen – insgesamt {{total}}. Alle Rechnungen finden Sie hier.",
+      "view": "Beleg ansehen",
+      "viewAll": "Alle Bestellungen anzeigen",
+      "orderNumber": "Bestellung {{id}}"
     }
   },
   "verify": {
@@ -96,5 +105,27 @@
     "paymentCompleted": "Zahlung erfolgreich abgeschlossen!",
     "paymentVerificationFailed": "Zahlungsüberprüfung fehlgeschlagen",
     "verifying": "Ihre Zahlung wird überprüft…"
+  },
+  "receipt": {
+    "loading": "Beleg wird geladen…",
+    "notFound": "Dieser Beleg konnte nicht gefunden werden.",
+    "back": "Zurück zur Bestellung",
+    "title": "Beleg",
+    "number": "Beleg-Nr.",
+    "date": "Datum",
+    "payment": "Zahlung",
+    "item": "Artikel",
+    "size": "Grösse",
+    "qty": "Menge",
+    "unit": "Einzelpreis",
+    "lineTotal": "Total",
+    "subtotal": "Zwischensumme",
+    "discount": "Punkterabatt",
+    "shipping": "Versand",
+    "total": "Total (CHF)",
+    "billedTo": "Rechnungsadresse",
+    "print": "Drucken / Als PDF speichern",
+    "thanks": "Vielen Dank für Ihren Einkauf! Wir schätzen Ihre Unterstützung.",
+    "viewReceipt": "Beleg ansehen"
   }
 }

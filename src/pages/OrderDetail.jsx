@@ -93,6 +93,9 @@ const OrderDetail = () => {
         <span>{formatDate(order.date, i18n.language)}</span>
         <span>{t('orders.payment')} {order.paymentMethod}</span>
         <span className='font-medium text-ink'>{t('orders.total')} {currency}{order.amount}</span>
+        <Link to={`/orders/${order._id}/receipt`} className='underline hover:text-ink'>
+          {t('receipt.viewReceipt')}
+        </Link>
       </div>
 
       {/* items-start: without it the grid stretches both cards to equal height,
