@@ -5,6 +5,8 @@
     "namePlaceholder": "Nome",
     "emailPlaceholder": "Email",
     "passwordPlaceholder": "Password",
+    "showPassword": "Mostra password",
+    "hidePassword": "Nascondi password",
     "createAccount": "Crea un account",
     "loginHere": "Accedi qui",
     "signInButton": "Accedi",
