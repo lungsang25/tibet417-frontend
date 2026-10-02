@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { LocalizedLink as Link } from '../hooks/useLocalizedNavigation'
 import { getMediumImage, getSrcSet } from '../utils/imageUtils'
@@ -20,7 +20,21 @@ const ProductItem = ({id,image,name,price,priority = false,badge,sizes}) => {
     // each having to pass it down.
     const { price: currentPrice, originalPrice, percentOff } = getPriceInfo(id, price);
     const onSale = originalPrice !== null;
-    const hoverImage = image?.[1];
+    const images = Array.isArray(image) && image.length ? image : [image];
+    const sliderRef = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const handleScroll = (e) => {
+        const el = e.currentTarget;
+        setActiveIndex(Math.round(el.scrollLeft / el.clientWidth));
+    };
+
+    const goTo = (e, i) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const el = sliderRef.current;
+        if (el) el.scrollTo({ left: i * el.clientWidth, behavior: 'smooth' });
+    };
     const [isAddingToCart, setIsAddingToCart] = useState(false);
     const inWishlist = isInWishlist(id);
 
@@ -61,30 +75,43 @@ const ProductItem = ({id,image,name,price,priority = false,badge,sizes}) => {
   return (
     <Link onClick={()=>scrollTo(0,0)} className='group block cursor-pointer' to={`/product/${id}`}>
       <div className='relative aspect-[3/4] w-full overflow-hidden bg-line'>
-        <div className='absolute inset-0'>
-          <OptimizedImage
-            src={getMediumImage(image[0])}
-            srcSet={getSrcSet(image[0])}
-            sizes={CARD_SIZES}
-            alt={name}
-            priority={priority}
-            containerClassName='w-full h-full'
-            className='transition-transform duration-700 ease-out group-hover:scale-[1.04]'
-          />
+        {/* Swipeable slides (scroll-snap); dots below mirror the position */}
+        <div
+          ref={sliderRef}
+          onScroll={handleScroll}
+          className='absolute inset-0 flex overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+        >
+          {images.map((img, i) => (
+            <div key={i} className='relative h-full w-full shrink-0 snap-center'>
+              <OptimizedImage
+                src={getMediumImage(img)}
+                srcSet={getSrcSet(img)}
+                sizes={CARD_SIZES}
+                alt={i === 0 ? name : ''}
+                priority={priority && i === 0}
+                containerClassName='w-full h-full'
+                className='transition-transform duration-700 ease-out group-hover:scale-[1.04]'
+              />
+            </div>
+          ))}
         </div>
 
-        {/* Second product shot, revealed on hover */}
-        {hoverImage && (
-          <div className='absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100'>
-            <OptimizedImage
-              src={getMediumImage(hoverImage)}
-              srcSet={getSrcSet(hoverImage)}
-              sizes={CARD_SIZES}
-              alt=''
-              containerClassName='w-full h-full'
-              className='transition-transform duration-700 ease-out group-hover:scale-[1.04]'
-            />
-          </div>
+        {/* Prev/next arrows, desktop hover only (touch users swipe) */}
+        {images.length > 1 && (
+          <>
+            {activeIndex > 0 && (
+              <button type='button' onClick={(e) => goTo(e, activeIndex - 1)} aria-label='Previous image'
+                className='hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 items-center justify-center rounded-full bg-white/90 hover:bg-white text-ink opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10'>
+                <svg className='w-4 h-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2'><path d='M15 18l-6-6 6-6' /></svg>
+              </button>
+            )}
+            {activeIndex < images.length - 1 && (
+              <button type='button' onClick={(e) => goTo(e, activeIndex + 1)} aria-label='Next image'
+                className='hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 items-center justify-center rounded-full bg-white/90 hover:bg-white text-ink opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10'>
+                <svg className='w-4 h-4' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2'><path d='M9 18l6-6-6-6' /></svg>
+              </button>
+            )}
+          </>
         )}
 
         {(onSale || badge) && (
@@ -122,6 +149,14 @@ const ProductItem = ({id,image,name,price,priority = false,badge,sizes}) => {
           {isAddingToCart ? t('common:actions.adding') : t('common:actions.quickAdd')}
         </button>
       </div>
+
+      {images.length > 1 && (
+        <div className='flex justify-center gap-1.5 pt-3' aria-hidden='true'>
+          {images.map((_, i) => (
+            <span key={i} className={`h-1.5 w-1.5 rounded-full transition-colors ${i === activeIndex ? 'bg-ink' : 'bg-line'}`} />
+          ))}
+        </div>
+      )}
 
       <p className='pt-3 text-sm text-ink line-clamp-1'>{name}</p>
       <p className='pt-1 text-sm text-stone'>
